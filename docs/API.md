@@ -3,7 +3,6 @@ Api# Документация по взаимодействию с Rick and Mort
 **Базовый URL:**  
 https://rickandmortyapi.com/api
 
-
 ## 1. Обзор
 
 Rick and Morty API — это бесплатное RESTful API, предоставляющее информацию о персонажах, локациях и эпизодах из мультсериала **«Рик и Морти»**.
@@ -20,20 +19,22 @@ Rick and Morty API — это бесплатное RESTful API, предоста
 
 #### Параметры запроса:
 
-| Параметр | Тип     | Описание                                  |
-|----------|---------|-------------------------------------------|
-| `name`   | string  | Имя персонажа                             |
-| `status` | string  | `alive`, `dead`, `unknown`                |
-| `species`| string  | `Human`, `Alien`, `Humanoid`, `Animal`, `Robot`, `Cronenberg`, `Mythology`, `Disease`, `Unknown`                             |
-| `gender` | string  | `female`, `male`, `genderless`, `unknown`|
-| `page`   | integer | Номер страницы (пагинация)                |
+| Параметр  | Тип     | Описание                                                                                         |
+| --------- | ------- | ------------------------------------------------------------------------------------------------ |
+| `name`    | string  | Имя персонажа                                                                                    |
+| `status`  | string  | `alive`, `dead`, `unknown`                                                                       |
+| `species` | string  | `Human`, `Alien`, `Humanoid`, `Animal`, `Robot`, `Cronenberg`, `Mythology`, `Disease`, `Unknown` |
+| `gender`  | string  | `female`, `male`, `genderless`, `unknown`                                                        |
+| `page`    | integer | Номер страницы (пагинация)                                                                       |
 
 #### Пример запроса:
+
 ```
 GET https://rickandmortyapi.com/api/character?name=rick&status=alive
 ```
 
 #### Пример ответа:
+
 ```json
 {
   "info": {
@@ -64,14 +65,17 @@ GET https://rickandmortyapi.com/api/character?name=rick&status=alive
 ```
 
 ### Получить персонажа по ID
+
 GET /character/{id}
 
 Пример:
+
 ```
 GET https://rickandmortyapi.com/api/character/2
 ```
 
 #### Пример ответа:
+
 ```json
 {
   "id": 2,
@@ -99,5 +103,4 @@ GET https://rickandmortyapi.com/api/character/2
   "url": "https://rickandmortyapi.com/api/character/2",
   "created": "2017-11-04T18:50:21.651Z"
 }
-
 ```
