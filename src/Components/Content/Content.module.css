@@ -1,0 +1,6 @@
+.content {
+  width: 100%;
+  min-height: calc(100vh - [высота header и footer]);
+  background: #e1ffc2;
+  flex: 1;
+}
