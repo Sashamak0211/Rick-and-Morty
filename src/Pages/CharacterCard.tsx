@@ -5,7 +5,7 @@ export const CharacterCard = () => {
     <div className="characters-card-box">
       <h1>Информация о персонаже</h1>
       <Link to='/'>
-      ← Назад к списку
+      ← GO BACK
       </Link>
     </div>
   );
