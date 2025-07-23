@@ -7,6 +7,10 @@
 .logoLink {
   text-decoration: none;
 }
+.logoImage {
+  width: 46px;
+  height: 49px;
+}
 
 .title {
   margin: 0;

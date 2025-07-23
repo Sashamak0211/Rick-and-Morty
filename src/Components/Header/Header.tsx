@@ -5,7 +5,11 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <Link to="/" className={styles.logoLink}>
-        <h1 className={styles.title}>Rick & Morty</h1>
+        <img 
+          src="/public/images/headerLogo.png" 
+          alt="Rick and Morty" 
+          className={styles.logoImage}
+        />
       </Link>
     </header>
   );

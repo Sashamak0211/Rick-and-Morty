@@ -62,19 +62,18 @@ export const Selector = ({
         <span className="selector__button-content">
           {selectedOption ? (
             <>
-              {selectedOption.label}
+              <span className="selector__label">{selectedOption.label}</span>
               {selectedOption.color && (
                 <span
                   className="selector__dot"
-                  style={{ backgroundColor: selectedOption.color }}
+                  style={{ backgroundColor: selectedOption.color, marginLeft: '6px' }}
                 />
               )}
             </>
           ) : (
-            placeholder
+            <span className="selector__placeholder">{placeholder}</span>
           )}
         </span>
-
         <span className="selector__arrow" />
       </button>
 
@@ -89,13 +88,15 @@ export const Selector = ({
                 })}
                 onClick={() => handleOptionClick(option.value)}
               >
-                {option.label}
-                {option.color && (
-                  <span
-                    className="selector__dot"
-                    style={{ backgroundColor: option.color }}
-                  />
-                )}
+                <span style={{ display: 'flex', alignItems: 'center' }}>
+                  {option.label}
+                  {option.color && (
+                    <span
+                      className="selector__dot"
+                      style={{ backgroundColor: option.color, marginLeft: '6px' }}
+                    />
+                  )}
+                </span>
               </li>
             ))}
           </ul>

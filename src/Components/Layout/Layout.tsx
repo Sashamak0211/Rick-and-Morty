@@ -36,30 +36,18 @@ export const Layout = () => {
     },
   ];
 
-  const handleSelectChange = (value: string | null) => {
-    setSelectValue(value);
-  };
-
   return (
     <div className={styles.layout}>
       <Header />
 
       <div className={styles.filtersContainer}>
-        <div className={styles.searchContainer}>
-          <input
-            type="text"
-            placeholder="Filter by name..."
-            className={styles.searchInput}
-          />
-        </div>
-
         <div className={styles.selectorsRow}>
           {filters.map((filter) => (
             <Selector
               key={filter.name}
               options={filter.options}
               value={selectValue}
-              onChange={handleSelectChange}
+              onChange={setSelectValue}
               placeholder={filter.name}
               size="large"
             />
