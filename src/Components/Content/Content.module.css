@@ -1,6 +1,29 @@
 .content {
   width: 100%;
-  min-height: calc(100vh - [высота header и footer]);
-  background: #e1ffc2;
-  flex: 1;
+  padding: 20px;
+  min-height: calc(100vh - 160px);
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+
+.cardBox {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.back {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  color: #646cff;
+  text-decoration: none;
+  font-weight: 500;
+  z-index: 1;
 }

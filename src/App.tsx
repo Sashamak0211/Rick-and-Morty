@@ -9,7 +9,6 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>
-            {" "}
             <Route index element={<CharacterList />} />
             <Route path="character/:id" element={<CharacterCard />} />
           </Route>
@@ -20,3 +19,5 @@ function App() {
 }
 
 export default App;
+
+

@@ -1,15 +1,11 @@
 import { Link } from "react-router-dom";
+import styles from "./Header.module.css";
 
 export const Header = () => {
   return (
-    <header className="header">
-      <Link to="/">
-        <img
-          src="/public/images/headerLogo.png"
-          alt="Header_Logo"
-          width={49}
-          height={49}
-        />
+    <header className={styles.header}>
+      <Link to="/" className={styles.logoLink}>
+        <h1 className={styles.title}>Rick & Morty</h1>
       </Link>
     </header>
   );
