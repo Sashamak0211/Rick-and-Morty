@@ -1,10 +1,11 @@
 .selector {
+  display: inline-block;
+  z-index: 2;
   position: relative;
-  font-family: "Roboto", sans-serif;
-  cursor: pointer;
 }
 
 .selector__button {
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,6 +21,9 @@
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   font-weight: 400;
+  text-decoration: none !important;
+  outline: none;
+  box-sizing: border-box;
 }
 
 .selector__button:hover {
@@ -33,10 +37,43 @@
 
 .selector--large {
   width: 240px;
+  height: 55.58px;
+  border-radius: 6px;
+}
+
+.selector--large .selector__dropdown {
+  width: 240px;
+  min-height: 202.48px;
+  border-radius: 6px;
 }
 
 .selector--small {
-  width: 130px;
+  width: 94px;
+  height: 21px;
+  border-radius: 6px;
+}
+
+.selector--small .selector__button {
+  min-height: 21px;
+  padding: 2px 8px;
+}
+
+.selector--small .selector__dropdown {
+  width: 94px;
+  min-height: 71px;
+  border-radius: 6px;
+}
+
+.selector__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  z-index: 10;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .selector__arrow {
@@ -52,20 +89,6 @@
 
 .selector--open .selector__arrow {
   transform: rotate(180deg);
-}
-
-.selector__dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  margin-top: 4px;
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  z-index: 10;
-  max-height: 300px;
-  overflow-y: auto;
 }
 
 .selector__options {
@@ -100,4 +123,5 @@
   border-radius: 50%;
   display: inline-block;
   flex-shrink: 0;
+  margin-left: 6px;
 }

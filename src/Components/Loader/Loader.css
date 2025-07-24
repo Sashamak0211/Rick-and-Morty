@@ -4,13 +4,11 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
-
 }
 
 .loader-box.large .loader-img {
   width: 475px;
   height: 465px;
-
 }
 
 .loader-box.small .loader-img {
@@ -23,12 +21,18 @@
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(0.95); opacity: 0.9; }
-  50% { transform: scale(1.05); opacity: 1; }
+  0%,
+  100% {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
 }
 
 .loader-label {
   margin: 0;
   font-size: 1rem;
 }
-

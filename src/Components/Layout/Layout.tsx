@@ -6,10 +6,20 @@ import styles from "./Layout.module.css";
 import { Selector } from "../Selector/Selector";
 import { useState } from "react";
 
+interface IFilterConfig {
+  name: string;
+  options: {
+    value: string;
+    label: string;
+    color?: string;
+  }[];
+  size: "large" | "small";
+}
+
 export const Layout = () => {
   const [selectValue, setSelectValue] = useState<string | null>(null);
 
-  const filters = [
+  const filtersConfig: IFilterConfig[] = [
     {
       name: "Species",
       options: [
@@ -17,6 +27,7 @@ export const Layout = () => {
         { value: "alien", label: "Alien" },
         { value: "humanoid", label: "Humanoid" },
       ],
+      size: "large",
     },
     {
       name: "Gender",
@@ -25,6 +36,7 @@ export const Layout = () => {
         { value: "female", label: "Female" },
         { value: "unknown", label: "Unknown" },
       ],
+      size: "large",
     },
     {
       name: "Status",
@@ -33,6 +45,7 @@ export const Layout = () => {
         { value: "dead", label: "Dead", color: "#DF0000" },
         { value: "unknown", label: "Unknown", color: "#FF9900" },
       ],
+      size: "large",
     },
   ];
 
@@ -40,18 +53,20 @@ export const Layout = () => {
     <div className={styles.layout}>
       <Header />
 
-      <div className={styles.filtersContainer}>
-        <div className={styles.selectorsRow}>
-          {filters.map((filter) => (
-            <Selector
-              key={filter.name}
-              options={filter.options}
-              value={selectValue}
-              onChange={setSelectValue}
-              placeholder={filter.name}
-              size="large"
-            />
-          ))}
+      <div className={styles["filters-section"]}>
+        <div className={styles["filters-container"]}>
+          <div className={styles["selectors-row"]}>
+            {filtersConfig.map((filter) => (
+              <Selector
+                key={filter.name}
+                options={filter.options}
+                value={selectValue}
+                onChange={setSelectValue}
+                placeholder={filter.name}
+                size={filter.size}
+              />
+            ))}
+          </div>
         </div>
       </div>
 

@@ -66,7 +66,7 @@ export const Selector = ({
               {selectedOption.color && (
                 <span
                   className="selector__dot"
-                  style={{ backgroundColor: selectedOption.color, marginLeft: '6px' }}
+                  style={{ backgroundColor: selectedOption.color }}
                 />
               )}
             </>
@@ -88,12 +88,12 @@ export const Selector = ({
                 })}
                 onClick={() => handleOptionClick(option.value)}
               >
-                <span style={{ display: 'flex', alignItems: 'center' }}>
+                <span style={{ display: "flex", alignItems: "center" }}>
                   {option.label}
                   {option.color && (
                     <span
                       className="selector__dot"
-                      style={{ backgroundColor: option.color, marginLeft: '6px' }}
+                      style={{ backgroundColor: option.color }}
                     />
                   )}
                 </span>

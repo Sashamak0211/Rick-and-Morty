@@ -1,20 +1,18 @@
 .header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 60px;
   background-color: white;
-  padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  z-index: 100;
 }
 
-.logoLink {
-  text-decoration: none;
-}
 .logoImage {
-  width: 46px;
   height: 49px;
-}
-
-.title {
-  margin: 0;
-  color: #1f2937;
-  font-size: 24px;
-  font-weight: 700;
+  width: 46px;
+  margin-left: 210px;
 }

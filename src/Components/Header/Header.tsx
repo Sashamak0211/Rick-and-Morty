@@ -5,9 +5,9 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <Link to="/" className={styles.logoLink}>
-        <img 
-          src="/public/images/headerLogo.png" 
-          alt="Rick and Morty" 
+        <img
+          src="/images/headerLogo.png"
+          alt="Rick and Morty"
           className={styles.logoImage}
         />
       </Link>

@@ -1,19 +1,33 @@
 .layout {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: #f9fafb;
+  width: 1440px;
+  height: 1119px;
+  margin: 0 auto;
+  position: relative;
+  background-color: white;
 }
 
-.filtersContainer {
+.filters-section {
+  position: absolute;
+  top: 302px;
+  left: 0;
+  width: 1440px;
+  padding: 20px 0;
+
+  z-index: 10;
+}
+
+.filters-container {
   width: 100%;
   max-width: 1200px;
-  margin: 20px auto;
-  padding: 0 20px;
+  margin: 0 auto;
+  padding: 0 96px;
+  display: flex;
+  flex-direction: row;
 }
 
-.selectorsRow {
+.selectors-row {
   display: flex;
   gap: 16px;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-wrap: nowrap;
 }
