@@ -6,15 +6,15 @@ interface ILoaderProps {
 }
 export const Loader = ({ size = "large", label = "" }: ILoaderProps) => {
   return (
-    <div className={`loader-box ${size}`}>
+    <div className={`loader ${size === 'large' ? 'loader--large' : 'loader--small'}`}>
       <div className="loader">
         <img
           src="/public/images/PortalLoading.png"
           alt="Загрузка информации"
-          className="loader-img"
+          className="loader__image"
         />
       </div>
-      {label && <p className="loader-label">{label}</p>}
+      {label && <p className="loader__label">{label}</p>}
     </div>
   );
 };

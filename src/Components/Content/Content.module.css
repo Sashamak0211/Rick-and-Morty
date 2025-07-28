@@ -1,6 +1,47 @@
 .content {
-  width: 100%;
-  min-height: calc(100vh - [высота header и footer]);
-  background: #e1ffc2;
+  padding: 0 198px 40px;
+  margin-top: 40px; 
   flex: 1;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(2, 508px);
+  gap: 40px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: 248px;
+  position: relative;
+}
+
+.card-box {
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  height: 100%;
+}
+
+.card-box__back {
+  display: inline-block;
+  margin-top: 20px;
+  color: #6b7280;
+  text-decoration: none;
+}
+
+.card__link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.card__link:hover {
+  text-decoration: none;
 }

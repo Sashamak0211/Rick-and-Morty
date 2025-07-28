@@ -1,0 +1,14 @@
+.header {
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.header__logo-image {
+  height: 49px;
+  width: 46px;
+  margin-left: 210px;
+}

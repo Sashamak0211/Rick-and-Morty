@@ -1,5 +1,33 @@
 .layout {
+  width: 1440px;
+  margin: 0 auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  background-color: white;
+}
+
+.filters {
+  margin: 242px 198px 0;
+  display: flex;
+  gap: 16px;
+  z-index: 10;
+}
+
+.filters__container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 96px;
+}
+
+.filters__selectors-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.content {
+  flex: 1;
 }

@@ -1,0 +1,127 @@
+.selector {
+  display: inline-block;
+  z-index: 2;
+  position: relative;
+}
+
+.selector__button {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 40px;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: white;
+  color: #111827;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none !important;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.selector__button:hover {
+  border-color: #9ca3af;
+}
+
+.selector__button-content {
+  display: flex;
+  align-items: center;
+}
+
+.selector--large {
+  width: 240px;
+  height: 55.58px;
+  border-radius: 6px;
+}
+
+.selector--large .selector__dropdown {
+  width: 240px;
+  min-height: 202.48px;
+  border-radius: 6px;
+}
+
+.selector--small {
+  width: 94px;
+  height: 21px;
+  border-radius: 6px;
+}
+
+.selector--small .selector__button {
+  min-height: 21px;
+  padding: 2px 8px;
+}
+
+.selector--small .selector__dropdown {
+  width: 94px;
+  min-height: 71px;
+  border-radius: 6px;
+}
+
+.selector__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  z-index: 10;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.selector__arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #6b7280;
+  transition: transform 0.2s ease;
+  margin-left: 8px;
+}
+
+.selector--open .selector__arrow {
+  transform: rotate(180deg);
+}
+
+.selector__options {
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+}
+
+.selector__option {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.selector__option:hover {
+  background-color: #f3f4f6;
+}
+
+.selector__option--selected {
+  background-color: #eff6ff;
+  color: #1e40af;
+}
+
+.selector__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  margin-left: 6px;
+}

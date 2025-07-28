@@ -1,34 +1,38 @@
-.loader-box {
+.loader {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 16px;
-
 }
 
-.loader-box.large .loader-img {
+.loader--large .loader__image {
   width: 475px;
   height: 465px;
-
 }
 
-.loader-box.small .loader-img {
+.loader--small .loader__image {
   width: 103px;
   height: 101px;
 }
 
-.loader-img {
+.loader__image {
   animation: pulse 1.5s infinite ease-in-out;
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(0.95); opacity: 0.9; }
-  50% { transform: scale(1.05); opacity: 1; }
+  0%,
+  100% {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
 }
 
-.loader-label {
+.loader__label {
   margin: 0;
   font-size: 1rem;
 }
-

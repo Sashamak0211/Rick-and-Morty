@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Layout } from "./Components/Layout/Layout";
 import { CharacterList } from "./Pages/CharacterList";
-import { CharacterCard } from "./Pages/CharacterCard";
+import { CharacterPage } from "./Pages/CharacterPage";
 
 function App() {
   return (
@@ -9,9 +9,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>
-            {" "}
             <Route index element={<CharacterList />} />
-            <Route path="character/:id" element={<CharacterCard />} />
+            <Route path="character/:id" element={<CharacterPage />} />
           </Route>
         </Routes>
       </Router>
