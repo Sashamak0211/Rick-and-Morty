@@ -1,33 +1,39 @@
+
 .layout {
   width: 1440px;
-  height: 1119px;
   margin: 0 auto;
-  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: white;
 }
 
-.filters-section {
-  position: absolute;
-  top: 302px;
-  left: 0;
-  width: 1440px;
-  padding: 20px 0;
-
+.filters {
+  margin: 242px 198px 0; 
+  display: flex;
+  gap: 16px;
   z-index: 10;
 }
+.header {
+  flex-shrink: 0;
+}
 
-.filters-container {
+
+
+.filters__container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 96px;
-  display: flex;
-  flex-direction: row;
 }
 
-.selectors-row {
+.filters__selectors-row {
   display: flex;
   gap: 16px;
   align-items: center;
   flex-wrap: nowrap;
+}
+
+.content {
+  flex: 1;
 }

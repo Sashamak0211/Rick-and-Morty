@@ -13,7 +13,7 @@ export const CharacterList = () => {
   ];
 
   return (
-    <div className={styles.cardsContainer}>
+    <div className={styles["cards-container"]}>
       {[1, 2, 3, 4].map((id) => (
         <div key={id} className={styles.card}>
           <div onClick={(e) => e.stopPropagation()}>
@@ -25,7 +25,7 @@ export const CharacterList = () => {
               size="small"
             />
           </div>
-          <Link to={`character/${id}`} className={styles.cardLink} />
+          <Link to={`character/${id}`} className={styles['card__link']} />
         </div>
       ))}
     </div>

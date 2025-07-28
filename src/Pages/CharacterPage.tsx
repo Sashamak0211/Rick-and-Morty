@@ -5,7 +5,7 @@ export const CharacterPage = () => {
   return (
     <div className={styles.cardBox}>
       <h1>Информация о персонаже</h1>
-      <Link to="/" className={styles.back}>
+      <Link to="/" className={styles["card-box__back"]}>
         ← GO BACK
       </Link>
     </div>

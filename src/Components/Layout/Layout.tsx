@@ -52,22 +52,17 @@ export const Layout = () => {
   return (
     <div className={styles.layout}>
       <Header />
-
-      <div className={styles["filters-section"]}>
-        <div className={styles["filters-container"]}>
-          <div className={styles["selectors-row"]}>
-            {filtersConfig.map((filter) => (
-              <Selector
-                key={filter.name}
-                options={filter.options}
-                value={selectValue}
-                onChange={setSelectValue}
-                placeholder={filter.name}
-                size={filter.size}
-              />
-            ))}
-          </div>
-        </div>
+      <div className={styles.filters}>
+        {filtersConfig.map((filter) => (
+          <Selector
+            key={filter.name}
+            options={filter.options}
+            value={selectValue}
+            onChange={setSelectValue}
+            placeholder={filter.name}
+            size={filter.size}
+          />
+        ))}
       </div>
 
       <Content>

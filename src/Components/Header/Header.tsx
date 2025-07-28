@@ -4,11 +4,11 @@ import styles from "./Header.module.css";
 export const Header = () => {
   return (
     <header className={styles.header}>
-      <Link to="/" className={styles.logoLink}>
+      <Link to="/" >
         <img
           src="/images/headerLogo.png"
           alt="Rick and Morty"
-          className={styles.logoImage}
+           className={styles['header__logo-image']}
         />
       </Link>
     </header>
