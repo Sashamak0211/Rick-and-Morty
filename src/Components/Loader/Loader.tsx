@@ -1,4 +1,5 @@
 import "./Loader.css";
+import portalLoading from "/src/assets/image/PortalLoading.png"
 
 interface ILoaderProps {
   size?: "large" | "small";
@@ -9,7 +10,7 @@ export const Loader = ({ size = "large", label = "" }: ILoaderProps) => {
     <div className={`loader ${size === 'large' ? 'loader--large' : 'loader--small'}`}>
       <div className="loader">
         <img
-          src="/public/images/PortalLoading.png"
+          src={portalLoading}
           alt="Загрузка информации"
           className="loader__image"
         />
