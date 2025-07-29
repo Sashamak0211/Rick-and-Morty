@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
 import { Content } from "../Content/Content";
-import styles from "./Layout.module.css";
+import "./Layout.css"
 import { Selector } from "../Selector/Selector";
 import { useState } from "react";
 
@@ -50,9 +50,9 @@ export const Layout = () => {
   ];
 
   return (
-    <div className={styles.layout}>
+    <div className="layout">
       <Header />
-      <div className={styles.filters}>
+      <div className="filters">
         {filtersConfig.map((filter) => (
           <Selector
             key={filter.name}
