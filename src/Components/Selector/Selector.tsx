@@ -55,7 +55,7 @@ export const Selector = ({
         "selector--large": size === "large",
         "selector--small": size === "small",
         "selector--open": isOpen,
-      })}
+      })} 
       ref={selectorRef}
     >
       <button className="selector__button" onClick={toggleDropdown}>
