@@ -1,53 +1,94 @@
-import classNames from "classnames";
 import "./TextField.css";
-import magnifer from "/src/assets/icon/magnifer.svg";
+import classNames from "classnames";
+import magnifier from "../../assets/icon/magnifier.svg";
+import edit from "../../assets/icon/edit.svg";
+import check from "../../assets/icon/check.svg";
+import close from "../../assets/icon/close.svg";
+
+type TextFieldVariant = "default" | "compact" | "compact-editable";
 
 interface ITextFieldProps {
-  size?: "default" | "compact" | "compact-editable";
-  placeholder?: string;
+  variant?: TextFieldVariant;
   value?: string;
-  onChange: (value: string) => void;
-  icon?: boolean;
-  className?: string;
-  isEditing?: boolean;
+  placeholder?: string;
+  onChange?: (value: string) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  readOnly?: boolean;
+  onEditClick?: () => void;
+  onSaveClick?: () => void;
+  disableClick?: boolean;
+  onClick?: () => void;
 }
 
 export const TextField: React.FC<ITextFieldProps> = ({
+  variant = "default",
   value,
-  size = "default",
+  placeholder,
   onChange,
-  isEditing = false,
-  icon = false,
-  placeholder = "Filter by name",
+  onFocus,
+  onBlur,
+  readOnly = false,
+  disableClick,
+  onClick,
+  onEditClick,
+  onSaveClick,
 }) => {
+  console.log("TextField variant:", variant);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value);
+    onChange?.(e.target.value);
   };
-  const sizeClass = size === "compact-editable" ? "compact" : size;
+
   return (
-    <div
-      className={classNames("text-field", `text-field--${sizeClass}`, {
-        "text-field--editable": isEditing || size === "compact-editable",
-        "text-field-icon": icon,
-      })}
-    >
-      {icon && (
-        <span>
-          <img
-            src={magnifer}
-            alt="Search icon"
-            className="text-field__icon-img"
-          />
-        </span>
+    <div className={classNames("text-field", `text-field--${variant}`)}>
+      {variant === "default" && (
+        <img src={magnifier} alt="Search" className="text-field__icon" />
       )}
+
       <input
+        className="text-field__input"
         type="text"
         placeholder={placeholder}
-        className="text-field__input"
-        readOnly={!isEditing && size !== "compact-editable"}
         value={value}
         onChange={handleChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        readOnly={readOnly}
+        onClick={disableClick ? undefined : onClick}
       />
+
+      {variant === "compact" && (
+        <button
+          className="text-field__action"
+          onClick={(e) => {
+            e.stopPropagation();
+            onEditClick?.();
+          }}
+        >
+          <img src={edit} alt="Edit-icon" />
+        </button>
+      )}
+
+      {variant === "compact-editable" && (
+        <>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onSaveClick?.();
+            }}
+          >
+            <img src={check} alt="Check-icon" />
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onEditClick?.();
+            }}
+          >
+            <img src={close} alt="Close-icon" />
+          </button>
+        </>
+      )}
     </div>
   );
 };
