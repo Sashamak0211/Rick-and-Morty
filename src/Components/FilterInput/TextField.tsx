@@ -34,7 +34,6 @@ export const TextField: React.FC<ITextFieldProps> = ({
   onEditClick,
   onSaveClick,
 }) => {
-  console.log("TextField variant:", variant);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
   };
@@ -58,34 +57,47 @@ export const TextField: React.FC<ITextFieldProps> = ({
       />
 
       {variant === "compact" && (
-        <button
-          className="text-field__action"
-          onClick={(e) => {
-            e.stopPropagation();
-            onEditClick?.();
-          }}
-        >
-          <img src={edit} alt="Edit-icon" />
-        </button>
-      )}
-
-      {variant === "compact-editable" && (
         <>
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onSaveClick?.();
-            }}
-          >
-            <img src={check} alt="Check-icon" />
-          </button>
-          <button
+            className="text-field__action text-field__action--close"
             onClick={(e) => {
               e.stopPropagation();
               onEditClick?.();
             }}
           >
-            <img src={close} alt="Close-icon" />
+            <img src={close} alt="Close" />
+          </button>
+          <button
+            className="text-field__action text-field__action--edit"
+            onClick={(e) => {
+              e.stopPropagation();
+              onEditClick?.();
+            }}
+          >
+            <img src={edit} alt="Edit" />
+          </button>
+        </>
+      )}
+
+      {variant === "compact-editable" && (
+        <>
+          <button
+            className="text-field__action text-field__action--close"
+            onClick={(e) => {
+              e.stopPropagation();
+              onEditClick?.();
+            }}
+          >
+            <img src={close} alt="Close" />
+          </button>
+          <button
+            className="text-field__action text-field__action--check"
+            onClick={(e) => {
+              e.stopPropagation();
+              onSaveClick?.();
+            }}
+          >
+            <img src={check} alt="Check" />
           </button>
         </>
       )}
