@@ -52,10 +52,6 @@
   outline: none;
 }
 
-.text-field__input:focus {
-  border-bottom: 2px solid #3b82f6;
-}
-
 .text-field--compact .text-field__action {
   position: absolute;
   top: 50%;

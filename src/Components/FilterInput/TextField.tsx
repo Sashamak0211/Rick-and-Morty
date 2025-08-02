@@ -1,8 +1,5 @@
 import classNames from "classnames";
 import { MagniferIcon } from "../../assets/icon/MagniferIcon";
-import { EditIcon } from "../../assets/icon/EditIcon";
-import { CheckIcon } from "../../assets/icon/CheckIcon";
-import { CloseIcon } from "../../assets/icon/CloseIcon";
 import "./TextField.css";
 
 type TextFieldVariant = "default" | "compact" | "compact-editable";
@@ -31,8 +28,6 @@ export const TextField: React.FC<ITextFieldProps> = ({
   readOnly = false,
   disableClick,
   onClick,
-  onEditClick,
-  onSaveClick,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
@@ -53,52 +48,6 @@ export const TextField: React.FC<ITextFieldProps> = ({
         readOnly={readOnly}
         onClick={disableClick ? undefined : onClick}
       />
-
-      {variant === "compact" && (
-        <>
-          <button
-            className="text-field__action text-field__action--close"
-            onClick={(e) => {
-              e.stopPropagation();
-              onEditClick?.();
-            }}
-          >
-            <CloseIcon />
-          </button>
-          <button
-            className="text-field__action text-field__action--edit"
-            onClick={(e) => {
-              e.stopPropagation();
-              onEditClick?.();
-            }}
-          >
-            <EditIcon />
-          </button>
-        </>
-      )}
-
-      {variant === "compact-editable" && (
-        <>
-          <button
-            className="text-field__action text-field__action--close"
-            onClick={(e) => {
-              e.stopPropagation();
-              onEditClick?.();
-            }}
-          >
-            <CloseIcon />
-          </button>
-          <button
-            className="text-field__action text-field__action--check"
-            onClick={(e) => {
-              e.stopPropagation();
-              onSaveClick?.();
-            }}
-          >
-            <CheckIcon />
-          </button>
-        </>
-      )}
     </div>
   );
 };
