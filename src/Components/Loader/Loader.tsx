@@ -1,3 +1,5 @@
+import portalLoading from "/src/assets/image/PortalLoading.png";
+import cn from "classnames";
 import "./Loader.css";
 
 interface ILoaderProps {
@@ -6,14 +8,13 @@ interface ILoaderProps {
 }
 export const Loader = ({ size = "large", label = "" }: ILoaderProps) => {
   return (
-    <div className={`loader ${size === 'large' ? 'loader--large' : 'loader--small'}`}>
-      <div className="loader">
-        <img
-          src="/public/images/PortalLoading.png"
-          alt="Загрузка информации"
-          className="loader__image"
-        />
-      </div>
+    <div className={cn("loader", `loader--${size}`)}>
+      <img
+        src={portalLoading}
+        alt="Загрузка информации"
+        className="loader__image"
+      />
+
       {label && <p className="loader__label">{label}</p>}
     </div>
   );

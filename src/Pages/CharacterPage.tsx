@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import styles from "../Components/Content/Content.module.css";
+import "../Components/Content/Content.css";
 
 export const CharacterPage = () => {
   return (
-    <div className={styles.cardBox}>
+    <div className="cardBox">
       <h1>Информация о персонаже</h1>
-      <Link to="/" className={styles["card-box__back"]}>
+      <Link to="/" className="card-box__back">
         ← GO BACK
       </Link>
     </div>

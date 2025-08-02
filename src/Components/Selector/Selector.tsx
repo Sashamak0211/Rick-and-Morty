@@ -90,7 +90,7 @@ export const Selector = ({
               >
                 <span style={{ display: "flex", alignItems: "center" }}>
                   {option.label}
-                  {option.color && (
+                  {option.color && size === "small" && (
                     <span
                       className="selector__dot"
                       style={{ backgroundColor: option.color }}

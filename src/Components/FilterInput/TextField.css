@@ -1,0 +1,94 @@
+.text-field {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 240px;
+  height: 54px;
+  padding: 0 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: white;
+  font-family: "Roboto", sans-serif;
+  transition: all 0.2s ease;
+}
+
+.text-field:hover {
+  border-color: #9ca3af;
+}
+
+.text-field--compact {
+  position: relative;
+  width: 120px;
+  height: 32px;
+  padding: 0 8px;
+  border: none;
+  border-bottom: 1px solid #9ca3af;
+  font-weight: 500;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.text-field--compact-editable {
+  position: relative;
+  width: 120px;
+  height: 32px;
+  padding: 0 8px;
+  border: none;
+  border-bottom: 1px solid #9ca3af;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.text-field--compact:hover,
+.text-field--compact-editable:hover {
+  border-color: #9ca3af;
+  border-bottom: 1px solid #9ca3af;
+}
+
+.text-field__input {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  outline: none;
+}
+
+.text-field--compact .text-field__action {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: none;
+}
+
+.text-field--compact:hover .text-field__action {
+  display: block;
+}
+
+.text-field--compact .text-field__action--close {
+  right: 32px;
+}
+
+.text-field--compact .text-field__action--edit {
+  right: 8px;
+}
+
+.text-field--compact-editable .text-field__action {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.text-field--compact-editable .text-field__action--close {
+  right: 32px;
+}
+
+.text-field--compact-editable .text-field__action--check {
+  right: 8px;
+}

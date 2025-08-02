@@ -2,9 +2,10 @@ import { Outlet } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
 import { Content } from "../Content/Content";
-import "./Layout.css"
 import { Selector } from "../Selector/Selector";
 import { useState } from "react";
+import { TextField } from "../FilterInput/TextField";
+import "./Layout.css";
 
 interface IFilterConfig {
   name: string;
@@ -18,6 +19,7 @@ interface IFilterConfig {
 
 export const Layout = () => {
   const [selectValue, setSelectValue] = useState<string | null>(null);
+  const [searchValue, setSearchValue] = useState<string>("");
 
   const filtersConfig: IFilterConfig[] = [
     {
@@ -53,6 +55,11 @@ export const Layout = () => {
     <div className="layout">
       <Header />
       <div className="filters">
+        <TextField
+          onChange={setSearchValue}
+          value={searchValue}
+          placeholder="Filter by name"
+        />
         {filtersConfig.map((filter) => (
           <Selector
             key={filter.name}

@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import styles from "../Components/Content/Content.module.css";
+import { useNavigate } from "react-router-dom";
+import "../Components/Content/Content.css";
 import { Selector } from "../Components/Selector/Selector";
+import { TextField } from "../Components/FilterInput/TextField";
 
 export const CharacterList = () => {
-  const [statusFilter, setStatusFilter] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const [editingId, setEditingId] = useState<number | null>(null);
 
   const statusOptions = [
     { value: "alive", label: "Alive", color: "#12B800" },
@@ -12,20 +14,48 @@ export const CharacterList = () => {
     { value: "unknown", label: "Unknown", color: "#FF9900" },
   ];
 
+  const cardIds = [1, 2, 3, 4];
+
+  const handleEdit = (id: number) => {
+    setEditingId(id);
+  };
+
+  const handleSave = () => {
+    setEditingId(null);
+  };
+
+  const handleCardClick = (id: number) => {
+    if (editingId !== id) {
+      navigate(`/character/${id}`);
+    }
+  };
+
   return (
-    <div className={styles["cards-container"]}>
-      {[1, 2, 3, 4].map((id) => (
-        <div key={id} className={styles.card}>
-          <div onClick={(e) => e.stopPropagation()}>
-            <Selector
-              options={statusOptions}
-              value={statusFilter}
-              onChange={setStatusFilter}
-              placeholder="Status"
-              size="small"
-            />
+    <div className="cards-container">
+      {cardIds.map((id) => (
+        <div key={id} className="card" onClick={() => handleCardClick(id)}>
+          <div className="card-content">
+            <div onClick={(e) => e.stopPropagation()}>
+              <TextField
+                variant={editingId === id ? "compact-editable" : "compact"}
+                value={`Rick Motry`}
+                onChange={() => {}}
+                readOnly={editingId !== id}
+                onEditClick={() => handleEdit(id)}
+                onSaveClick={handleSave}
+              />
+            </div>
+
+            <div onClick={(e) => e.stopPropagation()}>
+              <Selector
+                options={statusOptions}
+                value={null}
+                onChange={() => {}}
+                placeholder="Status"
+                size="small"
+              />
+            </div>
           </div>
-          <Link to={`character/${id}`} className={styles['card__link']} />
         </div>
       ))}
     </div>
