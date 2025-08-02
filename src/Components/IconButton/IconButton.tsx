@@ -14,7 +14,7 @@ export const IconButton = ({
       className={`text-field__action--${className} `}
       onClick={(e) => {
         e.stopPropagation();
-        onClick?.();
+        onClick();
       }}
     >
       {children}
