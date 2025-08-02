@@ -1,9 +1,9 @@
-import "./TextField.css";
 import classNames from "classnames";
-import magnifier from "../../assets/icon/magnifier.svg";
-import edit from "../../assets/icon/edit.svg";
-import check from "../../assets/icon/check.svg";
-import close from "../../assets/icon/close.svg";
+import { MagniferIcon } from "../../assets/icon/MagniferIcon";
+import { EditIcon } from "../../assets/icon/EditIcon";
+import { CheckIcon } from "../../assets/icon/CheckIcon";
+import { CloseIcon } from "../../assets/icon/CloseIcon";
+import "./TextField.css";
 
 type TextFieldVariant = "default" | "compact" | "compact-editable";
 
@@ -40,9 +40,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
 
   return (
     <div className={classNames("text-field", `text-field--${variant}`)}>
-      {variant === "default" && (
-        <img src={magnifier} alt="Search" className="text-field__icon" />
-      )}
+      {variant === "default" && <MagniferIcon className="test-field__icon" />}
 
       <input
         className="text-field__input"
@@ -65,7 +63,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
               onEditClick?.();
             }}
           >
-            <img src={close} alt="Close" />
+            <CloseIcon />
           </button>
           <button
             className="text-field__action text-field__action--edit"
@@ -74,7 +72,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
               onEditClick?.();
             }}
           >
-            <img src={edit} alt="Edit" />
+            <EditIcon />
           </button>
         </>
       )}
@@ -88,7 +86,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
               onEditClick?.();
             }}
           >
-            <img src={close} alt="Close" />
+            <CloseIcon />
           </button>
           <button
             className="text-field__action text-field__action--check"
@@ -97,7 +95,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
               onSaveClick?.();
             }}
           >
-            <img src={check} alt="Check" />
+            <CheckIcon />
           </button>
         </>
       )}

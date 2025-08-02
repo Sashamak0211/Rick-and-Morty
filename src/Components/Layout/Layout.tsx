@@ -2,10 +2,10 @@ import { Outlet } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
 import { Content } from "../Content/Content";
-import "./Layout.css";
 import { Selector } from "../Selector/Selector";
 import { useState } from "react";
 import { TextField } from "../FilterInput/TextField";
+import "./Layout.css";
 
 interface IFilterConfig {
   name: string;
