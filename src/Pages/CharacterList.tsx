@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "../Components/Content/Content.css";
 import { Selector } from "../Components/Selector/Selector";
 import { TextField } from "../Components/FilterInput/TextField";
+import { IconButton } from "../Widget/IconButton";
+import { EditIcon } from "../assets/icon/EditIcon";
+import { CloseIcon } from "../assets/icon/CloseIcon";
+import { CheckIcon } from "../assets/icon/CheckIcon";
 
 export const CharacterList = () => {
   const navigate = useNavigate();
@@ -33,20 +37,81 @@ export const CharacterList = () => {
   return (
     <div className="cards-container">
       {cardIds.map((id) => (
-        <div key={id} className="card" onClick={() => handleCardClick(id)}>
+        <div
+          key={id}
+          className={`card ${editingId === id ? "editing" : ""}`}
+          onClick={() => handleCardClick(id)}
+        >
+          <img
+            src="/images/Rick.jpg"
+            alt="Rick мать его Санчез"
+            className="card-image"
+          />
+
           <div className="card-content">
-            <div onClick={(e) => e.stopPropagation()}>
-              <TextField
-                variant={editingId === id ? "compact-editable" : "compact"}
-                value={`Rick Motry`}
-                onChange={() => {}}
-                readOnly={editingId !== id}
-                onEditClick={() => handleEdit(id)}
-                onSaveClick={handleSave}
-              />
+            <div className="field-actions-group">
+              <div onClick={(e) => e.stopPropagation()}>
+                <TextField
+                  variant={editingId === id ? "compact-editable" : "compact"}
+                  value={`Rick Motry`}
+                  onChange={() => {}}
+                  readOnly={editingId !== id}
+                />
+              </div>
+
+              <div className="icon-button-container">
+                {editingId !== id && (
+                  <>
+                    <IconButton
+                      className="icon-button__close"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setEditingId(null);
+                      }}
+                    >
+                      <CloseIcon />
+                    </IconButton>
+                    <IconButton
+                      className="icon-button__edit"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleEdit(id);
+                      }}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                  </>
+                )}
+
+                {editingId === id && (
+                  <>
+                    <IconButton
+                      className="icon-button__close"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setEditingId(null);
+                      }}
+                    >
+                      <CloseIcon />
+                    </IconButton>
+                    <IconButton
+                      className="icon-button__check"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSave();
+                      }}
+                    >
+                      <CheckIcon />
+                    </IconButton>
+                  </>
+                )}
+              </div>
             </div>
 
-            <div onClick={(e) => e.stopPropagation()}>
+            <div
+              className="selector-container"
+              onClick={(e) => e.stopPropagation()}
+            >
               <Selector
                 options={statusOptions}
                 value={null}

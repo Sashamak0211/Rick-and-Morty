@@ -35,7 +35,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
 
   return (
     <div className={classNames("text-field", `text-field--${variant}`)}>
-      {variant === "default" && <MagniferIcon className="test-field__icon" />}
+      {variant === "default" && <MagniferIcon className="teчt-field__icon" />}
 
       <input
         className="text-field__input"

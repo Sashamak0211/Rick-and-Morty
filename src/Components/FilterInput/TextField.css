@@ -22,7 +22,6 @@
   height: 32px;
   padding: 0 8px;
   border: none;
-  border-bottom: 1px solid #9ca3af;
   font-weight: 500;
   background-color: transparent;
   border-radius: 0;
@@ -39,7 +38,6 @@
   border-radius: 0;
 }
 
-.text-field--compact:hover,
 .text-field--compact-editable:hover {
   border-color: #9ca3af;
   border-bottom: 1px solid #9ca3af;
@@ -50,45 +48,4 @@
   background-color: transparent;
   width: 100%;
   outline: none;
-}
-
-.text-field--compact .text-field__action {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: none;
-}
-
-.text-field--compact:hover .text-field__action {
-  display: block;
-}
-
-.text-field--compact .text-field__action--close {
-  right: 32px;
-}
-
-.text-field--compact .text-field__action--edit {
-  right: 8px;
-}
-
-.text-field--compact-editable .text-field__action {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-.text-field--compact-editable .text-field__action--close {
-  right: 32px;
-}
-
-.text-field--compact-editable .text-field__action--check {
-  right: 8px;
 }
