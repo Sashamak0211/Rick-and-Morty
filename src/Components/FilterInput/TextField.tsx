@@ -12,9 +12,6 @@ interface ITextFieldProps {
   onFocus?: () => void;
   onBlur?: () => void;
   readOnly?: boolean;
-  onEditClick?: () => void;
-  onSaveClick?: () => void;
-  disableClick?: boolean;
   onClick?: () => void;
 }
 
@@ -26,7 +23,6 @@ export const TextField: React.FC<ITextFieldProps> = ({
   onFocus,
   onBlur,
   readOnly = false,
-  disableClick,
   onClick,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +31,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
 
   return (
     <div className={classNames("text-field", `text-field--${variant}`)}>
-      {variant === "default" && <MagniferIcon className="teчt-field__icon" />}
+      {variant === "default" && <MagniferIcon className="text-field__icon" />}
 
       <input
         className="text-field__input"
@@ -46,7 +42,8 @@ export const TextField: React.FC<ITextFieldProps> = ({
         onFocus={onFocus}
         onBlur={onBlur}
         readOnly={readOnly}
-        onClick={disableClick ? undefined : onClick}
+        onClick={onClick}
+        style={{ cursor: onClick ? "pointer" : "default" }}
       />
     </div>
   );

@@ -14,40 +14,32 @@
 }
 
 .card {
-  position: relative;
+  display: flex;
   width: 508px;
   height: 248px;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  padding: 16px;
-  transition: all 0.2s ease;
+  padding: 8px;
   box-sizing: border-box;
-  background: white;
-  overflow: visible;
+  gap: 16px;
 }
 
 .card-image {
-  position: absolute;
   width: 240px;
   height: 234px;
-  left: 8px;
-  top: 7px;
   border-radius: 8px;
+  align-self: center;
   object-fit: cover;
-  pointer-events: none;
-  z-index: 1;
+  flex-shrink: 0;
 }
 
 .card-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
-
-  z-index: 10;
-  height: 100%;
-  margin-left: 260px;
+  justify-content: space-between;
   padding-right: 16px;
   box-sizing: border-box;
-  justify-content: space-between;
 }
 
 .field-actions-group {
@@ -69,15 +61,6 @@
   width: fit-content;
 }
 
-.card__link-wrapper {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  width: 100%;
-  max-width: 508px;
-  margin: 0 auto;
-}
-
 .card:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -88,23 +71,16 @@
   visibility: visible;
 }
 
-.card-box {
-  background: white;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  height: 100%;
-}
-
-.card-box__back {
-  display: inline-block;
-  margin-top: 20px;
-  color: #6b7280;
-  text-decoration: none;
-}
-
-.card__link-wrapper:hover {
-  text-decoration: none;
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon-button__edit,
@@ -119,8 +95,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
-
 }
-
-

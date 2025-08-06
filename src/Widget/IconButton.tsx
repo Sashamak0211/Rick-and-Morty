@@ -1,6 +1,6 @@
 interface IIconButtonProps {
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  className: string;
+  onClick: () => void;
+  className?: string;
   children: React.ReactNode;
 }
 
@@ -11,11 +11,8 @@ export const IconButton = ({
 }: IIconButtonProps) => {
   return (
     <button
-      className={`icon-button ${className} `}
-      onClick={(e) => {
-        e.stopPropagation();
-        onClick(e);
-      }}
+      className={`icon-button ${className}`}
+      onClick={onClick}
       type="button"
     >
       {children}

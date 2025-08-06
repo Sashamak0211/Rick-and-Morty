@@ -14,6 +14,7 @@ interface ISelectorProps {
   onChange: (value: string | null) => void;
   placeholder: string;
   size?: "large" | "small";
+  disabled: boolean;
 }
 
 export const Selector = ({
@@ -22,6 +23,7 @@ export const Selector = ({
   onChange,
   placeholder,
   size = "small",
+  disabled = false,
 }: ISelectorProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectorRef = useRef<HTMLDivElement>(null);
@@ -55,10 +57,14 @@ export const Selector = ({
         "selector--large": size === "large",
         "selector--small": size === "small",
         "selector--open": isOpen,
-      })} 
+      })}
       ref={selectorRef}
     >
-      <button className="selector__button" onClick={toggleDropdown}>
+      <button
+        className="selector__button"
+        onClick={toggleDropdown}
+        disabled={disabled}
+      >
         <span className="selector__button-content">
           {selectedOption ? (
             <>

@@ -7,6 +7,7 @@ import { IconButton } from "../Widget/IconButton";
 import { EditIcon } from "../assets/icon/EditIcon";
 import { CloseIcon } from "../assets/icon/CloseIcon";
 import { CheckIcon } from "../assets/icon/CheckIcon";
+import classNames from "classnames";
 
 export const CharacterList = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ export const CharacterList = () => {
     setEditingId(null);
   };
 
-  const handleCardClick = (id: number) => {
+  const handleNameClick = (id: number) => {
     if (editingId !== id) {
       navigate(`/character/${id}`);
     }
@@ -39,8 +40,9 @@ export const CharacterList = () => {
       {cardIds.map((id) => (
         <div
           key={id}
-          className={`card ${editingId === id ? "editing" : ""}`}
-          onClick={() => handleCardClick(id)}
+          className={classNames("card", {
+            editing: editingId === id,
+          })}
         >
           <img
             src="/images/Rick.jpg"
@@ -50,56 +52,41 @@ export const CharacterList = () => {
 
           <div className="card-content">
             <div className="field-actions-group">
-              <div onClick={(e) => e.stopPropagation()}>
-                <TextField
-                  variant={editingId === id ? "compact-editable" : "compact"}
-                  value={`Rick Motry`}
-                  onChange={() => {}}
-                  readOnly={editingId !== id}
-                />
-              </div>
+              <TextField
+                variant={editingId === id ? "compact-editable" : "compact"}
+                value={`Rick Motry`}
+                onChange={() => {}}
+                readOnly={editingId !== id}
+                onClick={() => handleNameClick(id)}
+              />
 
               <div className="icon-button-container">
-                {editingId !== id && (
+                {editingId !== id ? (
                   <>
                     <IconButton
                       className="icon-button__close"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setEditingId(null);
-                      }}
+                      onClick={() => setEditingId(null)}
                     >
                       <CloseIcon />
                     </IconButton>
                     <IconButton
                       className="icon-button__edit"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleEdit(id);
-                      }}
+                      onClick={() => handleEdit(id)}
                     >
                       <EditIcon />
                     </IconButton>
                   </>
-                )}
-
-                {editingId === id && (
+                ) : (
                   <>
                     <IconButton
                       className="icon-button__close"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setEditingId(null);
-                      }}
+                      onClick={() => setEditingId(null)}
                     >
                       <CloseIcon />
                     </IconButton>
                     <IconButton
                       className="icon-button__check"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleSave();
-                      }}
+                      onClick={handleSave}
                     >
                       <CheckIcon />
                     </IconButton>
@@ -108,16 +95,14 @@ export const CharacterList = () => {
               </div>
             </div>
 
-            <div
-              className="selector-container"
-              onClick={(e) => e.stopPropagation()}
-            >
+            <div className="selector-container">
               <Selector
                 options={statusOptions}
                 value={null}
                 onChange={() => {}}
                 placeholder="Status"
                 size="small"
+                disabled={editingId !== id}
               />
             </div>
           </div>
