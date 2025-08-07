@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 import "../Components/Content/Content.css";
 import { Selector } from "../Components/Selector/Selector";
 import { TextField } from "../Components/FilterInput/TextField";
+import { IconButton } from "../Widget/IconButton";
+import { EditIcon } from "../assets/icon/EditIcon";
+import { CloseIcon } from "../assets/icon/CloseIcon";
+import { CheckIcon } from "../assets/icon/CheckIcon";
+import classNames from "classnames";
 
 export const CharacterList = () => {
   const navigate = useNavigate();
@@ -24,7 +29,7 @@ export const CharacterList = () => {
     setEditingId(null);
   };
 
-  const handleCardClick = (id: number) => {
+  const handleNameClick = (id: number) => {
     if (editingId !== id) {
       navigate(`/character/${id}`);
     }
@@ -33,26 +38,71 @@ export const CharacterList = () => {
   return (
     <div className="cards-container">
       {cardIds.map((id) => (
-        <div key={id} className="card" onClick={() => handleCardClick(id)}>
+        <div
+          key={id}
+          className={classNames("card", {
+            editing: editingId === id,
+          })}
+        >
+          <img
+            src="/images/Rick.jpg"
+            alt="Rick мать его Санчез"
+            className="card-image"
+          />
+
           <div className="card-content">
-            <div onClick={(e) => e.stopPropagation()}>
+            <div className="field-actions-group">
               <TextField
                 variant={editingId === id ? "compact-editable" : "compact"}
                 value={`Rick Motry`}
                 onChange={() => {}}
                 readOnly={editingId !== id}
-                onEditClick={() => handleEdit(id)}
-                onSaveClick={handleSave}
+                onClick={() => handleNameClick(id)}
               />
+
+              <div className="icon-button-container">
+                {editingId !== id ? (
+                  <>
+                    <IconButton
+                      className="icon-button__close"
+                      onClick={() => setEditingId(null)}
+                    >
+                      <CloseIcon />
+                    </IconButton>
+                    <IconButton
+                      className="icon-button__edit"
+                      onClick={() => handleEdit(id)}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                  </>
+                ) : (
+                  <>
+                    <IconButton
+                      className="icon-button__close"
+                      onClick={() => setEditingId(null)}
+                    >
+                      <CloseIcon />
+                    </IconButton>
+                    <IconButton
+                      className="icon-button__check"
+                      onClick={handleSave}
+                    >
+                      <CheckIcon />
+                    </IconButton>
+                  </>
+                )}
+              </div>
             </div>
 
-            <div onClick={(e) => e.stopPropagation()}>
+            <div className="selector-container">
               <Selector
                 options={statusOptions}
                 value={null}
                 onChange={() => {}}
                 placeholder="Status"
                 size="small"
+                disabled={editingId !== id}
               />
             </div>
           </div>

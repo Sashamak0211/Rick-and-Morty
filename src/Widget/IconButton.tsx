@@ -1,6 +1,6 @@
 interface IIconButtonProps {
   onClick: () => void;
-  className: string;
+  className?: string;
   children: React.ReactNode;
 }
 
@@ -11,11 +11,9 @@ export const IconButton = ({
 }: IIconButtonProps) => {
   return (
     <button
-      className={`text-field__action--${className} `}
-      onClick={(e) => {
-        e.stopPropagation();
-        onClick();
-      }}
+      className={`icon-button ${className}`}
+      onClick={onClick}
+      type="button"
     >
       {children}
     </button>
