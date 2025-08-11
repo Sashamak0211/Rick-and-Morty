@@ -42,7 +42,6 @@
 
 .selector--large .selector__dropdown {
   width: 240px;
-  min-height: 202.48px;
   border-radius: 6px;
 }
 
@@ -64,7 +63,6 @@
 
 .selector--small .selector__dropdown {
   width: 94px;
-  min-height: 71px;
   border-radius: 6px;
 }
 
@@ -122,10 +120,6 @@
   background-color: #f3f4f6;
 }
 
-.selector__option--selected {
-  background-color: #eff6ff;
-  color: #1e40af;
-}
 
 .selector__dot {
   width: 10px;

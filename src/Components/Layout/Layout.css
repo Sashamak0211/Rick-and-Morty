@@ -8,9 +8,9 @@
 }
 
 .filters {
-  margin: 40px auto 0;
+  margin: 242px auto 0;
   display: flex;
-  gap: 16px;
+  gap: 28px;
   z-index: 10;
   padding: 0 198px;
   width: 100%;

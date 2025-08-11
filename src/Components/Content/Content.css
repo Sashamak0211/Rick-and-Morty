@@ -1,6 +1,6 @@
 .content {
   padding: 0 198px 40px;
-  margin-top: 40px;
+  margin-top: 28px;
   flex: 1;
   font-family: "Roboto", sans-serif;
 }
@@ -8,20 +8,23 @@
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(508px, 1fr));
-  padding: 40px 0 0;
+  gap: 28px;
+  padding: 0;
   margin: 0 auto;
   max-width: 1200px;
 }
 
 .card {
   display: flex;
-  width: 508px;
+  max-width: 508px;
+  width: 100%;
   height: 248px;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: 7px;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.08);
 }
 
 .card-image {
