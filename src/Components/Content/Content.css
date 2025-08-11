@@ -27,6 +27,7 @@
 .card-image {
   width: 240px;
   height: 234px;
+  border-radius: 4px;
   margin-right: 13px;
   align-self: center;
   object-fit: cover;
