@@ -2,6 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Layout } from "./Components/Layout/Layout";
 import { CharacterList } from "./Pages/CharacterList";
 import { CharacterPage } from "./Pages/CharacterPage";
+import "./index.css"
+import "./Components/FilterInput/TextField.css";
+import "./Components/Content/Content.css";
 
 function App() {
   return (
