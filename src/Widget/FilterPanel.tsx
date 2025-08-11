@@ -74,17 +74,17 @@ export const FilterPanel = ({ onChange }: IFiltersProps) => {
         size="large"
       />
       <Selector
-        options={statusOptions}
-        value={filters.status}
-        onChange={createHandler("status")}
-        placeholder="Status"
-        size="large"
-      />
-      <Selector
         options={genderOptions}
         value={filters.gender}
         onChange={createHandler("gender")}
         placeholder="Gender"
+        size="large"
+      />
+      <Selector
+        options={statusOptions}
+        value={filters.status}
+        onChange={createHandler("status")}
+        placeholder="Status"
         size="large"
       />
     </div>
