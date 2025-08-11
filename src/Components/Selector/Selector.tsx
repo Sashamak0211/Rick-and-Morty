@@ -14,7 +14,7 @@ interface ISelectorProps {
   onChange: (value: string | null) => void;
   placeholder: string;
   size?: "large" | "small";
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 export const Selector = ({

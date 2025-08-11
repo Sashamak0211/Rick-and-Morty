@@ -8,8 +8,9 @@
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   background-color: white;
-  font-family: "Roboto", sans-serif;
   transition: all 0.2s ease;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
 }
 
 .text-field:hover {
@@ -20,18 +21,25 @@
   position: relative;
   width: 120px;
   height: 32px;
-  padding: 0 8px;
+  padding: 0;
   border: none;
   font-weight: 500;
   background-color: transparent;
   border-radius: 0;
 }
 
+.text-field--compact .text-field__input,
+.text-field--compact-editable .text-field__input {
+  font-size: 20px;
+  font-weight: 500;
+  color: black;
+}
+
 .text-field--compact-editable {
   position: relative;
   width: 120px;
   height: 32px;
-  padding: 0 8px;
+  padding: 0;
   border: none;
   border-bottom: 1px solid #9ca3af;
   background-color: transparent;
@@ -48,4 +56,12 @@
   background-color: transparent;
   width: 100%;
   outline: none;
+  font-weight: 400;
+  font-size: 16px;
+  color: #9caf9d;
+  font-family: "Roboto", sans-serif;
+}
+
+.text-field--compact-editable .text-field__input {
+  color: #00ff40;
 }

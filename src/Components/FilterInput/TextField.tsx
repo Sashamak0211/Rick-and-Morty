@@ -13,6 +13,8 @@ interface ITextFieldProps {
   onBlur?: () => void;
   readOnly?: boolean;
   onClick?: () => void;
+  className?: string;
+  id?: string;
 }
 
 export const TextField: React.FC<ITextFieldProps> = ({
@@ -24,16 +26,21 @@ export const TextField: React.FC<ITextFieldProps> = ({
   onBlur,
   readOnly = false,
   onClick,
+  className,
+  id,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
   };
 
   return (
-    <div className={classNames("text-field", `text-field--${variant}`)}>
+    <div
+      className={classNames("text-field", `text-field--${variant}`, className)}
+    >
       {variant === "default" && <MagniferIcon className="text-field__icon" />}
 
       <input
+        id={id}
         className="text-field__input"
         type="text"
         placeholder={placeholder}
