@@ -1,8 +1,16 @@
 .content {
   padding: 0 198px 40px;
-  margin-top: 28px;
   flex: 1;
   font-family: "Roboto", sans-serif;
+}
+
+.filter-panel {
+  margin: 242px auto 0;
+  display: flex;
+  gap: 28px;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .cards-container {
@@ -10,7 +18,7 @@
   grid-template-columns: repeat(auto-fill, minmax(508px, 1fr));
   gap: 28px;
   padding: 0;
-  margin: 0 auto;
+  margin: 28px auto;
   max-width: 1200px;
 }
 
@@ -94,6 +102,7 @@
   font-weight: 400;
   line-height: 1;
   width: 101px;
+  border-bottom: 1px solid transparent;
 }
 
 .field-actions-group {

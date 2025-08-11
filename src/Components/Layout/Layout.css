@@ -7,16 +7,6 @@
   background-color: white;
 }
 
-.filters {
-  margin: 242px auto 0;
-  display: flex;
-  gap: 28px;
-  z-index: 10;
-  padding: 0 198px;
-  width: 100%;
-  max-width: 1200px;
-}
-
 .content {
   flex: 1;
   padding: 0 198px 40px;

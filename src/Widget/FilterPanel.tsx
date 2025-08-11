@@ -59,7 +59,7 @@ export const FilterPanel = ({ onChange }: IFiltersProps) => {
     };
 
   return (
-    <>
+    <div className="filter-panel">
       <TextField
         value={filters.name}
         onChange={handleNameChange}
@@ -87,6 +87,6 @@ export const FilterPanel = ({ onChange }: IFiltersProps) => {
         placeholder="Gender"
         size="large"
       />
-    </>
+    </div>
   );
 };
