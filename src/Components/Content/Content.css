@@ -164,7 +164,7 @@
 .text-field.text-field--compact-editable.character-list__location-input
   .text-field__input {
   width: 100%;
-  color: red;
+  color: #9caf9d;
   font-size: 14px;
   font-weight: 500;
   padding: 0;
