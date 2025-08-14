@@ -80,7 +80,6 @@
   background: white;
   border: 1px solid #e5e7eb;
   z-index: 10;
-  max-height: 300px;
   overflow-y: auto;
 }
 
@@ -119,7 +118,6 @@
 .selector__option:hover {
   background-color: #f3f4f6;
 }
-
 
 .selector__dot {
   width: 10px;

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { TextField } from "../Components/FilterInput/TextField";
 import { Selector } from "../Components/Selector/Selector";
 
@@ -9,18 +8,13 @@ interface IFiltersValue {
   status: string | null;
 }
 interface IFiltersProps {
+  filters: IFiltersValue;
   onChange: (filters: IFiltersValue) => void;
 }
 
-export const FilterPanel = ({ onChange }: IFiltersProps) => {
-  const [filters, setFilters] = useState<IFiltersValue>({
-    name: "",
+type TFilterKey = "species" | "gender" | "status";
 
-    species: null,
-    gender: null,
-    status: null,
-  });
-
+export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
   const statusOptions = [
     { value: "alive", label: "Alive", color: "#12B800" },
     { value: "dead", label: "Dead", color: "#DF0000" },
@@ -46,44 +40,36 @@ export const FilterPanel = ({ onChange }: IFiltersProps) => {
     { value: "unknown", label: "Unknown" },
   ];
 
-  const handleNameChange = (value: string) => {
-    const newFilters = { ...filters, name: value };
-    setFilters(newFilters);
-    onChange(newFilters);
+  const onChangeField = (key: TFilterKey, value: string | null) => {
+    onChange({ ...filters, [key]: value });
   };
-  const createHandler =
-    (key: "species" | "gender" | "status") => (value: string | null) => {
-      const newFilters = { ...filters, [key]: value };
-      setFilters(newFilters);
-      onChange(newFilters);
-    };
 
   return (
     <div className="filter-panel">
       <TextField
         value={filters.name}
-        onChange={handleNameChange}
+        onChange={(value) => onChange({ ...filters, name: value })}
         placeholder="Filter by name"
         variant="default"
       />
       <Selector
         options={speciesOptions}
         value={filters.species}
-        onChange={createHandler("species")}
+        onChange={(value) => onChangeField("species", value)}
         placeholder="Species"
         size="large"
       />
       <Selector
         options={genderOptions}
         value={filters.gender}
-        onChange={createHandler("gender")}
+        onChange={(value) => onChangeField("gender", value)}
         placeholder="Gender"
         size="large"
       />
       <Selector
         options={statusOptions}
         value={filters.status}
-        onChange={createHandler("status")}
+        onChange={(value) => onChangeField("status", value)}
         placeholder="Status"
         size="large"
       />

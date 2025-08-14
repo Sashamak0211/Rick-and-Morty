@@ -3,11 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { Selector } from "../Components/Selector/Selector";
 import { TextField } from "../Components/FilterInput/TextField";
 import { FilterPanel } from "../Widget/FilterPanel";
-import { IconButton } from "../Widget/IconButton";
-import { EditIcon } from "../assets/icon/EditIcon";
-import { CloseIcon } from "../assets/icon/CloseIcon";
-import { CheckIcon } from "../assets/icon/CheckIcon";
 import classNames from "classnames";
+import { ActionButton } from "../Components/ActionButton/ActionButton";
+
+interface IFiltersValue {
+  name: string;
+  species: string | null;
+  gender: string | null;
+  status: string | null;
+}
 
 export const CharacterList = () => {
   const navigate = useNavigate();
@@ -16,6 +20,13 @@ export const CharacterList = () => {
   const [currentStatus, setCurrentStatus] = useState("alive");
   const [gender, setGender] = useState("Male");
   const [species, setSpecies] = useState("Human");
+
+  const [filters, setFilters] = useState<IFiltersValue>({
+    name: "",
+    species: null,
+    gender: null,
+    status: null,
+  });
 
   const statusOptions = [
     { value: "alive", label: "Alive", color: "#12B800" },
@@ -47,11 +58,13 @@ export const CharacterList = () => {
       }
     );
   };
-  const handleFiltersChange = () => {};
+  const handleFiltersChange = (newFilters: IFiltersValue) => {
+    setFilters(newFilters);
+  };
 
   return (
     <div className="character-list-container">
-      <FilterPanel onChange={handleFiltersChange} />
+      <FilterPanel filters={filters} onChange={handleFiltersChange} />
       <div className="cards-container">
         {cardIds.map((id) => (
           <div
@@ -80,39 +93,12 @@ export const CharacterList = () => {
                         readOnly={editingId !== id}
                         onClick={() => handleNameClick(id)}
                       />
-                      <div className="icon-button-container">
-                        {editingId !== id ? (
-                          <>
-                            <IconButton
-                              className="icon-button__close"
-                              onClick={() => setEditingId(null)}
-                            >
-                              <CloseIcon />
-                            </IconButton>
-                            <IconButton
-                              className="icon-button__edit"
-                              onClick={() => handleEdit(id)}
-                            >
-                              <EditIcon />
-                            </IconButton>
-                          </>
-                        ) : (
-                          <>
-                            <IconButton
-                              className="icon-button__close"
-                              onClick={() => setEditingId(null)}
-                            >
-                              <CloseIcon />
-                            </IconButton>
-                            <IconButton
-                              className="icon-button__check"
-                              onClick={handleSave}
-                            >
-                              <CheckIcon />
-                            </IconButton>
-                          </>
-                        )}
-                      </div>
+                      <ActionButton
+                        isEditing={editingId === id}
+                        onEdit={() => handleEdit(id)}
+                        onSave={handleSave}
+                        onCancel={() => setEditingId(null)}
+                      />
                     </div>
                   </li>
 
