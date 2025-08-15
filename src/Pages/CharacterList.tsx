@@ -42,8 +42,9 @@ export const CharacterList = () => {
   ];
 
   const getStatusLabel = (value: string) => {
+
     return (
-      statusOptions.find((status) => status.value === value) || {
+      statusOptions.find((status) => status.value.toLowerCase() === value.toLowerCase()) || {
         label: value,
         color: "#999",
       }
