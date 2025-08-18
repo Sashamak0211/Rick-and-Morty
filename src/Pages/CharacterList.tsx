@@ -42,9 +42,10 @@ export const CharacterList = () => {
   ];
 
   const getStatusLabel = (value: string) => {
-
     return (
-      statusOptions.find((status) => status.value.toLowerCase() === value.toLowerCase()) || {
+      statusOptions.find(
+        (status) => status.value.toLowerCase() === value.toLowerCase()
+      ) || {
         label: value,
         color: "#999",
       }
@@ -81,6 +82,11 @@ export const CharacterList = () => {
       navigate(`/character/${id}`);
     }
   };
+  const handleStatusChange = (value: string | null) => {
+    setEditedFields((prev) =>
+      prev ? { ...prev, status: String(value) } : null
+    );
+  };
   useEffect(() => {
     const loadCharacter = async () => {
       setLoading(true);
@@ -106,16 +112,16 @@ export const CharacterList = () => {
     <div className="character-list-container">
       <FilterPanel filters={filters} onChange={handleFiltersChange} />
       <div className="cards-container">
-        {characters.map((pers) => (
+        {characters.map((char) => (
           <div
-            key={pers.id}
+            key={char.id}
             className={classNames("card", {
-              editing: editingId === pers.id,
+              editing: editingId === char.id,
             })}
           >
             <img
-              src={pers.imageSrc}
-              alt={pers.imageSrcAlt}
+              src={char.imageSrc}
+              alt={char.imageAlt}
               className="card-image"
             />
 
@@ -126,16 +132,16 @@ export const CharacterList = () => {
                     <div className="field-actions-group">
                       <TextField
                         variant={
-                          editingId === pers.id ? "compact-editable" : "compact"
+                          editingId === char.id ? "compact-editable" : "compact"
                         }
-                        value={pers.name}
+                        value={char.name}
                         onChange={() => {}}
-                        readOnly={editingId !== pers.id}
-                        onClick={() => handleNameClick(pers.id)}
+                        readOnly={editingId !== char.id}
+                        onClick={() => handleNameClick(char.id)}
                       />
                       <ActionButton
-                        isEditing={editingId === pers.id}
-                        onEdit={() => handleEdit(pers.id)}
+                        isEditing={editingId === char.id}
+                        onEdit={() => handleEdit(char.id)}
                         onSave={handleSave}
                         onCancel={() => setEditingId(null)}
                       />
@@ -144,60 +150,56 @@ export const CharacterList = () => {
 
                   <li className="character-list__gender">
                     <p className="character-list__title">Gender</p>
-                    <p className="character-list__value">{pers.gender}</p>
+                    <p className="character-list__value">{char.gender}</p>
                   </li>
 
                   <li className="character-list__species">
                     <p className="character-list__title">Species</p>
-                    <p className="character-list__value">{pers.species}</p>
+                    <p className="character-list__value">{char.species}</p>
                   </li>
 
                   <li className="character-list__location">
                     <p className="character-list__title">Location</p>
-                    {editingId === pers.id ? (
+                    {editingId === char.id ? (
                       <div className="character-list__value">
                         <TextField
-                          id={`location-text-field-${pers.id}`}
+                          id={`location-text-field-${char.id}`}
                           variant={
-                            editingId === pers.id
+                            editingId === char.id
                               ? "compact-editable"
                               : "compact"
                           }
-                          value={pers.location}
+                          value={char.location}
                           onChange={() => {}}
-                          readOnly={editingId !== pers.id}
-                          onClick={() => handleNameClick(pers.id)}
+                          readOnly={editingId !== char.id}
+                          onClick={() => handleNameClick(char.id)}
                           className="character-list__location-input"
                         />
                       </div>
                     ) : (
-                      <p className="character-list__value">{pers.location}</p>
+                      <p className="character-list__value">{char.location}</p>
                     )}
                   </li>
 
                   <li className="character-list__status">
                     <p className="character-list__title">Status</p>
-                    {editingId === pers.id ? (
+                    {editingId === char.id ? (
                       <div className="character-list__value">
                         <Selector
                           options={statusOptions}
                           value={editedFields?.status || ""}
-                          onChange={(value) =>
-                            setEditedFields((prev) =>
-                              prev ? { ...prev, status: String(value) } : null
-                            )
-                          }
+                          onChange={handleStatusChange}
                           placeholder="Status"
                           size="small"
                         />
                       </div>
                     ) : (
                       <p className="character-list__value">
-                        {getStatusLabel(pers.status).label}
+                        {getStatusLabel(char.status).label}
                         <span
                           className="dot"
                           style={{
-                            backgroundColor: getStatusLabel(pers.status).color,
+                            backgroundColor: getStatusLabel(char.status).color,
                           }}
                         />
                       </p>
