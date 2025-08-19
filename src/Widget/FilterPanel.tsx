@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { TextField } from "../Components/FilterInput/TextField";
 import { Selector } from "../Components/Selector/Selector";
 
@@ -12,9 +13,52 @@ interface IFiltersProps {
   onChange: (filters: IFiltersValue) => void;
 }
 
-type TFilterKey = "species" | "gender" | "status";
+const debounce = <T extends (...args: unknown[]) => void>(
+  func: T,
+  delay: number
+): ((...args: Parameters<T>) => void) & { cancel: () => void } => {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  const debounced = (...args: Parameters<T>) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func(...args), delay);
+  };
+
+  debounced.cancel = () => {
+    clearTimeout(timeoutId);
+  };
+
+  return debounced;
+};
 
 export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
+  const [localFilters, setLocalFilters] = useState<IFiltersValue>(filters);
+
+  useEffect(() => {
+    const handleChange = () => {
+      if (
+        localFilters.name !== filters.name ||
+        localFilters.species !== filters.species ||
+        localFilters.gender !== filters.gender ||
+        localFilters.status !== filters.status
+      ) {
+        onChange(localFilters);
+      }
+    };
+    const debouncedChange = debounce(handleChange, 2000);
+    debouncedChange();
+    return () => {
+      debouncedChange.cancel();
+    };
+  }, [localFilters, filters, onChange]);
+
+  useEffect(() => {
+    setLocalFilters(filters);
+  }, [filters]);
+
+  const changeLocalFilters = (update: Partial<IFiltersValue>) => {
+    setLocalFilters((prev) => ({ ...prev, ...update }));
+  };
+
   const statusOptions = [
     { value: "alive", label: "Alive", color: "#12B800" },
     { value: "dead", label: "Dead", color: "#DF0000" },
@@ -40,36 +84,32 @@ export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
     { value: "unknown", label: "Unknown" },
   ];
 
-  const onChangeField = (key: TFilterKey, value: string | null) => {
-    onChange({ ...filters, [key]: value });
-  };
-
   return (
     <div className="filter-panel">
       <TextField
-        value={filters.name}
-        onChange={(value) => onChange({ ...filters, name: value })}
+        value={localFilters.name}
+        onChange={(value) => changeLocalFilters({ name: value })}
         placeholder="Filter by name"
         variant="default"
       />
       <Selector
         options={speciesOptions}
-        value={filters.species}
-        onChange={(value) => onChangeField("species", value)}
+        value={localFilters.species}
+        onChange={(value) => changeLocalFilters({ species: value })}
         placeholder="Species"
         size="large"
       />
       <Selector
         options={genderOptions}
-        value={filters.gender}
-        onChange={(value) => onChangeField("gender", value)}
+        value={localFilters.gender}
+        onChange={(value) => changeLocalFilters({ gender: value })}
         placeholder="Gender"
         size="large"
       />
       <Selector
         options={statusOptions}
-        value={filters.status}
-        onChange={(value) => onChangeField("status", value)}
+        value={localFilters.status}
+        onChange={(value) => changeLocalFilters({ status: value })}
         placeholder="Status"
         size="large"
       />
