@@ -32,7 +32,7 @@ export const mapperCallback = (
     location: character.location.name,
     status: character.status as CharacterStatus,
     imageSrc: character.image,
-    imageSrcAlt: character.name,
+    imageAlt: character.name,
   }));
 };
 

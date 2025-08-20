@@ -8,6 +8,7 @@ import classNames from "classnames";
 import { ActionButton } from "../Components/ActionButton/ActionButton";
 import type { ICharacterCardProps } from "../shared/api/types/types";
 import { Loader } from "../Components/Loader/Loader";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface IFiltersValue {
   name: string;
@@ -34,6 +35,29 @@ export const CharacterList = () => {
 
   const [characters, setCharacters] = useState<ICharacterCardProps[]>([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+
+  const loadMore = async () => {
+    if (!hasMore || loading) return;
+
+    setLoading(true);
+    try {
+      const data = await getCharacters({
+        ...filters,
+        page,
+      });
+      const mapped = data;
+      setCharacters((prev) => [...prev, ...mapped]);
+      setHasMore(mapped.length > 0);
+      setPage((prev) => prev + 1);
+    } catch (error) {
+      console.error("Ошибка при подгрузке", error);
+      setHasMore(false);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const statusOptions = [
     { value: "Alive", label: "Alive", color: "#12B800" },
@@ -91,11 +115,14 @@ export const CharacterList = () => {
     const loadCharacter = async () => {
       setLoading(true);
       try {
-        const data = await getCharacters(filters);
+        const data = await getCharacters({ ...filters, page: 1 });
         setCharacters(data);
+        setHasMore(data.length > 0);
+        setPage(2);
       } catch (error) {
         console.error("Не удалось загрузить персонажей", error);
         setCharacters([]);
+        setHasMore(false);
       } finally {
         setLoading(false);
       }
@@ -104,113 +131,121 @@ export const CharacterList = () => {
     loadCharacter();
   }, [filters]);
 
-  if (loading) {
-    return <Loader />;
-  }
-
   return (
     <div className="character-list-container">
       <FilterPanel filters={filters} onChange={handleFiltersChange} />
-      <div className="cards-container">
-        {characters.map((char) => (
-          <div
-            key={char.id}
-            className={classNames("card", {
-              editing: editingId === char.id,
-            })}
-          >
-            <img
-              src={char.imageSrc}
-              alt={char.imageAlt}
-              className="card-image"
-            />
+      <InfiniteScroll
+        dataLength={characters.length}
+        next={loadMore}
+        hasMore={hasMore}
+        loader={<Loader />}
+        endMessage={<p>Все персонажи загруженны.</p>}
+        style={{ overflow: "hidden" }}
+      >
+        <div className="cards-container">
+          {characters.map((char) => (
+            <div
+              key={char.id}
+              className={classNames("card", {
+                editing: editingId === char.id,
+              })}
+            >
+              <img
+                src={char.imageSrc}
+                alt={char.imageAlt}
+                className="card-image"
+              />
 
-            <div className="card-content">
-              <div className="character-list">
-                <ul>
-                  <li className="character-list__name">
-                    <div className="field-actions-group">
-                      <TextField
-                        variant={
-                          editingId === char.id ? "compact-editable" : "compact"
-                        }
-                        value={char.name}
-                        onChange={() => {}}
-                        readOnly={editingId !== char.id}
-                        onClick={() => handleNameClick(char.id)}
-                      />
-                      <ActionButton
-                        isEditing={editingId === char.id}
-                        onEdit={() => handleEdit(char.id)}
-                        onSave={handleSave}
-                        onCancel={() => setEditingId(null)}
-                      />
-                    </div>
-                  </li>
-
-                  <li className="character-list__gender">
-                    <p className="character-list__title">Gender</p>
-                    <p className="character-list__value">{char.gender}</p>
-                  </li>
-
-                  <li className="character-list__species">
-                    <p className="character-list__title">Species</p>
-                    <p className="character-list__value">{char.species}</p>
-                  </li>
-
-                  <li className="character-list__location">
-                    <p className="character-list__title">Location</p>
-                    {editingId === char.id ? (
-                      <div className="character-list__value">
+              <div className="card-content">
+                <div className="character-list">
+                  <ul>
+                    <li className="character-list__name">
+                      <div className="field-actions-group">
                         <TextField
-                          id={`location-text-field-${char.id}`}
                           variant={
                             editingId === char.id
                               ? "compact-editable"
                               : "compact"
                           }
-                          value={char.location}
+                          value={char.name}
                           onChange={() => {}}
                           readOnly={editingId !== char.id}
                           onClick={() => handleNameClick(char.id)}
-                          className="character-list__location-input"
+                        />
+                        <ActionButton
+                          isEditing={editingId === char.id}
+                          onEdit={() => handleEdit(char.id)}
+                          onSave={handleSave}
+                          onCancel={() => setEditingId(null)}
                         />
                       </div>
-                    ) : (
-                      <p className="character-list__value">{char.location}</p>
-                    )}
-                  </li>
+                    </li>
 
-                  <li className="character-list__status">
-                    <p className="character-list__title">Status</p>
-                    {editingId === char.id ? (
-                      <div className="character-list__value">
-                        <Selector
-                          options={statusOptions}
-                          value={editedFields?.status || ""}
-                          onChange={handleStatusChange}
-                          placeholder="Status"
-                          size="small"
-                        />
-                      </div>
-                    ) : (
-                      <p className="character-list__value">
-                        {getStatusLabel(char.status).label}
-                        <span
-                          className="dot"
-                          style={{
-                            backgroundColor: getStatusLabel(char.status).color,
-                          }}
-                        />
-                      </p>
-                    )}
-                  </li>
-                </ul>
+                    <li className="character-list__gender">
+                      <p className="character-list__title">Gender</p>
+                      <p className="character-list__value">{char.gender}</p>
+                    </li>
+
+                    <li className="character-list__species">
+                      <p className="character-list__title">Species</p>
+                      <p className="character-list__value">{char.species}</p>
+                    </li>
+
+                    <li className="character-list__location">
+                      <p className="character-list__title">Location</p>
+                      {editingId === char.id ? (
+                        <div className="character-list__value">
+                          <TextField
+                            id={`location-text-field-${char.id}`}
+                            variant={
+                              editingId === char.id
+                                ? "compact-editable"
+                                : "compact"
+                            }
+                            value={char.location}
+                            onChange={() => {}}
+                            readOnly={editingId !== char.id}
+                            onClick={() => handleNameClick(char.id)}
+                            className="character-list__location-input"
+                          />
+                        </div>
+                      ) : (
+                        <p className="character-list__value">{char.location}</p>
+                      )}
+                    </li>
+
+                    <li className="character-list__status">
+                      <p className="character-list__title">Status</p>
+                      {editingId === char.id ? (
+                        <div className="character-list__value">
+                          <Selector
+                            options={statusOptions}
+                            value={editedFields?.status || ""}
+                            onChange={handleStatusChange}
+                            placeholder="Status"
+                            size="small"
+                          />
+                        </div>
+                      ) : (
+                        <p className="character-list__value">
+                          {getStatusLabel(char.status).label}
+                          <span
+                            className="dot"
+                            style={{
+                              backgroundColor: getStatusLabel(char.status)
+                                .color,
+                            }}
+                          />
+                        </p>
+                      )}
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </InfiniteScroll>
     </div>
   );
 };
