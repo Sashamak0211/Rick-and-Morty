@@ -11,7 +11,7 @@ export type CharacterSpecies =
   | "Mythology"
   | "Unknown";
 
-export interface ICharacterCardProps {
+export interface ICharacterListProps {
   id: number;
   name: string;
   gender: string;
@@ -20,4 +20,11 @@ export interface ICharacterCardProps {
   status: string;
   imageSrc: string;
   imageAlt: string;
+}
+export interface ICharacterCardProps {
+  character: ICharacterListProps;
+  onEdit?: (id: number) => void;
+  onSave?: (id: number) => void;
+  onCancel?: (id: number) => void;
+  onClick?: (id: number) => void;
 }
