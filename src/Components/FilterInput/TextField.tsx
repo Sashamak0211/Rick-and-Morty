@@ -1,6 +1,7 @@
 import classNames from "classnames";
-import { MagniferIcon } from "../../assets/icon/MagniferIcon";
 import "./TextField.css";
+import type { ReactNode } from "react";
+import { MagniferIcon } from "../../assets/icon/MagniferIcon";
 
 type TextFieldVariant = "default" | "compact" | "compact-editable";
 
@@ -15,6 +16,7 @@ interface ITextFieldProps {
   onClick?: () => void;
   className?: string;
   id?: string;
+  icon?: ReactNode;
 }
 
 export const TextField: React.FC<ITextFieldProps> = ({
@@ -28,6 +30,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
   onClick,
   className,
   id,
+  icon = <MagniferIcon className="text-field__icon" />,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
@@ -37,7 +40,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
     <div
       className={classNames("text-field", `text-field--${variant}`, className)}
     >
-      {variant === "default" && <MagniferIcon className="text-field__icon" />}
+      {variant === "default" && <>{icon}</>}
 
       <input
         id={id}
