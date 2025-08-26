@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FilterPanel } from "../Widget/FilterPanel";
 import { getCharacters } from "../shared/api/characterApi";
@@ -28,6 +28,24 @@ export const CharacterList = () => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+
+  const handleSaveEdit = useCallback(
+    (id: number, newName: string, newLocation: string, newStatus: string) => {
+      setCharacters((prev) =>
+        prev.map((character) =>
+          character.id === id
+            ? {
+                ...character,
+                name: newName,
+                location: newLocation,
+                status: newStatus,
+              }
+            : character
+        )
+      );
+    },
+    []
+  );
 
   const loadMore = async () => {
     if (!hasMore || loading) return;
@@ -86,8 +104,8 @@ export const CharacterList = () => {
             <CharacterCard
               key={char.id}
               character={char}
-              onSave={() => {}}
-              onClick={(id) => navigate(`/character/${id}`)}
+              onSave={handleSaveEdit}
+              onClick={() => navigate(`/character/${char.id}`)}
             />
           ))}
         </div>

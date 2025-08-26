@@ -21,10 +21,17 @@ export interface ICharacterListProps {
   imageSrc: string;
   imageAlt: string;
 }
+
 export interface ICharacterCardProps {
   character: ICharacterListProps;
+  isEditing?: boolean;
   onEdit?: (id: number) => void;
-  onSave?: (id: number) => void;
-  onCancel?: (id: number) => void;
-  onClick?: (id: number) => void;
+  onSave: (
+    id: number,
+    newName: string,
+    newLocation: string,
+    newStatus: string
+  ) => void;
+  onCancel?: () => void;
+  onClick?: () => void;
 }

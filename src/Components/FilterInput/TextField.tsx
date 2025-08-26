@@ -7,9 +7,9 @@ type TextFieldVariant = "default" | "compact" | "compact-editable";
 
 interface ITextFieldProps {
   variant?: TextFieldVariant;
-  value?: string;
+  value: string;
   placeholder?: string;
-  onChange?: (value: string) => void;
+  onChange: (value: string) => void;
   onFocus?: () => void;
   onBlur?: () => void;
   readOnly?: boolean;
