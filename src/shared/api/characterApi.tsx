@@ -1,5 +1,5 @@
 import apiClient from "./apiClient";
-import type { CharacterStatus, ICharacterCardProps } from "./types/types";
+import type { CharacterStatus, ICharacterListProps } from "./types/types";
 
 export interface IApiCharacter {
   id: number;
@@ -23,7 +23,7 @@ export interface IApiCharacterResponse {
 
 export const mapperCallback = (
   characters: IApiCharacter[]
-): ICharacterCardProps[] => {
+): ICharacterListProps[] => {
   return characters.map((character) => ({
     id: character.id,
     name: character.name,
@@ -32,13 +32,13 @@ export const mapperCallback = (
     location: character.location.name,
     status: character.status as CharacterStatus,
     imageSrc: character.image,
-    imageSrcAlt: character.name,
+    imageAlt: character.name,
   }));
 };
 
 export const getCharacters = async (
   params = {}
-): Promise<ICharacterCardProps[]> => {
+): Promise<ICharacterListProps[]> => {
   try {
     const response = await apiClient.get<IApiCharacterResponse>("/character", {
       params,
