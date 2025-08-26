@@ -22,14 +22,16 @@ export interface ICharacterListProps {
   imageAlt: string;
 }
 
-export type ICharacterEditableField = "location" | "name" | "status";
-
 export interface ICharacterCardProps {
   character: ICharacterListProps;
-  isEditing: boolean;
-  onEdit: (id: number) => void;
-  onSave: () => void;
-  onCancel: () => void;
-  onClick: () => void;
-  onFieldChange?: (field: ICharacterEditableField, value: string) => void;
+  isEditing?: boolean;
+  onEdit?: (id: number) => void;
+  onSave: (
+    id: number,
+    newName: string,
+    newLocation: string,
+    newStatus: string
+  ) => void;
+  onCancel?: () => void;
+  onClick?: () => void;
 }

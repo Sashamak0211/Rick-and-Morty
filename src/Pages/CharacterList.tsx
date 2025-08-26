@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FilterPanel } from "../Widget/FilterPanel";
 import { getCharacters } from "../shared/api/characterApi";
-import type {
-  ICharacterEditableField,
-  ICharacterListProps,
-} from "../shared/api/types/types";
+import type { ICharacterListProps } from "../shared/api/types/types";
 import { Loader } from "../Components/Loader/Loader";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CharacterCard } from "../Widget/CharactersCard";
@@ -32,28 +29,23 @@ export const CharacterList = () => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  const [editingId, setEditingId] = useState<number | null>(null);
-
-  const handleStartEdit = (id: number) => {
-    setEditingId(id);
-  };
-  const handleSaveEdit = () => {
-    setEditingId(null);
-  };
-  const handleCancelEdit = () => {
-    setEditingId(null);
-  };
-  const handleFieldChange = (field: ICharacterEditableField, value: string) => {
-    if (editingId !== null) {
+  const handleSaveEdit = useCallback(
+    (id: number, newName: string, newLocation: string, newStatus: string) => {
       setCharacters((prev) =>
         prev.map((character) =>
-          character.id === editingId
-            ? { ...character, [field]: value }
+          character.id === id
+            ? {
+                ...character,
+                name: newName,
+                location: newLocation,
+                status: newStatus,
+              }
             : character
         )
       );
-    }
-  };
+    },
+    []
+  );
 
   const loadMore = async () => {
     if (!hasMore || loading) return;
@@ -112,11 +104,7 @@ export const CharacterList = () => {
             <CharacterCard
               key={char.id}
               character={char}
-              isEditing={editingId === char.id}
-              onEdit={handleStartEdit}
               onSave={handleSaveEdit}
-              onCancel={handleCancelEdit}
-              onFieldChange={handleFieldChange}
               onClick={() => navigate(`/character/${char.id}`)}
             />
           ))}
