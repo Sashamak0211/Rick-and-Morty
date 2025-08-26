@@ -1,16 +1,11 @@
-import { useState } from "react";
 import { TextField } from "../Components/FilterInput/TextField";
 import { Selector } from "../Components/Selector/Selector";
 import { ActionButton } from "../Components/ActionButton/ActionButton";
-import type { ICharacterListProps } from "../shared/api/types/types";
+import type {
+  ICharacterCardProps,
+  ICharacterEditableField,
+} from "../shared/api/types/types";
 
-interface CharacterCardProps {
-  character: ICharacterListProps;
-  onEdit?: (id: number) => void;
-  onSave?: (id: number, updates: Partial<ICharacterListProps>) => void;
-  onCancel?: (id: number) => void;
-  onClick?: (id: number) => void;
-}
 const statusOptions = [
   { value: "Alive", label: "Alive", color: "#12B800" },
   { value: "Dead", label: "Dead", color: "#DF0000" },
@@ -30,42 +25,38 @@ const getStatusLabel = (value: string) => {
 
 export const CharacterCard = ({
   character,
+  isEditing,
   onEdit,
   onSave,
   onCancel,
   onClick,
-}: CharacterCardProps) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedFields, setEditedFields] = useState({
-    name: character.name,
-    location: character.location,
-    status: character.status,
-  });
-
-  const handleEdit = () => {
-    setIsEditing(true);
-    onEdit?.(character.id);
-  };
-
-  const handleSave = () => {
-    onSave?.(character.id, editedFields);
-    setIsEditing(false);
-  };
-
-  const handleCancel = () => {
-    setEditedFields({
-      name: character.name,
-      location: character.location,
-      status: character.status,
-    });
-    setIsEditing(false);
-    onCancel?.(character.id);
-  };
-
+  onFieldChange,
+}: ICharacterCardProps) => {
   const handleNameClick = () => {
     if (!isEditing) {
-      onClick?.(character.id);
+      onClick?.();
     }
+  };
+
+  const handleChange = (field: ICharacterEditableField) => (value: string) => {
+    if (isEditing && onFieldChange) {
+      onFieldChange(field, value);
+    }
+  };
+
+  const handleStatus = (value: string | null) => {
+    if (value !== null) {
+      onFieldChange?.("status", value);
+    }
+  };
+  const handleEdit = () => {
+    onEdit(character.id);
+  };
+  const handleSave = () => {
+    onSave();
+  };
+  const handleCancel = () => {
+    onCancel();
   };
 
   return (
@@ -84,8 +75,8 @@ export const CharacterCard = ({
           <div className="character-card__field-group">
             <TextField
               variant={isEditing ? "compact-editable" : "compact"}
-              value={editedFields.name}
-              onChange={() => {}}
+              value={character.name}
+              onChange={handleChange("name")}
               readOnly={!isEditing}
               onClick={handleNameClick}
               id={`character-name-${character.id}`}
@@ -114,9 +105,9 @@ export const CharacterCard = ({
               {isEditing ? (
                 <TextField
                   variant="compact-editable"
-                  value={editedFields.location}
-                  onChange={() => {}}
-                  id={`character-location-${character.location}`}
+                  value={character.location}
+                  onChange={handleChange("location")}
+                  id={`character-location-${character.id}`}
                   className="character-card__location-input"
                 />
               ) : (
@@ -131,9 +122,9 @@ export const CharacterCard = ({
               {isEditing ? (
                 <Selector
                   options={statusOptions}
-                  value={editedFields.status}
-                  onChange={() => {}}
-                  placeholder={editedFields.status}
+                  value={character.status}
+                  onChange={handleStatus}
+                  placeholder={character.status}
                   size="small"
                 />
               ) : (

@@ -21,10 +21,15 @@ export interface ICharacterListProps {
   imageSrc: string;
   imageAlt: string;
 }
+
+export type ICharacterEditableField = "location" | "name" | "status";
+
 export interface ICharacterCardProps {
   character: ICharacterListProps;
-  onEdit?: (id: number) => void;
-  onSave?: (id: number) => void;
-  onCancel?: (id: number) => void;
-  onClick?: (id: number) => void;
+  isEditing: boolean;
+  onEdit: (id: number) => void;
+  onSave: () => void;
+  onCancel: () => void;
+  onClick: () => void;
+  onFieldChange?: (field: ICharacterEditableField, value: string) => void;
 }
