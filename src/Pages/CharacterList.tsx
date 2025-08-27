@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FilterPanel } from "../Widget/FilterPanel";
 import { getCharacters } from "../shared/api/characterApi";
-import type { ICharacterListProps } from "../shared/api/types/types";
 import { Loader } from "../Components/Loader/Loader";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CharacterCard } from "../Widget/CharactersCard";
@@ -12,6 +11,16 @@ interface IFiltersValue {
   species: string | null;
   gender: string | null;
   status: string | null;
+}
+export interface ICharacterListProps {
+  id: number;
+  name: string;
+  gender: string;
+  species: string;
+  location: string;
+  status: string;
+  imageSrc: string;
+  imageAlt: string;
 }
 
 export const CharacterList = () => {

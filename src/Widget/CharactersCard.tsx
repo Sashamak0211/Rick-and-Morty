@@ -1,13 +1,30 @@
 import { TextField } from "../Components/FilterInput/TextField";
 import { Selector } from "../Components/Selector/Selector";
 import { ActionButton } from "../Components/ActionButton/ActionButton";
-import type { ICharacterCardProps } from "../shared/api/types/types";
+import { type ICharacterListProps } from "../Pages/CharacterList";
 import { memo, useState } from "react";
+import {
+  SelectorDot,
+  type StatusesType,
+} from "../Components/Selector/Selector_dot";
+
+export interface ICharacterCardProps {
+  character: ICharacterListProps;
+  isEditing?: boolean;
+  onEdit?: (id: number) => void;
+  onSave: (
+    id: number,
+    newName: string,
+    newLocation: string,
+    newStatus: string
+  ) => void;
+  onClick: () => void;
+}
 
 const statusOptions = [
-  { value: "Alive", label: "Alive", color: "#12B800" },
-  { value: "Dead", label: "Dead", color: "#DF0000" },
-  { value: "Unknown", label: "Unknown", color: "#FF9900" },
+  { value: "Alive", label: "Alive" },
+  { value: "Dead", label: "Dead" },
+  { value: "Unknown", label: "Unknown" },
 ];
 
 const getStatusLabel = (value: string) => {
@@ -16,7 +33,6 @@ const getStatusLabel = (value: string) => {
       (status) => status.value.toLowerCase() === value.toLowerCase()
     ) || {
       label: value,
-      color: "#999",
     }
   );
 };
@@ -46,10 +62,8 @@ export const CharacterCard = memo(
     const handleChangeLocation = (value: string) => {
       setCurrentLocation(value);
     };
-    const handleChangeStatus = (value: string | null) => {
-      if (value !== null) {
-        setCurrentStatus(value);
-      }
+    const handleChangeStatus = (value: string) => {
+      setCurrentStatus(value);
     };
     const handleEdit = () => {
       setIsEditing(true);
@@ -132,16 +146,17 @@ export const CharacterCard = memo(
                     onChange={handleChangeStatus}
                     placeholder={currentStatus}
                     size="small"
+                    OptionContentComponent={(props) => (
+                      <>
+                        {props.value}
+                        <SelectorDot status={props.value as StatusesType} />
+                      </>
+                    )}
                   />
                 ) : (
                   <>
                     {getStatusLabel(currentStatus).label}
-                    <span
-                      className="character-card__dot"
-                      style={{
-                        backgroundColor: getStatusLabel(currentStatus).color,
-                      }}
-                    />
+                    <SelectorDot status={currentStatus as StatusesType} />
                   </>
                 )}
               </dd>

@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { TextField } from "../Components/FilterInput/TextField";
 import { Selector } from "../Components/Selector/Selector";
+import {
+  SelectorDot,
+  type StatusesType,
+} from "../Components/Selector/Selector_dot";
 
 interface IFiltersValue {
   name: string;
@@ -112,6 +116,12 @@ export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
         onChange={(value) => changeLocalFilters({ status: value })}
         placeholder="Status"
         size="large"
+        OptionContentComponent={({ value }) => (
+          <>
+            {value}
+            <SelectorDot status={value as StatusesType} />
+          </>
+        )}
       />
     </div>
   );
