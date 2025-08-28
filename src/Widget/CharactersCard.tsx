@@ -1,20 +1,30 @@
-import { useState } from "react";
 import { TextField } from "../Components/FilterInput/TextField";
 import { Selector } from "../Components/Selector/Selector";
 import { ActionButton } from "../Components/ActionButton/ActionButton";
-import type { ICharacterListProps } from "../shared/api/types/types";
+import { type ICharacterListProps } from "../Pages/CharacterList";
+import { memo, useState } from "react";
+import {
+  SelectorDot,
+  type StatusesType,
+} from "../Components/Selector/Selector_dot";
 
-interface CharacterCardProps {
+export interface ICharacterCardProps {
   character: ICharacterListProps;
+  isEditing?: boolean;
   onEdit?: (id: number) => void;
-  onSave?: (id: number, updates: Partial<ICharacterListProps>) => void;
-  onCancel?: (id: number) => void;
-  onClick?: (id: number) => void;
+  onSave: (
+    id: number,
+    newName: string,
+    newLocation: string,
+    newStatus: string
+  ) => void;
+  onClick: () => void;
 }
+
 const statusOptions = [
-  { value: "Alive", label: "Alive", color: "#12B800" },
-  { value: "Dead", label: "Dead", color: "#DF0000" },
-  { value: "Unknown", label: "Unknown", color: "#FF9900" },
+  { value: "Alive", label: "Alive" },
+  { value: "Dead", label: "Dead" },
+  { value: "Unknown", label: "Unknown" },
 ];
 
 const getStatusLabel = (value: string) => {
@@ -23,134 +33,137 @@ const getStatusLabel = (value: string) => {
       (status) => status.value.toLowerCase() === value.toLowerCase()
     ) || {
       label: value,
-      color: "#999",
     }
   );
 };
 
-export const CharacterCard = ({
-  character,
-  onEdit,
-  onSave,
-  onCancel,
-  onClick,
-}: CharacterCardProps) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedFields, setEditedFields] = useState({
-    name: character.name,
-    location: character.location,
-    status: character.status,
-  });
+export const CharacterCard = memo(
+  ({
+    character,
 
-  const handleEdit = () => {
-    setIsEditing(true);
-    onEdit?.(character.id);
-  };
+    onSave,
 
-  const handleSave = () => {
-    onSave?.(character.id, editedFields);
-    setIsEditing(false);
-  };
+    onClick,
+  }: ICharacterCardProps) => {
+    const [isEditing, setIsEditing] = useState(false);
+    const [currentName, setCurrentName] = useState(character.name);
+    const [currentLocation, setCurrentLocation] = useState(character.location);
+    const [currentStatus, setCurrentStatus] = useState(character.status);
 
-  const handleCancel = () => {
-    setEditedFields({
-      name: character.name,
-      location: character.location,
-      status: character.status,
-    });
-    setIsEditing(false);
-    onCancel?.(character.id);
-  };
+    const handleNameClick = () => {
+      if (!isEditing) {
+        onClick?.();
+      }
+    };
 
-  const handleNameClick = () => {
-    if (!isEditing) {
-      onClick?.(character.id);
-    }
-  };
+    const handleChangeName = (value: string) => {
+      setCurrentName(value);
+    };
+    const handleChangeLocation = (value: string) => {
+      setCurrentLocation(value);
+    };
+    const handleChangeStatus = (value: string) => {
+      setCurrentStatus(value);
+    };
+    const handleEdit = () => {
+      setIsEditing(true);
+    };
+    const handleSave = () => {
+      onSave(character.id, currentName, currentLocation, currentStatus);
+      setIsEditing(false);
+    };
+    const handleCancel = () => {
+      setCurrentName(character.name);
+      setCurrentLocation(character.location);
+      setCurrentStatus(character.status);
+      setIsEditing(false);
+    };
 
-  return (
-    <div
-      className={`character-card ${isEditing ? "editing" : ""}`}
-      data-id={character.id}
-    >
-      <img
-        src={character.imageSrc}
-        alt={character.imageAlt}
-        className="character-card__image"
-      />
+    return (
+      <div
+        className={`character-card ${isEditing ? "editing" : ""}`}
+        data-id={character.id}
+      >
+        <img
+          src={character.imageSrc}
+          alt={character.imageAlt}
+          className="character-card__image"
+        />
 
-      <div className="character-card__content">
-        <dl className="character-card__details">
-          <div className="character-card__field-group">
-            <TextField
-              variant={isEditing ? "compact-editable" : "compact"}
-              value={editedFields.name}
-              onChange={() => {}}
-              readOnly={!isEditing}
-              onClick={handleNameClick}
-              id={`character-name-${character.id}`}
-            />
-            <ActionButton
-              isEditing={isEditing}
-              onEdit={handleEdit}
-              onSave={handleSave}
-              onCancel={handleCancel}
-            />
-          </div>
+        <div className="character-card__content">
+          <dl className="character-card__details">
+            <div className="character-card__field-group">
+              <TextField
+                variant={isEditing ? "compact-editable" : "compact"}
+                value={currentName}
+                onChange={handleChangeName}
+                readOnly={!isEditing}
+                onClick={handleNameClick}
+                id={`character-name-${character.id}`}
+              />
+              <ActionButton
+                isEditing={isEditing}
+                onEdit={handleEdit}
+                onSave={handleSave}
+                onCancel={handleCancel}
+              />
+            </div>
 
-          <div className="character-card__row">
-            <dt>Gender</dt>
-            <dd className="character-card__value">{character.gender}</dd>
-          </div>
+            <div className="character-card__row">
+              <dt>Gender</dt>
+              <dd className="character-card__value">{character.gender}</dd>
+            </div>
 
-          <div className="character-card__row">
-            <dt>Species</dt>
-            <dd className="character-card__value">{character.species}</dd>
-          </div>
+            <div className="character-card__row">
+              <dt>Species</dt>
+              <dd className="character-card__value">{character.species}</dd>
+            </div>
 
-          <div className="character-card__row">
-            <dt>Location</dt>
-            <dd className="character-card__value">
-              {isEditing ? (
-                <TextField
-                  variant="compact-editable"
-                  value={editedFields.location}
-                  onChange={() => {}}
-                  id={`character-location-${character.location}`}
-                  className="character-card__location-input"
-                />
-              ) : (
-                character.location
-              )}
-            </dd>
-          </div>
-
-          <div className="character-card__row character-card__row--status">
-            <dt>Status</dt>
-            <dd className="character-card__value">
-              {isEditing ? (
-                <Selector
-                  options={statusOptions}
-                  value={editedFields.status}
-                  onChange={() => {}}
-                  placeholder={editedFields.status}
-                  size="small"
-                />
-              ) : (
-                <>
-                  {getStatusLabel(character.status).label}
-                  <span
-                    className="character-card__dot"
-                    style={{
-                      backgroundColor: getStatusLabel(character.status).color,
-                    }}
+            <div className="character-card__row">
+              <dt>Location</dt>
+              <dd className="character-card__value">
+                {isEditing ? (
+                  <TextField
+                    variant="compact-editable"
+                    value={currentLocation}
+                    onChange={handleChangeLocation}
+                    id={`character-location-${character.id}`}
+                    className="character-card__location-input"
                   />
-                </>
-              )}
-            </dd>
-          </div>
-        </dl>
+                ) : (
+                  currentLocation
+                )}
+              </dd>
+            </div>
+
+            <div className="character-card__row character-card__row--status">
+              <dt>Status</dt>
+              <dd className="character-card__value">
+                {isEditing ? (
+                  <Selector
+                    options={statusOptions}
+                    value={currentStatus}
+                    onChange={handleChangeStatus}
+                    placeholder={currentStatus}
+                    size="small"
+                    OptionContentComponent={(props) => (
+                      <>
+                        {props.value}
+                        <SelectorDot status={props.value as StatusesType} />
+                      </>
+                    )}
+                  />
+                ) : (
+                  <>
+                    {getStatusLabel(currentStatus).label}
+                    <SelectorDot status={currentStatus as StatusesType} />
+                  </>
+                )}
+              </dd>
+            </div>
+          </dl>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+);

@@ -1,20 +1,30 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import classNames from "classnames";
 import "./Selector.css";
 
-interface IOptions {
+export interface SelectorOption {
   value: string;
   label: string;
-  color?: string;
 }
 
-interface ISelectorProps {
-  options: IOptions[];
+interface SelectorOptionContentProps {
+  value: string;
+}
+
+export const DefaultSelectorOptionContent = ({
+  value,
+}: SelectorOptionContentProps) => {
+  return <>{value}</>;
+};
+
+interface SelectorProps {
+  options?: SelectorOption[];
   value: string | null;
-  onChange: (value: string | null) => void;
+  onChange: (value: string) => void;
   placeholder: string;
   size?: "large" | "small";
   disabled?: boolean;
+  OptionContentComponent?: React.FC<SelectorOptionContentProps>;
 }
 
 export const Selector = ({
@@ -24,88 +34,88 @@ export const Selector = ({
   placeholder,
   size = "small",
   disabled = false,
-}: ISelectorProps) => {
+  OptionContentComponent = DefaultSelectorOptionContent,
+}: SelectorProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const selectorRef = useRef<HTMLDivElement>(null);
-
-  const selectedOption = options.find((opt) => opt.value === value) || null;
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    const handleClickOutside = (event: MouseEvent) => {
       if (
-        selectorRef.current &&
-        !selectorRef.current.contains(event.target as Node)
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
       ) {
         setIsOpen(false);
       }
-    }
+    };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
-
-  const handleOptionClick = (value: string) => {
-    onChange(value);
-    setIsOpen(false);
+  const toggleOpen = () => {
+    if (!disabled) setIsOpen(!isOpen);
   };
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const target = e.target as HTMLDivElement;
+      const selectedValue = target.dataset.value;
+
+      if (selectedValue !== undefined) {
+        onChange(selectedValue);
+        setIsOpen(false);
+      }
+    },
+    [onChange]
+  );
+
+  const selectedOption = options?.find((opt) => opt.value === value) || null;
+
+  const optionsList = useMemo(() => {
+    return options?.map((option) => {
+      if (option.value === value) return null;
+
+      return (
+        <div
+          key={option.value}
+          data-value={option.value}
+          className="selector__option"
+          onClick={handleClick}
+        >
+          <OptionContentComponent value={option.label} />
+        </div>
+      );
+    });
+  }, [options, value, OptionContentComponent, handleClick]);
 
   return (
     <div
+      ref={containerRef}
       className={classNames("selector", {
         "selector--large": size === "large",
         "selector--small": size === "small",
         "selector--open": isOpen,
       })}
-      ref={selectorRef}
     >
-      <button
+      <div
         className="selector__button"
-        onClick={toggleDropdown}
-        disabled={disabled}
+        onClick={toggleOpen}
+        aria-disabled={disabled}
       >
         <span className="selector__button-content">
           {selectedOption ? (
-            <>
-              <span className="selector__label">{selectedOption.label}</span>
-              {selectedOption.color && (
-                <span
-                  className="selector__dot"
-                  style={{ backgroundColor: selectedOption.color }}
-                />
-              )}
-            </>
+            <OptionContentComponent value={selectedOption.label} />
           ) : (
             <span className="selector__placeholder">{placeholder}</span>
           )}
         </span>
         <span className="selector__arrow" />
-      </button>
+      </div>
 
       {isOpen && (
         <div className="selector__dropdown">
-          <ul className="selector__options">
-            {options.map((option) => (
-              <li
-                key={option.value}
-                className={classNames("selector__option", {
-                  "selector__option--selected": option.value === value,
-                })}
-                onClick={() => handleOptionClick(option.value)}
-              >
-                <span style={{ display: "flex", alignItems: "center" }}>
-                  {option.label}
-                  {option.color && size === "small" && (
-                    <span
-                      className="selector__dot"
-                      style={{ backgroundColor: option.color }}
-                    />
-                  )}
-                </span>
-              </li>
-            ))}
-          </ul>
+          <div className="selector__options">{optionsList}</div>
         </div>
       )}
     </div>

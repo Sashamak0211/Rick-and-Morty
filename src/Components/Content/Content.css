@@ -181,13 +181,3 @@
   line-height: 20px;
   box-sizing: border-box;
 }
-
-.character-card__dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: currentColor;
-  margin-left: 4px;
-  vertical-align: middle;
-}

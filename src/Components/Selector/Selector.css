@@ -118,12 +118,3 @@
 .selector__option:hover {
   background-color: #f3f4f6;
 }
-
-.selector__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-  flex-shrink: 0;
-  margin-left: 3px;
-}
