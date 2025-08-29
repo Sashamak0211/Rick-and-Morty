@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getCharacter, type IApiCharacter } from "../shared/api/characterApi";
 import { ArrowLeft } from "../assets/icon/ArrowLeft";
 import { Loader } from "../Components/Loader/Loader";
+import axios from "axios";
 
 export const CharacterPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,19 +15,25 @@ export const CharacterPage = () => {
   useEffect(() => {
     const load = async () => {
       setLoading(true);
+
       try {
         await new Promise((resolve) => setTimeout(resolve, 2000));
         const data = await getCharacter(Number(id));
+
         setCharacter(data);
-      } catch (error) {
-        console.error("Ошибка загрузки персонажа.", error);
-        navigate("/404");
+      } catch (err) {
+        console.error("Ошибка загрузки персонажа.", err);
+        if (axios.isAxiosError(err)) {
+          if (err.response?.status === 404) {
+            navigate("/404");
+          }
+        }
       } finally {
         setLoading(false);
       }
     };
     if (id) load();
-  }, [id]);
+  }, [id, navigate]);
 
   if (loading) {
     return <Loader size="large" label="Загружаю персонажа." />;
