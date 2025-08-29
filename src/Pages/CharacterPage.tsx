@@ -1,13 +1,89 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "../Components/Content/Content.css";
+import { useEffect, useState } from "react";
+import { getCharacter, type IApiCharacter } from "../shared/api/characterApi";
+import { ArrowLeft } from "../assets/icon/ArrowLeft";
+import { Loader } from "../Components/Loader/Loader";
 
 export const CharacterPage = () => {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const [character, setCharacter] = useState<IApiCharacter | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const load = async () => {
+      setLoading(true);
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        const data = await getCharacter(Number(id));
+        setCharacter(data);
+      } catch (error) {
+        console.error("Ошибка загрузки персонажа.", error);
+        navigate("/404");
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (id) load();
+  }, [id]);
+
+  if (loading) {
+    return <Loader size="large" label="Загружаю персонажа." />;
+  }
+
   return (
     <div className="cardBox">
-      <h1>Информация о персонаже</h1>
       <Link to="/" className="card-box__back">
-        ← GO BACK
+        <ArrowLeft /> <span className="card-box__back-text">GO BACK</span>
       </Link>
+
+      <img
+        src={character?.image}
+        alt={character?.name}
+        className="card-character__img"
+      />
+
+      <div className="card-character__name">{character?.name}</div>
+      <h2 className="card-character__title">Information</h2>
+      <dl className="card-character-information">
+        <div className="card-character-information__row">
+          <dt className="card-character-information__term">Gender:</dt>
+          <dd className="card-character-information__value">
+            {character?.gender}
+          </dd>
+        </div>
+        <div className="card-character-information__row">
+          <dt className="card-character-information__term">Status:</dt>
+          <dd className="card-character-information__value">
+            {character?.status}
+          </dd>
+        </div>
+        <div className="card-character-information__row">
+          <dt className="card-character-information__term">Species:</dt>
+          <dd className="card-character-information__value">
+            {character?.species}
+          </dd>
+        </div>
+        <div className="card-character-information__row">
+          <dt className="card-character-information__term">Origin:</dt>
+          <dd className="card-character-information__value">
+            {character?.origin?.name}
+          </dd>
+        </div>
+        <div className="card-character-information__row">
+          <dt className="card-character-information__term">Type:</dt>
+          <dd className="card-character-information__value">
+            {character?.type || "Unknown"}
+          </dd>
+        </div>
+        <div className="card-character-information__row">
+          <dt className="card-character-information__term">Location:</dt>
+          <dd className="card-character-information__value">
+            {character?.location?.name}
+          </dd>
+        </div>
+      </dl>
     </div>
   );
 };

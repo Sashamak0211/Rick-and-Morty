@@ -5,6 +5,7 @@ import { getCharacters } from "../shared/api/characterApi";
 import { Loader } from "../Components/Loader/Loader";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CharacterCard } from "../Widget/CharactersCard";
+import { TitleLogo } from "../Components/TitleLogo/TitleLogo";
 
 interface IFiltersValue {
   name: string;
@@ -18,9 +19,13 @@ export interface ICharacterListProps {
   gender: string;
   species: string;
   location: string;
+  origin?: {
+    name: string;
+  };
   status: string;
   imageSrc: string;
   imageAlt: string;
+  type?: string;
 }
 
 export const CharacterList = () => {
@@ -98,27 +103,30 @@ export const CharacterList = () => {
   }, [filters]);
 
   return (
-    <div className="character-list-container">
-      <FilterPanel filters={filters} onChange={setFilters} />
-      <InfiniteScroll
-        dataLength={characters.length}
-        next={loadMore}
-        hasMore={hasMore}
-        loader={<Loader />}
-        endMessage={<p>Все персонажи загруженны.</p>}
-        style={{ overflow: "hidden" }}
-      >
-        <div className="cards-container">
-          {characters.map((char) => (
-            <CharacterCard
-              key={char.id}
-              character={char}
-              onSave={handleSaveEdit}
-              onClick={() => navigate(`/character/${char.id}`)}
-            />
-          ))}
-        </div>
-      </InfiniteScroll>
-    </div>
+    <>
+      <TitleLogo />
+      <div className="character-list-container">
+        <FilterPanel filters={filters} onChange={setFilters} />
+        <InfiniteScroll
+          dataLength={characters.length}
+          next={loadMore}
+          hasMore={hasMore}
+          loader={<Loader />}
+          endMessage={<p>Все персонажи загруженны.</p>}
+          style={{ overflow: "hidden" }}
+        >
+          <div className="cards-container">
+            {characters.map((char) => (
+              <CharacterCard
+                key={char.id}
+                character={char}
+                onSave={handleSaveEdit}
+                onClick={() => navigate(`/character/${char.id}`)}
+              />
+            ))}
+          </div>
+        </InfiniteScroll>
+      </div>
+    </>
   );
 };
