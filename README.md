@@ -1,69 +1,97 @@
-# React + TypeScript + Vite
+# Rick and Morty Universe Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Веб-приложение для просмотра информации о персонажах вселенной "Рик и Морти", построенное на современном стеке технологий.
 
-Currently, two official plugins are available:
+![React](https://badgen.net/badge/React/18.2+/61DAFB?icon=react)
+![TypeScript](https://badgen.net/badge/TypeScript/5.0+/3178C6?icon=typescript)
+![Vite](https://badgen.net/badge/Vite/4.0+/646CFF?icon=vite)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Возможности
 
-## Expanding the ESLint configuration
+- **Просмотр персонажей**: Каталог всех персонажей вселенной
+- **Поиск и фильтрация**: Поиск по имени и фильтрация по статусу, видуб полу
+- **Детальная информация**: Страница с полной информацией о каждом персонаже
+- **Интуитивный UI**: Удобный и современный пользовательский интерфейс
+- **Анимация**: Анимация загрузки (Loader) для картинок списка
+- **Ленивая загрузка**: Поддержка бесконечной прокрутки (Infinite Scroll) на странице списка персонажей
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠 Технологический стек
 
-```js
-export default tseslint.config([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+- **Frontend**: React 18+ с функциональными компонентами и хуками
+- **Язык**: TypeScript для надежности и удобства разработки
+- **Сборка**: Vite для быстрой разработки и сборки
+- **Маршрутизация**: React Router v6
+- **Стилизация**: CSS-файлы
+- **HTTP-клиент**: Axios для работы с API
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 📦 Установка и запуск
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+1. **Клонируйте репозиторий**:
+   ```bash
+   git clone https://github.com/Sashamak0211/Rick-and-Morty.git
+   cd Rick-and-Morty
+   Установите зависимости:
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+bash
+npm install
+Запустите сервер для разработки:
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+bash
+npm run dev
+Откройте в браузере:
+Приложение будет доступно по адресу http://localhost:5173 (или другому порту, который укажет Vite).
 
-export default tseslint.config([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+🏗 Структура проекта
+text
+src/
+├── assets/ # Статические ресурсы (иконки, изображения)
+├── Components/ # React-компоненты
+│ ├── Content/ # Компонент контентной области
+│ ├── Footer/ # Подвал сайта
+│ ├── Header/ # Шапка сайта с логотипом
+│ ├── Layout/ # Основной layout приложения
+│ └── Loader/ # Компонент загрузки
+├── Pages/ # Страницы приложения
+│ ├── CharacterPage/ # Страница персонажа
+│ └── NotFound/ # Страница 404
+├── shared/ # Общие модули
+│ └── api/ # API-клиенты и типы
+└── Widget/ # Вспомогательные виджеты
+🎯 Ключевые компоненты
+Layout.tsx
+Корневой компонент, определяющий общую структуру приложения (Header, Content, Footer).
+
+CharacterPage.tsx
+Страница с детальной информацией о конкретном персонаже, включая:
+
+Основную информацию (имя, статус, вид)
+
+Происхождение и локацию
+
+Изображение персонажа
+
+Selector.tsx
+Универсальный компонент выбора с поддержкой:
+
+Кастомного отображения опций
+
+Различных размеров (large/small)
+
+Состояния disabled
+
+ActionButton.tsx
+Динамическая кнопка действий, меняющая свое состояние (редактирование/сохранение).
+
+🌐 API
+Приложение использует официальное The Rick and Morty API для получения данных о персонажах.
+
+📝 Скрипты
+npm run dev - Запуск development-сервера
+
+npm run build - Сборка production-версии
+
+npm run preview - Просмотр собранной версии
+
+👨‍💻 Разработчик
+Разработано с ❤️ Sashamak0211
