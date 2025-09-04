@@ -10,7 +10,7 @@ import "./Components/Content/Content.css";
 function App() {
   return (
     <>
-      <Router>
+      <Router basename="/Rick-and-Morty">
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<CharacterList />} />
