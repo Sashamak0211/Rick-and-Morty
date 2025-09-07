@@ -12,7 +12,7 @@
 }
 
 .filter-panel {
-  margin: auto 0;
+  margin: 16px auto 0;
   display: flex;
   gap: 28px;
   z-index: 10;
@@ -90,7 +90,7 @@
 .character-card__title {
   color: #000;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
   margin: 0;
   padding: 0;
 }
@@ -102,7 +102,8 @@
   display: flex;
   align-items: center;
   font-size: 14px;
-  color: #9caf9d;
+  color: #000;
+  opacity: 60%;
   font-weight: 400;
   line-height: 1;
   width: 200px;
@@ -181,7 +182,7 @@
   width: 100%;
   color: #9caf9d;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   padding: 0;
   margin: 0;
   height: 20px;
@@ -229,7 +230,7 @@
 .card-character__name {
   width: 500px;
   height: 50px;
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 48px;
   line-height: 100%;
@@ -241,7 +242,7 @@
 .card-character__title {
   width: 157px;
   height: 24px;
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
@@ -257,20 +258,18 @@
 }
 
 .card-character-information__term {
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0.15px;
   margin-left: 16px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
 }
 
 .card-character-information__value {
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.25px;
   margin-left: 16px;
   color: #6e798c;
 }
