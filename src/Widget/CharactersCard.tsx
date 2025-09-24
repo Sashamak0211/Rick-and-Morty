@@ -1,12 +1,12 @@
+import { memo, useState } from "react";
+import { ActionButton } from "../Components/ActionButton/ActionButton";
 import { TextField } from "../Components/FilterInput/TextField";
 import { Selector } from "../Components/Selector/Selector";
-import { ActionButton } from "../Components/ActionButton/ActionButton";
-import { type ICharacterListProps } from "../Pages/CharacterList";
-import { memo, useState } from "react";
 import {
   SelectorDot,
   type StatusesType,
 } from "../Components/Selector/Selector_dot";
+import { type ICharacterListProps } from "../Pages/CharacterList";
 
 export interface ICharacterCardProps {
   character: ICharacterListProps;
@@ -16,7 +16,7 @@ export interface ICharacterCardProps {
     id: number,
     newName: string,
     newLocation: string,
-    newStatus: string
+    newStatus: string,
   ) => void;
   onClick: () => void;
 }
@@ -30,7 +30,7 @@ const statusOptions = [
 const getStatusLabel = (value: string) => {
   return (
     statusOptions.find(
-      (status) => status.value.toLowerCase() === value.toLowerCase()
+      (status) => status.value.toLowerCase() === value.toLowerCase(),
     ) || {
       label: value,
     }
@@ -165,5 +165,5 @@ export const CharacterCard = memo(
         </div>
       </div>
     );
-  }
+  },
 );

@@ -1,4 +1,5 @@
 import type React from "react";
+
 import "./Content.css";
 
 interface IContentProps {

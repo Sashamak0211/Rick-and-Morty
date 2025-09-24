@@ -1,4 +1,5 @@
 import classNames from "classnames";
+
 import "./Selector_dot.css";
 
 const STATUSES_DICT = {
