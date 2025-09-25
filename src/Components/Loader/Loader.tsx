@@ -1,8 +1,7 @@
+import portalLoading from "@assets/image/PortalLoading.png";
 import cn from "classnames";
 
 import "./Loader.css";
-
-import portalLoading from "/src/assets/image/PortalLoading.png";
 
 interface ILoaderProps {
   size?: "large" | "small";
