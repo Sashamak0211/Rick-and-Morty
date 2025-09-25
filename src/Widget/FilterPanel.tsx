@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { TextField } from "../Components/FilterInput/TextField";
-import { Selector } from "../Components/Selector/Selector";
+
+import { TextField } from "@Components/FilterInput/TextField";
+import { Selector } from "@Components/Selector/Selector";
 import {
   SelectorDot,
   type StatusesType,
-} from "../Components/Selector/Selector_dot";
+} from "@Components/Selector/Selector_dot";
 
 interface IFiltersValue {
   name: string;
@@ -19,7 +20,7 @@ interface IFiltersProps {
 
 const debounce = <T extends (...args: unknown[]) => void>(
   func: T,
-  delay: number,
+  delay: number
 ): ((...args: Parameters<T>) => void) & { cancel: () => void } => {
   let timeoutId: ReturnType<typeof setTimeout>;
   const debounced = (...args: Parameters<T>) => {
