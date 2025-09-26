@@ -1,12 +1,13 @@
-import { TextField } from "../Components/FilterInput/TextField";
-import { Selector } from "../Components/Selector/Selector";
-import { ActionButton } from "../Components/ActionButton/ActionButton";
-import { type ICharacterListProps } from "../Pages/CharacterList";
 import { memo, useState } from "react";
+
+import { ActionButton } from "@Components/ActionButton/ActionButton";
+import { TextField } from "@Components/FilterInput/TextField";
+import { Selector } from "@Components/Selector/Selector";
 import {
   SelectorDot,
   type StatusesType,
-} from "../Components/Selector/Selector_dot";
+} from "@Components/Selector/Selector_dot";
+import { type ICharacterListProps } from "@Pages/CharacterList";
 
 export interface ICharacterCardProps {
   character: ICharacterListProps;

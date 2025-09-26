@@ -1,4 +1,4 @@
-import rickMortyLogo from "../../assets/image/Rick and Morty Title.png";
+import rickMortyLogo from "@assets/image/Rick and Morty Title.png";
 
 export const TitleLogo = () => (
   <div className="title-logo">

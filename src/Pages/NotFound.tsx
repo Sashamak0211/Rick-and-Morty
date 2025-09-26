@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
-import notFoundImage from "../assets/image/404.jpg";
-import "../Components/Content/Content.css";
+
+import notFoundImage from "@assets/image/404.jpg";
+
+import "@Components/Content/Content.css";
 
 export const NotFoundPage = () => {
   return (

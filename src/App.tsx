@@ -1,11 +1,13 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Layout } from "./Components/Layout/Layout";
-import { CharacterList } from "./Pages/CharacterList";
-import { CharacterPage } from "./Pages/CharacterPage";
-import { NotFoundPage } from "./Pages/NotFound";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import { Layout } from "@Components/Layout/Layout";
+import { CharacterList } from "@Pages/CharacterList";
+import { CharacterPage } from "@Pages/CharacterPage";
+import { NotFoundPage } from "@Pages/NotFound";
+
+import "@Components/Content/Content.css";
+import "@Components/FilterInput/TextField.css";
 import "./index.css";
-import "./Components/FilterInput/TextField.css";
-import "./Components/Content/Content.css";
 
 function App() {
   return (

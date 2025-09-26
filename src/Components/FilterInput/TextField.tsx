@@ -1,7 +1,8 @@
+import { MagniferIcon } from "@assets/icon/MagniferIcon";
 import classNames from "classnames";
-import "./TextField.css";
 import type { ReactNode } from "react";
-import { MagniferIcon } from "../../assets/icon/MagniferIcon";
+
+import "./TextField.css";
 
 type TextFieldVariant = "default" | "compact" | "compact-editable";
 

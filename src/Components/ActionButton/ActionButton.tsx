@@ -1,7 +1,7 @@
-import { IconButton } from "../../Widget/IconButton";
-import { CloseIcon } from "../../assets/icon/CloseIcon";
-import { CheckIcon } from "../../assets/icon/CheckIcon";
-import { EditIcon } from "../../assets/icon/EditIcon";
+import { CheckIcon } from "@assets/icon/CheckIcon";
+import { CloseIcon } from "@assets/icon/CloseIcon";
+import { EditIcon } from "@assets/icon/EditIcon";
+import { IconButton } from "@Widget/IconButton";
 
 interface IActionButton {
   isEditing: boolean;

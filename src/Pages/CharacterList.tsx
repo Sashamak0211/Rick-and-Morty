@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
+
 import { useNavigate } from "react-router-dom";
-import { FilterPanel } from "../Widget/FilterPanel";
-import { getCharacters } from "../shared/api/characterApi";
-import { Loader } from "../Components/Loader/Loader";
+
+import { Loader } from "@Components/Loader/Loader";
+import { TitleLogo } from "@Components/TitleLogo/TitleLogo";
+import { getCharacters } from "@shared/api/characterApi";
+import { CharacterCard } from "@Widget/CharactersCard";
+import { FilterPanel } from "@Widget/FilterPanel";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { CharacterCard } from "../Widget/CharactersCard";
-import { TitleLogo } from "../Components/TitleLogo/TitleLogo";
 
 interface IFiltersValue {
   name: string;

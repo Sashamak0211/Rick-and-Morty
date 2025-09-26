@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { TextField } from "../Components/FilterInput/TextField";
-import { Selector } from "../Components/Selector/Selector";
+
+import { TextField } from "@Components/FilterInput/TextField";
+import { Selector } from "@Components/Selector/Selector";
 import {
   SelectorDot,
   type StatusesType,
-} from "../Components/Selector/Selector_dot";
+} from "@Components/Selector/Selector_dot";
 
 interface IFiltersValue {
   name: string;

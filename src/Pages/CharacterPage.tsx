@@ -1,10 +1,13 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
-import "../Components/Content/Content.css";
 import { useEffect, useState } from "react";
-import { getCharacter, type IApiCharacter } from "../shared/api/characterApi";
-import { ArrowLeft } from "../assets/icon/ArrowLeft";
-import { Loader } from "../Components/Loader/Loader";
+
+import { Link, useNavigate, useParams } from "react-router-dom";
+
+import { ArrowLeft } from "@assets/icon/ArrowLeft";
+import { Loader } from "@Components/Loader/Loader";
+import { getCharacter, type IApiCharacter } from "@shared/api/characterApi";
 import axios from "axios";
+
+import "@Components/Content/Content.css";
 
 export const CharacterPage = () => {
   const { id } = useParams<{ id: string }>();

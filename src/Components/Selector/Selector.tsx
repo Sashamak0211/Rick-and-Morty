@@ -1,5 +1,7 @@
-import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+
 import classNames from "classnames";
+
 import "./Selector.css";
 
 export interface SelectorOption {

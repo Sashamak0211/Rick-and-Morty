@@ -1,5 +1,6 @@
+import { type ICharacterListProps } from "@Pages/CharacterList";
+
 import apiClient from "./apiClient";
-import { type ICharacterListProps } from "../../Pages/CharacterList";
 
 export type CharacterStatus = "Alive" | "Dead" | "Unknown";
 export type CharacterGender = "Female" | "Male" | "Genderless" | "Unknown";
