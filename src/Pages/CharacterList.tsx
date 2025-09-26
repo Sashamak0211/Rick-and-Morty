@@ -111,7 +111,7 @@ export const CharacterList = () => {
           dataLength={characters.length}
           next={loadMore}
           hasMore={hasMore}
-          loader={<Loader />}
+          loader={<Loader size="small" />}
           endMessage={<p>Все персонажи загруженны.</p>}
           style={{ overflow: "hidden" }}
         >
