@@ -33,9 +33,10 @@ export interface ICharacterListProps {
 export const CharacterList = () => {
   const navigate = useNavigate();
   const [isPending, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition();
 
   const [filters, setFilters] = useState<IFiltersValue>({
-    name: "",
+    name: '',
     species: null,
     gender: null,
     status: null,
@@ -84,7 +85,7 @@ export const CharacterList = () => {
       setHasMore(mapped.length > 0);
       setPage((prev) => prev + 1);
     } catch (error) {
-      console.error("Ошибка при подгрузке", error);
+      console.error('Ошибка при подгрузке', error);
       setHasMore(false);
     } finally {
       setLoading(false);
@@ -100,7 +101,7 @@ export const CharacterList = () => {
         setHasMore(data.length > 0);
         setPage(2);
       } catch (error) {
-        console.error("Не удалось загрузить персонажей", error);
+        console.error('Не удалось загрузить персонажей', error);
         setCharacters([]);
         setHasMore(false);
       } finally {
