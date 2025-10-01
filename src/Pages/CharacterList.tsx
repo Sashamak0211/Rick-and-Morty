@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+
+import { useCallback, useEffect, useState, useTransition } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -32,6 +33,7 @@ export interface ICharacterListProps {
 
 export const CharacterList = () => {
   const navigate = useNavigate();
+  const [isPending, startTransition] = useTransition();
 
   const [filters, setFilters] = useState<IFiltersValue>({
     name: "",
@@ -44,6 +46,12 @@ export const CharacterList = () => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+
+  const handleFilterChange = useCallback((newFilter: IFiltersValue) => {
+    startTransition(() => {
+      setFilters(newFilter);
+    });
+  }, []);
 
   const handleSaveEdit = useCallback(
     (id: number, newName: string, newLocation: string, newStatus: string) => {
@@ -108,26 +116,30 @@ export const CharacterList = () => {
     <>
       <TitleLogo />
       <div className="character-list-container">
-        <FilterPanel filters={filters} onChange={setFilters} />
-        <InfiniteScroll
-          dataLength={characters.length}
-          next={loadMore}
-          hasMore={hasMore}
-          loader={<Loader size="small" />}
-          endMessage={<p>Все персонажи загруженны.</p>}
-          style={{ overflow: "hidden" }}
-        >
-          <div className="cards-container">
-            {characters.map((char) => (
-              <CharacterCard
-                key={char.id}
-                character={char}
-                onSave={handleSaveEdit}
-                onClick={() => navigate(`/character/${char.id}`)}
-              />
-            ))}
-          </div>
-        </InfiniteScroll>
+        <FilterPanel filters={filters} onChange={handleFilterChange} />
+        {isPending ? (
+          <Loader />
+        ) : (
+          <InfiniteScroll
+            dataLength={characters.length}
+            next={loadMore}
+            hasMore={hasMore}
+            loader={<Loader size="small" />}
+            endMessage={<p>Все персонажи загруженны.</p>}
+            style={{ overflow: "hidden" }}
+          >
+            <div className="cards-container">
+              {characters.map((char) => (
+                <CharacterCard
+                  key={char.id}
+                  character={char}
+                  onSave={handleSaveEdit}
+                  onClick={() => navigate(`/character/${char.id}`)}
+                />
+              ))}
+            </div>
+          </InfiniteScroll>
+        )}
       </div>
     </>
   );
