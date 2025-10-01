@@ -1,4 +1,3 @@
-
 import { useCallback, useEffect, useState, useTransition } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -10,7 +9,7 @@ import { CharacterCard } from "@Widget/CharactersCard";
 import { FilterPanel } from "@Widget/FilterPanel";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-interface IFiltersValue {
+export interface IFiltersValue {
   name: string;
   species: string | null;
   gender: string | null;
