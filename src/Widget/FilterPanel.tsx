@@ -18,28 +18,10 @@ interface IFiltersProps {
   onChange: (filters: IFiltersValue) => void;
 }
 
-// const debounce = <T extends (...args: unknown[]) => void>(
-//   func: T,
-//   delay: number
-// ): ((...args: Parameters<T>) => void) & { cancel: () => void } => {
-//   let timeoutId: ReturnType<typeof setTimeout>;
-//   const debounced = (...args: Parameters<T>) => {
-//     clearTimeout(timeoutId);
-//     timeoutId = setTimeout(() => func(...args), delay);
-//   };
-
-//   debounced.cancel = () => {
-//     clearTimeout(timeoutId);
-//   };
-
-//   return debounced;
-// };
-
 export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
   const [localFilters, setLocalFilters] = useState<IFiltersValue>(filters);
 
   useEffect(() => {
-    // const handleChange = () => {
     if (
       localFilters.name !== filters.name ||
       localFilters.species !== filters.species ||
@@ -48,12 +30,6 @@ export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
     ) {
       onChange(localFilters);
     }
-    // };
-    // const debouncedChange = debounce(handleChange, 2000);
-    // debouncedChange();
-    // return () => {
-    //   debouncedChange.cancel();
-    // };
   }, [localFilters, filters, onChange]);
 
   useEffect(() => {
