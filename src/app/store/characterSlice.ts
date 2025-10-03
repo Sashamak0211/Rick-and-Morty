@@ -42,6 +42,7 @@ export const loadCharacters = createAsyncThunk(
       }
 
       dispatch(setHasMore(characters.length === 20));
+      dispatch(setPage(page));
       return characters;
     } catch (error) {
       console.error("Ошибка при загрузке персонажей", error);

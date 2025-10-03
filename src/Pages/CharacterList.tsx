@@ -1,13 +1,22 @@
-import { useCallback, useEffect, useState, useTransition } from "react";
+import { useCallback, useEffect, useTransition } from "react";
 
 import { useNavigate } from "react-router-dom";
 
 import { Loader } from "@Components/Loader/Loader";
 import { TitleLogo } from "@Components/TitleLogo/TitleLogo";
-import { getCharacters } from "@shared/api/characterApi";
 import { CharacterCard } from "@Widget/CharactersCard";
 import { FilterPanel } from "@Widget/FilterPanel";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useSelector } from "react-redux";
+
+import { useAppDispatch } from "@/app/hooks/dispatch";
+import {
+  loadCharacters,
+  setFilters,
+  setPage,
+  updateCharacter,
+} from "@/app/store/characterSlice";
+import type { RootState } from "@/app/store/store";
 
 export interface IFiltersValue {
   name: string;
@@ -33,83 +42,55 @@ export interface ICharacterListProps {
 export const CharacterList = () => {
   const navigate = useNavigate();
   const [isPending, startTransition] = useTransition();
+  const dispatch = useAppDispatch();
+  const { characters, hasMore, filters, loading, currentPage } = useSelector(
+    (state: RootState) => state.characters
+  );
+  // const [filters, setFilters] = useState<IFiltersValue>({
+  //   name: "",
+  //   species: null,
+  //   gender: null,
+  //   status: null,
+  // });
 
-  const [filters, setFilters] = useState<IFiltersValue>({
-    name: "",
-    species: null,
-    gender: null,
-    status: null,
-  });
+  // const [characters, setCharacters] = useState<ICharacterListProps[]>([]);
+  // const [loading, setLoading] = useState(true);
+  // const [page, setPage] = useState(1);
+  // const [hasMore, setHasMore] = useState(true);
 
-  const [characters, setCharacters] = useState<ICharacterListProps[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-
-  const handleFilterChange = useCallback((newFilter: IFiltersValue) => {
-    startTransition(() => {
-      setFilters(newFilter);
-    });
-  }, []);
+  const handleFilterChange = useCallback(
+    (newFilter: IFiltersValue) => {
+      startTransition(() => {
+        dispatch(setFilters(newFilter));
+        dispatch(setPage(1));
+      });
+    },
+    [dispatch]
+  );
 
   const handleSaveEdit = useCallback(
     (id: number, newName: string, newLocation: string, newStatus: string) => {
-      setCharacters((prev) =>
-        prev.map((character) =>
-          character.id === id
-            ? {
-                ...character,
-                name: newName,
-                location: newLocation,
-                status: newStatus,
-              }
-            : character
-        )
+      dispatch(
+        updateCharacter({
+          id,
+          name: newName,
+          location: newLocation,
+          status: newStatus,
+        })
       );
     },
-    []
+    [dispatch]
   );
 
   const loadMore = async () => {
     if (!hasMore || loading) return;
 
-    setLoading(true);
-    try {
-      const data = await getCharacters({
-        ...filters,
-        page,
-      });
-      const mapped = data;
-      setCharacters((prev) => [...prev, ...mapped]);
-      setHasMore(mapped.length > 0);
-      setPage((prev) => prev + 1);
-    } catch (error) {
-      console.error("Ошибка при подгрузке", error);
-      setHasMore(false);
-    } finally {
-      setLoading(false);
-    }
+    dispatch(loadCharacters({ filters, page: currentPage + 1 }));
   };
 
   useEffect(() => {
-    const loadCharacters = async () => {
-      setLoading(true);
-      try {
-        const data = await getCharacters({ ...filters, page: 1 });
-        setCharacters(data);
-        setHasMore(data.length > 0);
-        setPage(2);
-      } catch (error) {
-        console.error("Не удалось загрузить персонажей", error);
-        setCharacters([]);
-        setHasMore(false);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadCharacters();
-  }, [filters]);
+    dispatch(loadCharacters({ filters, page: 1 }));
+  }, [filters, dispatch]);
 
   return (
     <>
