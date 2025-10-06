@@ -16,27 +16,7 @@ import {
   updateCharacter,
 } from "@/app/store/characterSlice";
 import type { RootState } from "@/app/store/store";
-
-export interface IFiltersValue {
-  name: string;
-  species: string | null;
-  gender: string | null;
-  status: string | null;
-}
-export interface ICharacterListProps {
-  id: number;
-  name: string;
-  gender: string;
-  species: string;
-  location: string;
-  origin?: {
-    name: string;
-  };
-  status: string;
-  imageSrc: string;
-  imageAlt: string;
-  type?: string;
-}
+import type { IFiltersValue } from "@/shared/types/filters";
 
 export const CharacterList = () => {
   const navigate = useNavigate();

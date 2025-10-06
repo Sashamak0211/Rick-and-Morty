@@ -1,11 +1,12 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import type { ICharacterListProps, IFiltersValue } from "@/Pages/CharacterList";
 import { getCharacters } from "@/shared/api/characterApi";
+import type { ICharacter } from "@/shared/types/character";
+import type { IFiltersValue } from "@/shared/types/filters";
 
-interface CharacterState {
-  characters: ICharacterListProps[];
+export interface CharacterState {
+  characters: ICharacter[];
   filters: IFiltersValue;
   loading: boolean;
   hasMore: boolean;
@@ -34,10 +35,10 @@ export const charactersSlice = createSlice({
   name: "characters",
   initialState,
   reducers: {
-    setCharacters: (state, action: PayloadAction<ICharacterListProps[]>) => {
+    setCharacters: (state, action: PayloadAction<ICharacter[]>) => {
       state.characters = action.payload;
     },
-    addCharacters: (state, action: PayloadAction<ICharacterListProps[]>) => {
+    addCharacters: (state, action: PayloadAction<ICharacter[]>) => {
       state.characters.push(...action.payload);
     },
     setFiltersAndPage: (state, action: PayloadAction<IFiltersValue>) => {

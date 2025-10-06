@@ -7,16 +7,7 @@ import {
   type StatusesType,
 } from "@Components/Selector/Selector_dot";
 
-interface IFiltersValue {
-  name: string;
-  species: string | null;
-  gender: string | null;
-  status: string | null;
-}
-interface IFiltersProps {
-  filters: IFiltersValue;
-  onChange: (filters: IFiltersValue) => void;
-}
+import type { IFiltersProps, IFiltersValue } from "@/shared/types/filters";
 
 export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
   const [localFilters, setLocalFilters] = useState<IFiltersValue>(filters);
