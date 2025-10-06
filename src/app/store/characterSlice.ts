@@ -24,33 +24,9 @@ const initialState: CharacterState = {
 
 export const loadCharacters = createAsyncThunk(
   "characters/loadCharacters",
-  async (
-    { filters, page }: { filters: IFiltersValue; page: number },
-    { dispatch }
-  ) => {
-    dispatch(setLoading(true));
-    try {
-      const characters = await getCharacters({
-        ...filters,
-        page,
-      });
-
-      if (page === 1) {
-        dispatch(setCharacters(characters));
-      } else {
-        dispatch(addCharacters(characters));
-      }
-
-      dispatch(setHasMore(characters.length === 20));
-      dispatch(setPage(page));
-      return characters;
-    } catch (error) {
-      console.error("Ошибка при загрузке персонажей", error);
-      dispatch(setHasMore(false));
-      throw error;
-    } finally {
-      dispatch(setLoading(false));
-    }
+  async ({ filters, page }: { filters: IFiltersValue; page: number }) => {
+    const characters = await getCharacters({ ...filters, page });
+    return { characters, page };
   }
 );
 
@@ -64,8 +40,9 @@ export const charactersSlice = createSlice({
     addCharacters: (state, action: PayloadAction<ICharacterListProps[]>) => {
       state.characters.push(...action.payload);
     },
-    setFilters: (state, action: PayloadAction<IFiltersValue>) => {
+    setFiltersAndPage: (state, action: PayloadAction<IFiltersValue>) => {
       state.filters = action.payload;
+      state.currentPage = 1;
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
@@ -73,9 +50,7 @@ export const charactersSlice = createSlice({
     setHasMore: (state, action: PayloadAction<boolean>) => {
       state.hasMore = action.payload;
     },
-    setPage: (state, action: PayloadAction<number>) => {
-      state.currentPage = action.payload;
-    },
+
     updateCharacter: (
       state,
       action: PayloadAction<{
@@ -87,12 +62,37 @@ export const charactersSlice = createSlice({
     ) => {
       const { id, name, location, status } = action.payload;
       const character = state.characters.find((char) => char.id === id);
+
       if (character) {
         character.name = name;
         character.location = location;
         character.status = status;
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(loadCharacters.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(loadCharacters.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || null;
+        state.hasMore = false;
+      })
+      .addCase(loadCharacters.fulfilled, (state, action) => {
+        state.loading = false;
+        const { characters, page } = action.payload;
+
+        if (page === 1) {
+          state.characters = characters;
+        } else {
+          state.characters.push(...characters);
+        }
+        state.hasMore = characters.length === 20;
+        state.currentPage = page;
+      });
   },
 });
 
@@ -101,8 +101,7 @@ export const {
   addCharacters,
   setHasMore,
   setLoading,
-  setPage,
-  setFilters,
+  setFiltersAndPage,
   updateCharacter,
 } = charactersSlice.actions;
 export default charactersSlice.reducer;

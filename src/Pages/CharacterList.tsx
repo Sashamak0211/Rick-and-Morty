@@ -12,8 +12,7 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "@/app/hooks/dispatch";
 import {
   loadCharacters,
-  setFilters,
-  setPage,
+  setFiltersAndPage,
   updateCharacter,
 } from "@/app/store/characterSlice";
 import type { RootState } from "@/app/store/store";
@@ -46,23 +45,11 @@ export const CharacterList = () => {
   const { characters, hasMore, filters, loading, currentPage } = useSelector(
     (state: RootState) => state.characters
   );
-  // const [filters, setFilters] = useState<IFiltersValue>({
-  //   name: "",
-  //   species: null,
-  //   gender: null,
-  //   status: null,
-  // });
-
-  // const [characters, setCharacters] = useState<ICharacterListProps[]>([]);
-  // const [loading, setLoading] = useState(true);
-  // const [page, setPage] = useState(1);
-  // const [hasMore, setHasMore] = useState(true);
 
   const handleFilterChange = useCallback(
     (newFilter: IFiltersValue) => {
       startTransition(() => {
-        dispatch(setFilters(newFilter));
-        dispatch(setPage(1));
+        dispatch(setFiltersAndPage(newFilter));
       });
     },
     [dispatch]
