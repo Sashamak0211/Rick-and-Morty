@@ -41,15 +41,17 @@ export const charactersSlice = createSlice({
     addCharacters: (state, action: PayloadAction<ICharacter[]>) => {
       state.characters.push(...action.payload);
     },
-    setFiltersAndPage: (state, action: PayloadAction<IFiltersValue>) => {
+    setFilters: (state, action: PayloadAction<IFiltersValue>) => {
       state.filters = action.payload;
-      state.currentPage = 1;
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
     setHasMore: (state, action: PayloadAction<boolean>) => {
       state.hasMore = action.payload;
+    },
+    setPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload;
     },
 
     updateCharacter: (
@@ -71,30 +73,6 @@ export const charactersSlice = createSlice({
       }
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(loadCharacters.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(loadCharacters.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message || null;
-        state.hasMore = false;
-      })
-      .addCase(loadCharacters.fulfilled, (state, action) => {
-        state.loading = false;
-        const { characters, page } = action.payload;
-
-        if (page === 1) {
-          state.characters = characters;
-        } else {
-          state.characters.push(...characters);
-        }
-        state.hasMore = characters.length === 20;
-        state.currentPage = page;
-      });
-  },
 });
 
 export const {
@@ -102,7 +80,8 @@ export const {
   addCharacters,
   setHasMore,
   setLoading,
-  setFiltersAndPage,
+  setFilters,
+  setPage,
   updateCharacter,
 } = charactersSlice.actions;
 export default charactersSlice.reducer;
