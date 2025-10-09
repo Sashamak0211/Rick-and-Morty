@@ -1,116 +1,63 @@
-
-import { useCallback, useEffect, useState, useTransition } from "react";
+import { useCallback, useEffect, useTransition } from "react";
 
 import { useNavigate } from "react-router-dom";
 
 import { Loader } from "@Components/Loader/Loader";
 import { TitleLogo } from "@Components/TitleLogo/TitleLogo";
-import { getCharacters } from "@shared/api/characterApi";
 import { CharacterCard } from "@Widget/CharactersCard";
 import { FilterPanel } from "@Widget/FilterPanel";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useSelector } from "react-redux";
 
-interface IFiltersValue {
-  name: string;
-  species: string | null;
-  gender: string | null;
-  status: string | null;
-}
-export interface ICharacterListProps {
-  id: number;
-  name: string;
-  gender: string;
-  species: string;
-  location: string;
-  origin?: {
-    name: string;
-  };
-  status: string;
-  imageSrc: string;
-  imageAlt: string;
-  type?: string;
-}
+import { useAppDispatch } from "@/app/hooks/dispatch";
+import {
+  loadCharacters,
+  setFiltersAndPage,
+  updateCharacter,
+} from "@/app/store/characterSlice";
+import type { RootState } from "@/app/store/store";
+import type { IFiltersValue } from "@/shared/types/filters";
 
 export const CharacterList = () => {
   const navigate = useNavigate();
   const [isPending, startTransition] = useTransition();
+  const dispatch = useAppDispatch();
+  const { characters, hasMore, filters, loading, currentPage } = useSelector(
+    (state: RootState) => state.characters
+  );
 
-  const [filters, setFilters] = useState<IFiltersValue>({
-    name: "",
-    species: null,
-    gender: null,
-    status: null,
-  });
-
-  const [characters, setCharacters] = useState<ICharacterListProps[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-
-  const handleFilterChange = useCallback((newFilter: IFiltersValue) => {
-    startTransition(() => {
-      setFilters(newFilter);
-    });
-  }, []);
+  const handleFilterChange = useCallback(
+    (newFilter: IFiltersValue) => {
+      startTransition(() => {
+        dispatch(setFiltersAndPage(newFilter));
+      });
+    },
+    [dispatch]
+  );
 
   const handleSaveEdit = useCallback(
     (id: number, newName: string, newLocation: string, newStatus: string) => {
-      setCharacters((prev) =>
-        prev.map((character) =>
-          character.id === id
-            ? {
-                ...character,
-                name: newName,
-                location: newLocation,
-                status: newStatus,
-              }
-            : character
-        )
+      dispatch(
+        updateCharacter({
+          id,
+          name: newName,
+          location: newLocation,
+          status: newStatus,
+        })
       );
     },
-    []
+    [dispatch]
   );
 
   const loadMore = async () => {
     if (!hasMore || loading) return;
 
-    setLoading(true);
-    try {
-      const data = await getCharacters({
-        ...filters,
-        page,
-      });
-      const mapped = data;
-      setCharacters((prev) => [...prev, ...mapped]);
-      setHasMore(mapped.length > 0);
-      setPage((prev) => prev + 1);
-    } catch (error) {
-      console.error("Ошибка при подгрузке", error);
-      setHasMore(false);
-    } finally {
-      setLoading(false);
-    }
+    dispatch(loadCharacters({ filters, page: currentPage + 1 }));
   };
 
   useEffect(() => {
-    const loadCharacters = async () => {
-      setLoading(true);
-      try {
-        const data = await getCharacters({ ...filters, page: 1 });
-        setCharacters(data);
-        setHasMore(data.length > 0);
-        setPage(2);
-      } catch (error) {
-        console.error("Не удалось загрузить персонажей", error);
-        setCharacters([]);
-        setHasMore(false);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadCharacters();
-  }, [filters]);
+    dispatch(loadCharacters({ filters, page: 1 }));
+  }, [filters, dispatch]);
 
   return (
     <>

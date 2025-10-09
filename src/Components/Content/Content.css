@@ -102,8 +102,7 @@
   display: flex;
   align-items: center;
   font-size: 14px;
-  color: #000;
-  opacity: 60%;
+  color: rgba(0, 0, 0, 0.6);
   font-weight: 400;
   line-height: 1;
   width: 200px;
@@ -182,7 +181,7 @@
 .text-field.text-field--compact-editable.character-card__location-input
   .text-field__input {
   width: 100%;
-  color: #9caf9d;
+  color: rgba(0, 0, 0, 0.6);
   font-size: 14px;
   font-weight: 400;
   padding: 0;

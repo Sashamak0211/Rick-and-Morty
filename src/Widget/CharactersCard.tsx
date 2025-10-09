@@ -7,20 +7,8 @@ import {
   SelectorDot,
   type StatusesType,
 } from "@Components/Selector/Selector_dot";
-import { type ICharacterListProps } from "@Pages/CharacterList";
 
-export interface ICharacterCardProps {
-  character: ICharacterListProps;
-  isEditing?: boolean;
-  onEdit?: (id: number) => void;
-  onSave: (
-    id: number,
-    newName: string,
-    newLocation: string,
-    newStatus: string
-  ) => void;
-  onClick: () => void;
-}
+import type { ICharacterCardProps } from "@/shared/types/character";
 
 const statusOptions = [
   { value: "Alive", label: "Alive" },
