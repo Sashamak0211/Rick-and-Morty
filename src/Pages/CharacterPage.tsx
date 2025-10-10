@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft } from "@assets/icon/ArrowLeft";
 import { Loader } from "@Components/Loader/Loader";
 
-import { useGetCharacterByIdQuery } from "@/app/store/api";
+import { useGetCharacterByIdQuery } from "@/app/store/useCharactersStore";
 
 import "@Components/Content/Content.css";
 
@@ -14,9 +14,9 @@ export const CharacterPage = () => {
   const navigate = useNavigate();
   const {
     data: character,
-    isLoading: loading,
+    isLoading,
     error,
-  } = useGetCharacterByIdQuery(Number(id));
+  } = useGetCharacterByIdQuery(id);
 
   useEffect(() => {
     if (error) {
@@ -24,7 +24,7 @@ export const CharacterPage = () => {
     }
   }, [error, navigate]);
 
-  if (loading) {
+  if (isLoading) {
     return <Loader size="large" label="Загружаю персонажа." />;
   }
 

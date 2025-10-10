@@ -10,13 +10,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useSelector } from "react-redux";
 
 import { useAppDispatch } from "@/app/hooks/dispatch";
-import { useGetAllCharactersQuery } from "@/app/store/api";
 import {
   setFilters,
   setPage,
   updateCharacter,
 } from "@/app/store/characterSlice";
 import type { RootState } from "@/app/store/store";
+import { useGetAllCharactersQuery } from "@/app/store/useCharactersStore";
 import { mapperCallback } from "@/shared/api/characterApi";
 import type { IFiltersValue } from "@/shared/types/filters";
 
@@ -31,9 +31,9 @@ export const CharacterList = () => {
   const { data, isLoading } = useGetAllCharactersQuery({
     page: currentPage,
     name: filters.name,
-    status: filters.status || undefined,
-    species: filters.species || undefined,
-    gender: filters.gender || undefined,
+    status: filters.status,
+    species: filters.species,
+    gender: filters.gender,
   });
 
   const characters = data ? mapperCallback(data.results) : [];
@@ -43,7 +43,6 @@ export const CharacterList = () => {
     (newFilter: IFiltersValue) => {
       startTransition(() => {
         dispatch(setFilters(newFilter));
-        dispatch(setPage(1))
       });
     },
     [dispatch]

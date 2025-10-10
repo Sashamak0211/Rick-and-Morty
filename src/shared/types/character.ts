@@ -25,3 +25,11 @@ export interface ICharacterCardProps {
   ) => void;
   onClick: () => void;
 }
+
+export interface IGetAllCharactersParams {
+  page?: number;
+  name?: string;
+  status?: string | null;
+  gender?: string | null;
+  species?: string | null;
+}

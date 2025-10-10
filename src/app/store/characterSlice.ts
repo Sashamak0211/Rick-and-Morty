@@ -43,6 +43,7 @@ export const charactersSlice = createSlice({
     },
     setFilters: (state, action: PayloadAction<IFiltersValue>) => {
       state.filters = action.payload;
+      state.currentPage = 1;
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
