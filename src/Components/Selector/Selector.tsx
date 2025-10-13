@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import classNames from "classnames";
+import { classNames } from "@/utils/classNames";
 
 import "./Selector.css";
 
@@ -94,11 +94,12 @@ export const Selector = ({
   return (
     <div
       ref={containerRef}
-      className={classNames("selector", {
-        "selector--large": size === "large",
-        "selector--small": size === "small",
-        "selector--open": isOpen,
-      })}
+      className={classNames(
+        "selector",
+        size === "large" && "selector--large",
+        size === "small" && "selector--small",
+        isOpen && "selector--open"
+      )}
     >
       <div
         className="selector__button"
