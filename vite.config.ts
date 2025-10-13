@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { defineConfig } from "vite";
@@ -6,6 +8,11 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [react()],
   base: "/Rick-and-Morty/",
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./src/test-setup.ts'],
+    globals: true
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -16,4 +23,5 @@ export default defineConfig({
       "@shared": path.resolve(__dirname, "./src/shared"),
     },
   },
+  
 });
