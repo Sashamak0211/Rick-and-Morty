@@ -12,7 +12,7 @@ import "./index.css";
 function App() {
   return (
     <>
-      <Router basename="/Rick-and-Morty">
+      <Router basename="/Rick-and-Morty/">
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<CharacterList />} />
