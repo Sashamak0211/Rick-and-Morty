@@ -1,44 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { ArrowLeft } from "@assets/icon/ArrowLeft";
 import { Loader } from "@Components/Loader/Loader";
-import { getCharacter, type IApiCharacter } from "@shared/api/characterApi";
-import axios from "axios";
+
+import { useGetCharacterByIdQuery } from "@/app/store/useCharactersStore";
 
 import "@Components/Content/Content.css";
 
 export const CharacterPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [character, setCharacter] = useState<IApiCharacter | null>(null);
-  const [loading, setLoading] = useState(false);
+  const {
+    data: character,
+    isLoading,
+    error,
+  } = useGetCharacterByIdQuery(id);
 
   useEffect(() => {
-    const load = async () => {
-      setLoading(true);
+    if (error) {
+      navigate("/404");
+    }
+  }, [error, navigate]);
 
-      try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        const data = await getCharacter(Number(id));
-
-        setCharacter(data);
-      } catch (err) {
-        console.error("Ошибка загрузки персонажа.", err);
-        if (axios.isAxiosError(err)) {
-          if (err.response?.status === 404) {
-            navigate("/404");
-          }
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-    if (id) load();
-  }, [id, navigate]);
-
-  if (loading) {
+  if (isLoading) {
     return <Loader size="large" label="Загружаю персонажа." />;
   }
 

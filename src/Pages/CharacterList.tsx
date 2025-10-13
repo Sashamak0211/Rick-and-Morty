@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useTransition } from "react";
+import { useCallback, useTransition } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -11,25 +11,38 @@ import { useSelector } from "react-redux";
 
 import { useAppDispatch } from "@/app/hooks/dispatch";
 import {
-  loadCharacters,
-  setFiltersAndPage,
+  setFilters,
+  setPage,
   updateCharacter,
 } from "@/app/store/characterSlice";
 import type { RootState } from "@/app/store/store";
+import { useGetAllCharactersQuery } from "@/app/store/useCharactersStore";
+import { mapperCallback } from "@/shared/api/characterApi";
 import type { IFiltersValue } from "@/shared/types/filters";
 
 export const CharacterList = () => {
   const navigate = useNavigate();
   const [isPending, startTransition] = useTransition();
   const dispatch = useAppDispatch();
-  const { characters, hasMore, filters, loading, currentPage } = useSelector(
+  const { filters, currentPage } = useSelector(
     (state: RootState) => state.characters
   );
+
+  const { data, isLoading } = useGetAllCharactersQuery({
+    page: currentPage,
+    name: filters.name,
+    status: filters.status,
+    species: filters.species,
+    gender: filters.gender,
+  });
+
+  const characters = data ? mapperCallback(data.results) : [];
+  const hasMore = !!data?.info.next;
 
   const handleFilterChange = useCallback(
     (newFilter: IFiltersValue) => {
       startTransition(() => {
-        dispatch(setFiltersAndPage(newFilter));
+        dispatch(setFilters(newFilter));
       });
     },
     [dispatch]
@@ -49,22 +62,18 @@ export const CharacterList = () => {
     [dispatch]
   );
 
-  const loadMore = async () => {
-    if (!hasMore || loading) return;
+  const loadMore = () => {
+    if (isLoading || !hasMore) return;
 
-    dispatch(loadCharacters({ filters, page: currentPage + 1 }));
+    dispatch(setPage(currentPage + 1));
   };
-
-  useEffect(() => {
-    dispatch(loadCharacters({ filters, page: 1 }));
-  }, [filters, dispatch]);
 
   return (
     <>
       <TitleLogo />
       <div className="character-list-container">
         <FilterPanel filters={filters} onChange={handleFilterChange} />
-        {isPending ? (
+        {isPending || isLoading ? (
           <Loader />
         ) : (
           <InfiniteScroll
