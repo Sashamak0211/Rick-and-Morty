@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import { classNames } from "@/utils/classNames";
 
 import "./Selector_dot.css";
 
@@ -24,6 +24,6 @@ export const SelectorDot = (props: IStatusProps) => {
   const statusValue = STATUSES_DICT[status];
 
   return statusValue ? (
-    <div className={classNames(statusValue, [classname])} />
+    <div className={classNames(statusValue, classname)} />
   ) : null;
 };
