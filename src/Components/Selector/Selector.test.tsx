@@ -4,8 +4,16 @@ import { vi } from "vitest";
 import { Selector } from "./Selector";
 
 describe("Selector component", () => {
+let mock: ReturnType<typeof vi.fn>;
+
+  beforeEach(() => {
+    
+    mock = vi.fn()
+  })
+
+
   it("render small size", () => {
-    const mock = vi.fn();
+    
     const { container } = render(
       <Selector value="cvcb" onChange={mock} placeholder="asd" />
     );
@@ -14,7 +22,7 @@ describe("Selector component", () => {
     expect(selectorEl).not.toHaveClass("selector--large");
   });
   it("render large size", () => {
-    const mock = vi.fn();
+    
     const { container } = render(
       <Selector value="cvcb" onChange={mock} placeholder="asd" size="large" />
     );
@@ -23,7 +31,7 @@ describe("Selector component", () => {
     expect(selectorEl).toHaveClass("selector--large");
   });
   it("placeholder text", () => {
-    const mock = vi.fn();
+    
     render(
       <Selector
         value={null}
