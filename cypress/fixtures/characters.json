@@ -1,0 +1,65 @@
+{
+  "info": {
+    "count": 826,
+    "pages": 42,
+    "next": "hhtps://rickandmortyapi.com/api/character?page=2",
+    "prev": null
+  },
+  "results": [
+    {
+      "id": 1,
+      "name": "Rick Smith",
+      "status": "Alive",
+      "species": "Human",
+      "type": "",
+      "gender": "Male",
+      "origin": { "name": "Earth" },
+      "location": { "name": "Citadel" },
+      "image": "hhtps://rickandmortyapi.com/api/character/avatar/1.jpeg"
+    },
+    {
+      "id": 2,
+      "name": "Maikl Smith",
+      "status": "Alive",
+      "species": "Human",
+      "type": "",
+      "gender": "Male",
+      "origin": { "name": "Earth" },
+      "location": { "name": "Citadel" },
+      "image": "hhtps://rickandmortyapi.com/api/character/avatar/2.jpeg"
+    },
+    {
+      "id": 3,
+      "name": "Goga Smith",
+      "status": "Alive",
+      "species": "Human",
+      "type": "",
+      "gender": "Male",
+      "origin": { "name": "Earth" },
+      "location": { "name": "Citadel" },
+      "image": "hhtps://rickandmortyapi.com/api/character/avatar/3.jpeg"
+    },
+    {
+      "id": 4,
+      "name": "Riga Smith",
+      "status": "Alive",
+      "species": "Human",
+      "type": "",
+      "gender": "Male",
+      "origin": { "name": "Earth" },
+      "location": { "name": "Citadel" },
+      "image": "hhtps://rickandmortyapi.com/api/character/avatar/4.jpeg"
+    },
+    {
+      "id": 5,
+      "name": "Jane Smith",
+      "status": "Alive",
+      "species": "Human",
+      "type": "",
+      "gender": "Male",
+      "origin": { "name": "Earth" },
+      "location": { "name": "Citadel" },
+      "image": "hhtps://rickandmortyapi.com/api/character/avatar/5.jpeg"
+    }
+  ]
+}
