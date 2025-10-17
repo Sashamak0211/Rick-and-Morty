@@ -1,0 +1,21 @@
+{
+  "info": {
+    "count": 1,
+    "pages": 1,
+    "next": null,
+    "prev": null
+  },
+  "results": [
+    {
+      "id": 1,
+      "name": "Rick Smith",
+      "status": "Alive",
+      "species": "Human",
+      "type": "",
+      "gender": "Male",
+      "origin": { "name": "Earth" },
+      "location": { "name": "Citadel" },
+      "image": "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+    }
+  ]
+}

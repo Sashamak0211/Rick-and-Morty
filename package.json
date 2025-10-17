@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest",
-    "test:jest": "jest"
+    "test:jest": "jest",
+    "open": "cypress open"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.9.0",
