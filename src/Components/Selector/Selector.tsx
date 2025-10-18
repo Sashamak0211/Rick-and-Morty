@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import  classNames  from "@/utils/classNames";
+import classNames from '@/utils/classNames';
 
-import "./Selector.css";
+import './Selector.css';
 
 export interface SelectorOption {
   value: string;
@@ -24,7 +24,7 @@ interface SelectorProps {
   value: string | null;
   onChange: (value: string) => void;
   placeholder: string;
-  size?: "large" | "small";
+  size?: 'large' | 'small';
   disabled?: boolean;
   OptionContentComponent?: React.FC<SelectorOptionContentProps>;
 }
@@ -34,7 +34,7 @@ export const Selector = ({
   value,
   onChange,
   placeholder,
-  size = "small",
+  size = 'small',
   disabled = false,
   OptionContentComponent = DefaultSelectorOptionContent,
 }: SelectorProps) => {
@@ -51,8 +51,8 @@ export const Selector = ({
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const toggleOpen = () => {
@@ -95,10 +95,10 @@ export const Selector = ({
     <div
       ref={containerRef}
       className={classNames(
-        "selector",
-        size === "large" && "selector--large",
-        size === "small" && "selector--small",
-        isOpen && "selector--open"
+        'selector',
+        size === 'large' && 'selector--large',
+        size === 'small' && 'selector--small',
+        isOpen && 'selector--open'
       )}
     >
       <div

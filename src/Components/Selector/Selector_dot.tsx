@@ -1,14 +1,14 @@
-import classNames from "@/utils/classNames";
+import classNames from '@/utils/classNames';
 
-import "./Selector_dot.css";
+import './Selector_dot.css';
 
 const STATUSES_DICT = {
-  Alive: "green",
-  Dead: "red",
-  Unknown: "orange",
-  alive: "green",
-  dead: "red",
-  unknown: "orange",
+  Alive: 'green',
+  Dead: 'red',
+  Unknown: 'orange',
+  alive: 'green',
+  dead: 'red',
+  unknown: 'orange',
 };
 
 export type StatusesType = keyof typeof STATUSES_DICT;
@@ -19,7 +19,7 @@ export interface IStatusProps {
 }
 
 export const SelectorDot = (props: IStatusProps) => {
-  const { status = "Unknown", classname } = props;
+  const { status = 'Unknown', classname } = props;
 
   const statusValue = STATUSES_DICT[status];
 

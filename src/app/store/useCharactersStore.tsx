@@ -1,17 +1,17 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
+import { createApi } from '@reduxjs/toolkit/query/react';
 
 import type {
   IApiCharacter,
   IApiCharacterResponse,
-} from "@/shared/api/characterApi";
-import type { IGetAllCharactersParams } from "@/shared/types/character";
+} from '@/shared/api/characterApi';
+import type { IGetAllCharactersParams } from '@/shared/types/character';
 
-import { axiosBaseQuery } from "./axiosBaseQuery";
+import { axiosBaseQuery } from './axiosBaseQuery';
 
 export const rickApi = createApi({
-  reducerPath: "rickApi",
+  reducerPath: 'rickApi',
   baseQuery: axiosBaseQuery(),
-  tagTypes: ["Character"],
+  tagTypes: ['Character'],
   endpoints: (builder) => ({
     getAllCharacters: builder.query<
       IApiCharacterResponse,
@@ -27,11 +27,11 @@ export const rickApi = createApi({
           species: params.species,
         },
       }),
-      providesTags: ["Character"],
+      providesTags: ['Character'],
     }),
     getCharacterById: builder.query<IApiCharacter, string | undefined>({
       query: (id) => ({ url: `/character/${id}` }),
-      providesTags: ["Character"],
+      providesTags: ['Character'],
     }),
   }),
 });

@@ -1,24 +1,24 @@
-import { useCallback, useTransition } from "react";
+import { useCallback, useTransition } from 'react';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-import { Loader } from "@Components/Loader/Loader";
-import { TitleLogo } from "@Components/TitleLogo/TitleLogo";
-import { CharacterCard } from "@Widget/CharactersCard";
-import { FilterPanel } from "@Widget/FilterPanel";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { useSelector } from "react-redux";
+import { Loader } from '@Components/Loader/Loader';
+import { TitleLogo } from '@Components/TitleLogo/TitleLogo';
+import { CharacterCard } from '@Widget/CharactersCard';
+import { FilterPanel } from '@Widget/FilterPanel';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useSelector } from 'react-redux';
 
-import { useAppDispatch } from "@/app/hooks/dispatch";
+import { useAppDispatch } from '@/app/hooks/dispatch';
 import {
   setFilters,
   setPage,
   updateCharacter,
-} from "@/app/store/characterSlice";
-import type { RootState } from "@/app/store/store";
-import { useGetAllCharactersQuery } from "@/app/store/useCharactersStore";
-import { mapperCallback } from "@/shared/api/characterApi";
-import type { IFiltersValue } from "@/shared/types/filters";
+} from '@/app/store/characterSlice';
+import type { RootState } from '@/app/store/store';
+import { useGetAllCharactersQuery } from '@/app/store/useCharactersStore';
+import { mapperCallback } from '@/shared/api/characterApi';
+import type { IFiltersValue } from '@/shared/types/filters';
 
 export const CharacterList = () => {
   const navigate = useNavigate();
@@ -82,7 +82,7 @@ export const CharacterList = () => {
             hasMore={hasMore}
             loader={<Loader size="small" />}
             endMessage={<p>Все персонажи загруженны.</p>}
-            style={{ overflow: "hidden" }}
+            style={{ overflow: 'hidden' }}
           >
             <div className="cards-container">
               {characters.map((char) => (

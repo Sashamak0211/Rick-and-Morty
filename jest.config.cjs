@@ -13,8 +13,5 @@ module.exports = {
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
-  testMatch: [
-    '**/__tests__/**/*.(ts|tsx)',
-    '**/*.(test|spec).(ts|tsx)'
-  ],
+  testMatch: ['**/__tests__/**/*.(ts|tsx)', '**/*.(test|spec).(ts|tsx)'],
 };

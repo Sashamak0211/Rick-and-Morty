@@ -1,11 +1,11 @@
-import { MagniferIcon } from "@assets/icon/MagniferIcon";
-import type { ReactNode } from "react";
+import { MagniferIcon } from '@assets/icon/MagniferIcon';
+import type { ReactNode } from 'react';
 
-import classNames from "@/utils/classNames";
+import classNames from '@/utils/classNames';
 
-import "./TextField.css";
+import './TextField.css';
 
-type TextFieldVariant = "default" | "compact" | "compact-editable";
+type TextFieldVariant = 'default' | 'compact' | 'compact-editable';
 
 interface ITextFieldProps {
   variant?: TextFieldVariant;
@@ -22,7 +22,7 @@ interface ITextFieldProps {
 }
 
 export const TextField: React.FC<ITextFieldProps> = ({
-  variant = "default",
+  variant = 'default',
   value,
   placeholder,
   onChange,
@@ -40,9 +40,9 @@ export const TextField: React.FC<ITextFieldProps> = ({
 
   return (
     <div
-      className={classNames("text-field", `text-field--${variant}`, className)}
+      className={classNames('text-field', `text-field--${variant}`, className)}
     >
-      {variant === "default" && <>{icon}</>}
+      {variant === 'default' && <>{icon}</>}
 
       <input
         id={id}
@@ -55,7 +55,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
         onBlur={onBlur}
         readOnly={readOnly}
         onClick={onClick}
-        style={{ cursor: onClick ? "pointer" : "default" }}
+        style={{ cursor: onClick ? 'pointer' : 'default' }}
       />
     </div>
   );

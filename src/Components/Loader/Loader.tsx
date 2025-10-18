@@ -1,16 +1,16 @@
-import portalLoading from "@assets/image/PortalLoading.png";
+import portalLoading from '@assets/image/PortalLoading.png';
 
-import classNames from "@/utils/classNames";
+import classNames from '@/utils/classNames';
 
-import "./Loader.css";
+import './Loader.css';
 
 interface ILoaderProps {
-  size?: "large" | "small";
+  size?: 'large' | 'small';
   label?: string;
 }
-export const Loader = ({ size = "large", label = "" }: ILoaderProps) => {
+export const Loader = ({ size = 'large', label = '' }: ILoaderProps) => {
   return (
-    <div className={classNames("loader", `loader--${size}`)}>
+    <div className={classNames('loader', `loader--${size}`)}>
       <img
         src={portalLoading}
         alt="Загрузка информации"

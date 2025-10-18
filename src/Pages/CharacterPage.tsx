@@ -1,26 +1,22 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import { ArrowLeft } from "@assets/icon/ArrowLeft";
-import { Loader } from "@Components/Loader/Loader";
+import { ArrowLeft } from '@assets/icon/ArrowLeft';
+import { Loader } from '@Components/Loader/Loader';
 
-import { useGetCharacterByIdQuery } from "@/app/store/useCharactersStore";
+import { useGetCharacterByIdQuery } from '@/app/store/useCharactersStore';
 
-import "@Components/Content/Content.css";
+import '@Components/Content/Content.css';
 
 export const CharacterPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const {
-    data: character,
-    isLoading,
-    error,
-  } = useGetCharacterByIdQuery(id);
+  const { data: character, isLoading, error } = useGetCharacterByIdQuery(id);
 
   useEffect(() => {
     if (error) {
-      navigate("/404");
+      navigate('/404');
     }
   }, [error, navigate]);
 
@@ -70,7 +66,7 @@ export const CharacterPage = () => {
         <div className="card-character-information__row">
           <dt className="card-character-information__term">Type:</dt>
           <dd className="card-character-information__value">
-            {character?.type || "Unknown"}
+            {character?.type || 'Unknown'}
           </dd>
         </div>
         <div className="card-character-information__row">

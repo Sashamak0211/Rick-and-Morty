@@ -1,6 +1,6 @@
-import type React from "react";
+import type React from 'react';
 
-import "./Content.css";
+import './Content.css';
 
 interface IContentProps {
   children: React.ReactNode;

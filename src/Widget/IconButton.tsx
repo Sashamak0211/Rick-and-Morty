@@ -7,7 +7,7 @@ interface IIconButtonProps {
 export const IconButton = ({
   onClick,
   children,
-  className = "",
+  className = '',
 }: IIconButtonProps) => {
   return (
     <button

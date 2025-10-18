@@ -1,19 +1,19 @@
-import { memo, useState } from "react";
+import { memo, useState } from 'react';
 
-import { ActionButton } from "@Components/ActionButton/ActionButton";
-import { TextField } from "@Components/FilterInput/TextField";
-import { Selector } from "@Components/Selector/Selector";
+import { ActionButton } from '@Components/ActionButton/ActionButton';
+import { TextField } from '@Components/FilterInput/TextField';
+import { Selector } from '@Components/Selector/Selector';
 import {
   SelectorDot,
   type StatusesType,
-} from "@Components/Selector/Selector_dot";
+} from '@Components/Selector/Selector_dot';
 
-import type { ICharacterCardProps } from "@/shared/types/character";
+import type { ICharacterCardProps } from '@/shared/types/character';
 
 const statusOptions = [
-  { value: "Alive", label: "Alive" },
-  { value: "Dead", label: "Dead" },
-  { value: "Unknown", label: "Unknown" },
+  { value: 'Alive', label: 'Alive' },
+  { value: 'Dead', label: 'Dead' },
+  { value: 'Unknown', label: 'Unknown' },
 ];
 
 const getStatusLabel = (value: string) => {
@@ -70,7 +70,7 @@ export const CharacterCard = memo(
 
     return (
       <div
-        className={`character-card ${isEditing ? "editing" : ""}`}
+        className={`character-card ${isEditing ? 'editing' : ''}`}
         data-id={character.id}
       >
         <img
@@ -83,7 +83,7 @@ export const CharacterCard = memo(
           <dl className="character-card__details">
             <div className="character-card__field-group">
               <TextField
-                variant={isEditing ? "compact-editable" : "compact"}
+                variant={isEditing ? 'compact-editable' : 'compact'}
                 value={currentName}
                 onChange={handleChangeName}
                 readOnly={!isEditing}

@@ -1,37 +1,32 @@
-import { render, screen } from "@testing-library/react";
-import { vi } from "vitest";
+import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
-import { Selector } from "./Selector";
+import { Selector } from './Selector';
 
-describe("Selector component", () => {
-let mock: ReturnType<typeof vi.fn>;
+describe('Selector component', () => {
+  let mock: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
-    
-    mock = vi.fn()
-  })
+    mock = vi.fn();
+  });
 
-
-  it("render small size", () => {
-    
+  it('render small size', () => {
     const { container } = render(
       <Selector value="cvcb" onChange={mock} placeholder="asd" />
     );
-    const selectorEl = container.querySelector(".selector");
+    const selectorEl = container.querySelector('.selector');
     expect(selectorEl).toBeInTheDocument();
-    expect(selectorEl).not.toHaveClass("selector--large");
+    expect(selectorEl).not.toHaveClass('selector--large');
   });
-  it("render large size", () => {
-    
+  it('render large size', () => {
     const { container } = render(
       <Selector value="cvcb" onChange={mock} placeholder="asd" size="large" />
     );
-    const selectorEl = container.querySelector(".selector");
+    const selectorEl = container.querySelector('.selector');
     expect(selectorEl).toBeInTheDocument();
-    expect(selectorEl).toHaveClass("selector--large");
+    expect(selectorEl).toHaveClass('selector--large');
   });
-  it("placeholder text", () => {
-    
+  it('placeholder text', () => {
     render(
       <Selector
         value={null}
@@ -40,8 +35,8 @@ let mock: ReturnType<typeof vi.fn>;
         size="large"
       />
     );
-    const placeholderText = screen.getByText("Test text");
+    const placeholderText = screen.getByText('Test text');
     expect(placeholderText).toBeInTheDocument();
-    expect(placeholderText).toHaveTextContent("Test text");
+    expect(placeholderText).toHaveTextContent('Test text');
   });
 });
