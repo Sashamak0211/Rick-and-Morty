@@ -1,19 +1,19 @@
-import type { ICharacter } from "../types/character";
+import type { ICharacter } from '../types/character';
 
-import apiClient from "./apiClient";
+import apiClient from './apiClient';
 
-export type CharacterStatus = "Alive" | "Dead" | "Unknown";
-export type CharacterGender = "Female" | "Male" | "Genderless" | "Unknown";
+export type CharacterStatus = 'Alive' | 'Dead' | 'Unknown';
+export type CharacterGender = 'Female' | 'Male' | 'Genderless' | 'Unknown';
 export type CharacterSpecies =
-  | "Human"
-  | "Alien"
-  | "Humanoid"
-  | "Robot"
-  | "Cronenberg"
-  | "Animal"
-  | "Disease"
-  | "Mythology"
-  | "Unknown";
+  | 'Human'
+  | 'Alien'
+  | 'Humanoid'
+  | 'Robot'
+  | 'Cronenberg'
+  | 'Animal'
+  | 'Disease'
+  | 'Mythology'
+  | 'Unknown';
 
 export interface IApiCharacter {
   id: number;
@@ -54,12 +54,12 @@ export const mapperCallback = (characters: IApiCharacter[]): ICharacter[] => {
 
 export const getCharacters = async (params = {}): Promise<ICharacter[]> => {
   try {
-    const response = await apiClient.get<IApiCharacterResponse>("/character", {
+    const response = await apiClient.get<IApiCharacterResponse>('/character', {
       params,
     });
     return mapperCallback(response.data.results);
   } catch (error) {
-    console.error("Данные не получены", error);
+    console.error('Данные не получены', error);
     return [];
   }
 };

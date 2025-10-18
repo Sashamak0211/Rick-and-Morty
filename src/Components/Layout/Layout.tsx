@@ -1,10 +1,10 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
-import { Content } from "@Components/Content/Content";
-import { Footer } from "@Components/Footer/Footer";
-import { Header } from "@Components/Header/Header";
+import { Content } from '@Components/Content/Content';
+import { Footer } from '@Components/Footer/Footer';
+import { Header } from '@Components/Header/Header';
 
-import "./Layout.css";
+import './Layout.css';
 
 export const Layout = () => {
   return (

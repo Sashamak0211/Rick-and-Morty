@@ -1,7 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 
-import { charactersSlice } from "./characterSlice";
-import { rickApi } from "./useCharactersStore";
+import { charactersSlice } from './characterSlice';
+import { rickApi } from './useCharactersStore';
 
 export const store = configureStore({
   reducer: {

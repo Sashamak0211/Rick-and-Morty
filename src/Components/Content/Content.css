@@ -1,7 +1,7 @@
 .content {
   padding: 0 198px 0px;
   flex: 1;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 .title-logo-img {
   width: 600px;
@@ -38,7 +38,7 @@
   border-radius: 8px;
   padding: 7px;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   box-shadow: 2px 2px rgba(0, 0, 0, 0.08);
 }
 
@@ -216,7 +216,7 @@
 
 .card-box__back-text {
   font-size: 18px;
-  font-family: "Karla", sans-serif;
+  font-family: 'Karla', sans-serif;
   font-weight: 700;
   line-height: 100%;
   white-space: nowrap;
@@ -231,7 +231,7 @@
 .card-character__name {
   width: 500px;
   height: 50px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 48px;
   line-height: 100%;
@@ -243,7 +243,7 @@
 .card-character__title {
   width: 157px;
   height: 24px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
@@ -259,7 +259,7 @@
 }
 
 .card-character-information__term {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 16px;
   margin-left: 16px;
@@ -268,7 +268,7 @@
 }
 
 .card-character-information__value {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 14px;
   margin-left: 16px;
@@ -290,7 +290,7 @@
 
 .not-fount__back {
   font-size: 18px;
-  font-family: "Karla", sans-serif;
+  font-family: 'Karla', sans-serif;
   font-weight: 700;
   line-height: 100%;
   white-space: nowrap;

@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { TextField } from "@Components/FilterInput/TextField";
-import { Selector } from "@Components/Selector/Selector";
+import { TextField } from '@Components/FilterInput/TextField';
+import { Selector } from '@Components/Selector/Selector';
 import {
   SelectorDot,
   type StatusesType,
-} from "@Components/Selector/Selector_dot";
+} from '@Components/Selector/Selector_dot';
 
-import type { IFiltersProps, IFiltersValue } from "@/shared/types/filters";
+import type { IFiltersProps, IFiltersValue } from '@/shared/types/filters';
 
 export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
   const [localFilters, setLocalFilters] = useState<IFiltersValue>(filters);
@@ -32,28 +32,28 @@ export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
   };
 
   const statusOptions = [
-    { value: "alive", label: "Alive", color: "#12B800" },
-    { value: "dead", label: "Dead", color: "#DF0000" },
-    { value: "unknown", label: "Unknown", color: "#FF9900" },
+    { value: 'alive', label: 'Alive', color: '#12B800' },
+    { value: 'dead', label: 'Dead', color: '#DF0000' },
+    { value: 'unknown', label: 'Unknown', color: '#FF9900' },
   ];
 
   const speciesOptions = [
-    { value: "Human", label: "Human" },
-    { value: "Alien", label: "Alien" },
-    { value: "Humanoid", label: "Humanoid" },
-    { value: "Animal", label: "Animal" },
-    { value: "Robot", label: "Robot" },
-    { value: "Cronenberg", label: "Cronenberg" },
-    { value: "Mythology", label: "Mythology" },
-    { value: "Disease", label: "Disease" },
-    { value: "Unknown", label: "Unknown" },
+    { value: 'Human', label: 'Human' },
+    { value: 'Alien', label: 'Alien' },
+    { value: 'Humanoid', label: 'Humanoid' },
+    { value: 'Animal', label: 'Animal' },
+    { value: 'Robot', label: 'Robot' },
+    { value: 'Cronenberg', label: 'Cronenberg' },
+    { value: 'Mythology', label: 'Mythology' },
+    { value: 'Disease', label: 'Disease' },
+    { value: 'Unknown', label: 'Unknown' },
   ];
 
   const genderOptions = [
-    { value: "female", label: "Female" },
-    { value: "male", label: "Male" },
-    { value: "genderless", label: "Genderless" },
-    { value: "unknown", label: "Unknown" },
+    { value: 'female', label: 'Female' },
+    { value: 'male', label: 'Male' },
+    { value: 'genderless', label: 'Genderless' },
+    { value: 'unknown', label: 'Unknown' },
   ];
 
   return (

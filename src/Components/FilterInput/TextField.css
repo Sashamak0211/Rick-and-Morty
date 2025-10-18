@@ -8,7 +8,7 @@
   border-radius: 8px;
   background-color: white;
   transition: all 0.2s ease;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .text-field:hover {
@@ -54,7 +54,7 @@
   outline: none;
   font-weight: 400;
   font-size: 16px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   text-overflow: ellipsis;
 }
 
