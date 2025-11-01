@@ -3,9 +3,9 @@ import { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeft } from '@assets/icon/ArrowLeft';
-import { Loader } from '@Components/Loader/Loader';
 
 import { useGetCharacterByIdQuery } from '@/app/store/useCharactersStore';
+import { Loader } from '@/Components';
 
 import '@Components/Content/Content.css';
 
