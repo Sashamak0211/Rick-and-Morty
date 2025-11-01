@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeft } from '@assets/icon/ArrowLeft';
 
-import { useGetCharacterByIdQuery } from '@/app/store/useCharactersStore';
+import { useGetCharacterByIdQuery } from '@/app';
 import { Loader } from '@/Components';
 
 import '@Components/Content/Content.css';

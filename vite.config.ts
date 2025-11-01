@@ -21,6 +21,7 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, './src/assets'),
       '@Widget': path.resolve(__dirname, './src/Widget'),
       '@shared': path.resolve(__dirname, './src/shared'),
+      '@core/*': path.resolve(__dirname, './src/core/*'),
     },
   },
 });

@@ -8,7 +8,7 @@ import {
   type StatusesType,
 } from '@Components/Selector/Selector_dot';
 
-import type { ICharacterCardProps } from '@/shared/types/character';
+import type { ICharacterCardProps } from '@/shared';
 
 const statusOptions = [
   { value: 'Alive', label: 'Alive' },

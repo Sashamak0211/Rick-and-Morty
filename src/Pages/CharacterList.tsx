@@ -2,24 +2,20 @@ import { useCallback, useTransition } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { Loader } from '@Components/Loader/Loader';
-import { TitleLogo } from '@Components/TitleLogo/TitleLogo';
-import { CharacterCard } from '@Widget/CharactersCard';
-import { FilterPanel } from '@Widget/FilterPanel';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector } from 'react-redux';
 
-import { useAppDispatch } from '@/app/hooks/dispatch';
+import { Loader, TitleLogo } from '@/Components';
 import {
+  type RootState,
   setFilters,
   setPage,
   updateCharacter,
-} from '@/app/store/characterSlice';
-import type { RootState } from '@/app/store/store';
-import { useGetAllCharactersQuery } from '@/app/store/useCharactersStore';
-import { mapperCallback } from '@/shared/api/characterApi';
-import type { IFiltersValue } from '@/shared/types/filters';
-
+  useAppDispatch,
+  useGetAllCharactersQuery,
+} from '@/core';
+import { type IFiltersValue, mapperCallback } from '@/shared';
+import { CharacterCard, FilterPanel } from '@/Widget';
 export const CharacterList = () => {
   const navigate = useNavigate();
   const [isPending, startTransition] = useTransition();

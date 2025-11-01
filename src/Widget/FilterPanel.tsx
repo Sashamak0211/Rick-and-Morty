@@ -7,7 +7,7 @@ import {
   type StatusesType,
 } from '@Components/Selector/Selector_dot';
 
-import type { IFiltersProps, IFiltersValue } from '@/shared/types/filters';
+import type { IFiltersProps, IFiltersValue } from '@/shared';
 
 export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
   const [localFilters, setLocalFilters] = useState<IFiltersValue>(filters);

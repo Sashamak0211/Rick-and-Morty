@@ -3,8 +3,8 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import type {
   IApiCharacter,
   IApiCharacterResponse,
-} from '@/shared/api/characterApi';
-import type { IGetAllCharactersParams } from '@/shared/types/character';
+  IGetAllCharactersParams,
+} from '@/shared';
 
 import { axiosBaseQuery } from './axiosBaseQuery';
 
