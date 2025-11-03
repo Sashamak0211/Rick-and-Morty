@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import { ArrowLeft } from '@assets/icon/ArrowLeft';
-
-import { useGetCharacterByIdQuery } from '@/app';
+import { ArrowLeft } from '@/assets';
 import { Loader } from '@/Components';
+import { useGetCharacterByIdQuery } from '@/core';
 
 import '@Components/Content/Content.css';
 

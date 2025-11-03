@@ -1,8 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import type { ICharacter, IFiltersValue } from '@/shared';
-import { getCharacters } from '@/shared';
+import { getCharacters, type ICharacter, type IFiltersValue } from '@/shared';
 
 export interface CharacterState {
   characters: ICharacter[];

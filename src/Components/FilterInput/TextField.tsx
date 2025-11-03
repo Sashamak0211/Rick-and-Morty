@@ -1,7 +1,7 @@
-import { MagniferIcon } from '@assets/icon/MagniferIcon';
 import type { ReactNode } from 'react';
 
-import classNames from '@/utils/classNames';
+import { MagniferIcon } from '@/assets';
+import { classNames } from '@/utils';
 
 import './TextField.css';
 

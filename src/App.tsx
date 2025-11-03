@@ -1,9 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import { Layout } from '@Components/Layout/Layout';
-import { CharacterList } from '@Pages/CharacterList';
-import { CharacterPage } from '@Pages/CharacterPage';
-import { NotFoundPage } from '@Pages/NotFound';
+import { Layout } from '@/Components';
+import { CharacterList, CharacterPage, NotFoundPage } from '@/Pages';
 
 import '@Components/Content/Content.css';
 import '@Components/FilterInput/TextField.css';

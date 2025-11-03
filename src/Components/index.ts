@@ -6,5 +6,6 @@ export { Header } from './Header/Header';
 export { Layout } from './Layout/Layout';
 export { Loader } from './Loader/Loader';
 export { Selector } from './Selector/Selector';
+export type { StatusesType } from './Selector/Selector_dot';
 export { SelectorDot } from './Selector/Selector_dot';
 export { TitleLogo } from './TitleLogo/TitleLogo';

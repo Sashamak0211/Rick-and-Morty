@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import { TextField } from '@Components/FilterInput/TextField';
-import { Selector } from '@Components/Selector/Selector';
 import {
+  Selector,
   SelectorDot,
   type StatusesType,
-} from '@Components/Selector/Selector_dot';
-
+  TextField,
+} from '@/Components';
 import type { IFiltersProps, IFiltersValue } from '@/shared';
 
 export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {

@@ -1,13 +1,12 @@
 import { memo, useState } from 'react';
 
-import { ActionButton } from '@Components/ActionButton/ActionButton';
-import { TextField } from '@Components/FilterInput/TextField';
-import { Selector } from '@Components/Selector/Selector';
 import {
+  ActionButton,
+  Selector,
   SelectorDot,
   type StatusesType,
-} from '@Components/Selector/Selector_dot';
-
+  TextField,
+} from '@/Components';
 import type { ICharacterCardProps } from '@/shared';
 
 const statusOptions = [

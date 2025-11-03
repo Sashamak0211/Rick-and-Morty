@@ -1,7 +1,7 @@
 import type { BaseQueryFn } from '@reduxjs/toolkit/query';
 import type { AxiosError, AxiosRequestConfig } from 'axios';
 
-import apiClient from '@/shared';
+import { apiClient } from '@/shared';
 
 interface BaseQueryArgs {
   url: string;
