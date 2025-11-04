@@ -19,13 +19,7 @@ export const rickApi = createApi({
     >({
       query: (params) => ({
         url: `/character`,
-        params: {
-          page: params.page,
-          name: params.name,
-          status: params.status,
-          gender: params.gender,
-          species: params.species,
-        },
+        params,
       }),
       providesTags: ['Character'],
     }),
