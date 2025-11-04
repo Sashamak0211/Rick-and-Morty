@@ -1,6 +1,6 @@
 import portalLoading from '@assets/image/PortalLoading.png';
 
-import { classNames } from '@/utils';
+import { classNames } from '@/Utils';
 
 import './Loader.css';
 

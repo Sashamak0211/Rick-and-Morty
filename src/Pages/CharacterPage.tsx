@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import ArrowLeft from '@/assets/icon/ArrowLeft.svg?react';
+import ArrowLeft from '@/Assets/icon/ArrowLeft.svg?react';
 import { Loader } from '@/Components';
-import { useGetCharacterByIdQuery } from '@/core';
+import { useGetCharacterByIdQuery } from '@/Core';
 
 import '@Components/Content/Content.css';
 

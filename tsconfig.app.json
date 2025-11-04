@@ -30,8 +30,8 @@
       "@Components/*": ["./src/Components/*"],
       "@Pages/*": ["./src/Pages/*"],
       "@Widget/*": ["./src/Widget/*"],
-      "@shared/*": ["./src/shared/*"],
-      "@assets/*": ["./src/assets/*"]
+      "@shared/*": ["./src/Shared/*"],
+      "@assets/*": ["./src/Assets/*"]
     }
   },
   "include": ["src"]

@@ -4,7 +4,7 @@ import type {
   IApiCharacter,
   IApiCharacterResponse,
   IGetAllCharactersParams,
-} from '@/shared';
+} from '@/Shared';
 
 import { axiosBaseQuery } from './axiosBaseQuery';
 

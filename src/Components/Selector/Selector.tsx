@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { classNames } from '@/utils';
+import { classNames } from '@/Utils';
 
 import './Selector.css';
 

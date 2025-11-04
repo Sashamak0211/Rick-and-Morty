@@ -13,8 +13,8 @@ import {
   updateCharacter,
   useAppDispatch,
   useGetAllCharactersQuery,
-} from '@/core';
-import { type IFiltersValue, mapperCallback } from '@/shared';
+} from '@/Core';
+import { type IFiltersValue, mapperCallback } from '@/Shared';
 import { CharacterCard, FilterPanel } from '@/Widget';
 export const CharacterList = () => {
   const navigate = useNavigate();
