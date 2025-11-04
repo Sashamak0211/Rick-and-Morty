@@ -1,7 +1,6 @@
-import CheckIcon from '@assets/icons/check.svg?react';
-import CloseIcon from '@assets/icons/close.svg?react';
-import EditIcon from '@assets/icons/edit.svg?react';
-
+import CheckIcon from '@/assets/icon/Check.svg?react';
+import CloseIcon from '@/assets/icon/Close.svg?react';
+import EditIcon from '@/assets/icon/Edit.svg?react';
 import { IconButton } from '@/Widget';
 
 interface IActionButton {
