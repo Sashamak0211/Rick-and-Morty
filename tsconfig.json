@@ -1,15 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "skipLibCheck": true,
+    "baseUrl": "src",
     "paths": {
-      "@/*": ["./src/*"],
-      "@core/*": ["./src/Core/*"],
-      "@Components/*": ["./src/Components/*"],
-      "@Pages/*": ["./src/Pages/*"],
-      "@Widgets/*": ["src/Widgets/*"],
-      "@shared/*": ["./src/Shared/*"],
-      "@assets/*": ["./src/Assets/*"]
+      "@/*": ["*"],
+      "@/app/*": ["app/*"],
+      "@/entities/*": ["entities/*"],
+      "@/features/*": ["features/*"],
+      "@/pages/*": ["pages/*"],
+      "@/shared/*": ["shared/*"]
     }
   },
   "include": ["src"],
