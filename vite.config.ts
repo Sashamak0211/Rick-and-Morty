@@ -3,17 +3,11 @@
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import { defineConfig } from 'vite';
-import svgr from 'vite-plugin-svgr'
+import svgr from 'vite-plugin-svgr';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-   
-    react(),
-    svgr({
-      
-    })
-  ],
+  plugins: [react(), svgr({})],
   base: '/Rick-and-Morty/',
   test: {
     environment: 'jsdom',
@@ -25,10 +19,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
       '@Components': path.resolve(__dirname, './src/Components'),
       '@Pages': path.resolve(__dirname, './src/Pages'),
-      '@assets': path.resolve(__dirname, './src/assets'),
-      '@Widget': path.resolve(__dirname, './src/Widget'),
-      '@shared': path.resolve(__dirname, './src/shared'),
-      '@core/*': path.resolve(__dirname, './src/core/*'),
+      '@Assets': path.resolve(__dirname, './src/Assets'),
+      '@Widgets': path.resolve(__dirname, './src/Widgets'),
+      '@Shared': path.resolve(__dirname, './src/Ahared'),
+      '@Core/*': path.resolve(__dirname, './src/Core/*'),
     },
   },
 });

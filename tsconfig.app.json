@@ -29,7 +29,7 @@
       "@/*": ["./src/*"],
       "@Components/*": ["./src/Components/*"],
       "@Pages/*": ["./src/Pages/*"],
-      "@Widget/*": ["./src/Widget/*"],
+      "@Widget/*": ["src/Widgets/*"],
       "@shared/*": ["./src/Shared/*"],
       "@assets/*": ["./src/Assets/*"]
     }

@@ -15,7 +15,7 @@ import {
   useGetAllCharactersQuery,
 } from '@/Core';
 import { type IFiltersValue, mapperCallback } from '@/Shared';
-import { CharacterCard, FilterPanel } from '@/Widget';
+import { CharacterCard, FilterPanel } from '@/Widgets';
 export const CharacterList = () => {
   const navigate = useNavigate();
   const [isPending, startTransition] = useTransition();

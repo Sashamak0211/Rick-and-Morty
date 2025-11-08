@@ -4,12 +4,12 @@
     "skipLibCheck": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@core/*": ["./src/core/*"],
+      "@core/*": ["./src/Core/*"],
       "@Components/*": ["./src/Components/*"],
       "@Pages/*": ["./src/Pages/*"],
-      "@Widget/*": ["./src/Widget/*"],
-      "@shared/*": ["./src/shared/*"],
-      "@assets/*": ["./src/assets/*"]
+      "@Widgets/*": ["src/Widgets/*"],
+      "@shared/*": ["./src/Shared/*"],
+      "@assets/*": ["./src/Assets/*"]
     }
   },
   "include": ["src"],

@@ -3,4 +3,4 @@ export * from '@/Core';
 export * from '@/Pages';
 export * from '@/Shared';
 export * from '@/Utils';
-export * from '@/Widget';
+export * from '@/Widgets';

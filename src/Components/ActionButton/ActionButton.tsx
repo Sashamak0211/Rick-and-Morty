@@ -1,7 +1,5 @@
-import CheckIcon from '@/Assets/icon/Check.svg?react';
-import CloseIcon from '@/Assets/icon/Close.svg?react';
-import EditIcon from '@/Assets/icon/Edit.svg?react';
-import { IconButton } from '@/Widget';
+import { CheckIcon, CloseIcon, EditIcon } from '@/Assets/icons';
+import { IconButton } from '@/Widgets';
 
 interface IActionButton {
   isEditing: boolean;
