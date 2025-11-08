@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import { Layout } from '@/Components';
-import { CharacterList, CharacterPage, NotFoundPage } from '@/Pages';
+import { CharacterList, CharacterPage, NotFoundPage } from '@/pages';
+import { Layout } from '@/shared';
 
-import '@Components/Content/Content.css';
-import '@Components/FilterInput/TextField.css';
-import './index.css';
+import '@/shared/ui/content/Content.css';
+import '@/shared/ui/text-field/TextField.css';
+import '../index.css';
 
 function App() {
   return (

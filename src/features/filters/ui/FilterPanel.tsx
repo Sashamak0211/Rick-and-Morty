@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import {
-  Selector,
-  SelectorDot,
-  type StatusesType,
-  TextField,
-} from '@/Components';
-import type { IFiltersProps, IFiltersValue } from '@/shared';
+import { Selector, SelectorDot, TextField } from '@/shared';
+import type { StatusesType } from '@/shared/ui/selector-dot/Selector_dot';
+
+import type { IFiltersProps, IFiltersValue } from '../type';
 
 export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
   const [localFilters, setLocalFilters] = useState<IFiltersValue>(filters);

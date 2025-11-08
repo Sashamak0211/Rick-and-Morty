@@ -1,10 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
-import type {
-  IApiCharacter,
-  IApiCharacterResponse,
-  IGetAllCharactersParams,
-} from '@/shared';
+import type { IGetAllCharactersParams } from '@/entities';
+import type { IApiCharacter, IApiCharacterResponse } from '@/shared';
 
 import { axiosBaseQuery } from './axiosBaseQuery';
 

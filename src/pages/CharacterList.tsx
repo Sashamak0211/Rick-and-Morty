@@ -6,18 +6,16 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector } from 'react-redux';
 
 import {
-  RootState,
+  type RootState,
   setFilters,
   setPage,
   updateCharacter,
   useAppDispatch,
   useGetAllCharactersQuery,
-} from '@/app/store';
-import { CharacterCard } from '@/entities/character';
-import { FilterPanel } from '@/features/filters';
-import { mapperCallback } from '@/shared/lib';
-import { IFiltersValue } from '@/shared/types';
-import { Loader, TitleLogo } from '@/shared/ui';
+} from '@/app';
+import { CharacterCard } from '@/entities';
+import { FilterPanel, type IFiltersValue } from '@/features';
+import { Loader, mapperCallback, TitleLogo } from '@/shared';
 
 export const CharacterList = () => {
   const navigate = useNavigate();

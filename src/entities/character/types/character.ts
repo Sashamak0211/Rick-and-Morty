@@ -8,8 +8,8 @@ export interface ICharacter {
     name: string;
   };
   status: string;
-  imageSrc: string;
-  imageAlt: string;
+  image: string;
+  alt: string;
   type?: string;
 }
 

@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 
-import MagnifierIcon from '@/Assets/icon/Magnifier.svg?react';
-import { classNames } from '@/shared/lib';
+import { classNames, Magnifier } from '@/shared';
 
 import './TextField.css';
 
@@ -32,7 +31,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
   onClick,
   className,
   id,
-  icon = <MagnifierIcon className="text-field__icon" />,
+  icon = <Magnifier className="text-field__icon" />,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);

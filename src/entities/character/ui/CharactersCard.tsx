@@ -1,13 +1,9 @@
 import { memo, useState } from 'react';
 
-import {
-  ActionButton,
-  Selector,
-  SelectorDot,
-  type StatusesType,
-  TextField,
-} from '@/Components';
-import type { ICharacterCardProps } from '@/shared';
+import { ActionButton, Selector, SelectorDot, TextField } from '@/shared';
+import type { StatusesType } from '@/shared/ui/selector-dot/Selector_dot';
+
+import type { ICharacterCardProps } from '../types';
 
 const statusOptions = [
   { value: 'Alive', label: 'Alive' },
@@ -73,8 +69,8 @@ export const CharacterCard = memo(
         data-id={character.id}
       >
         <img
-          src={character.imageSrc}
-          alt={character.imageAlt}
+          src={character.image}
+          alt={character.image}
           className="character-card__image"
         />
 

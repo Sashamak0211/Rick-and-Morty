@@ -1,5 +1,4 @@
-import { CheckIcon, CloseIcon, EditIcon } from '@/Assets/icons';
-import { IconButton } from '@/Widgets';
+import { CheckIcon, CloseIcon, EditIcon, IconButton } from '@/shared';
 
 interface IActionButton {
   isEditing: boolean;
