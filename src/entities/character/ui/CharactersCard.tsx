@@ -7,7 +7,7 @@ import {
   type StatusesType,
   TextField,
 } from '@/Components';
-import type { ICharacterCardProps } from '@/Shared';
+import type { ICharacterCardProps } from '@/shared';
 
 const statusOptions = [
   { value: 'Alive', label: 'Alive' },

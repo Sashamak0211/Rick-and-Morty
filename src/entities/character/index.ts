@@ -1,2 +1,2 @@
-export * from './types/character';
-export * from './ui/CharactersCard';
+export * from './types';
+export * from './ui';

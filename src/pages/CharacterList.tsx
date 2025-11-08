@@ -5,17 +5,20 @@ import { useNavigate } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector } from 'react-redux';
 
-import { Loader, TitleLogo } from '@/Components';
 import {
-  type RootState,
+  RootState,
   setFilters,
   setPage,
   updateCharacter,
   useAppDispatch,
   useGetAllCharactersQuery,
-} from '@/Core';
-import { type IFiltersValue, mapperCallback } from '@/Shared';
-import { CharacterCard, FilterPanel } from '@/Widgets';
+} from '@/app/store';
+import { CharacterCard } from '@/entities/character';
+import { FilterPanel } from '@/features/filters';
+import { mapperCallback } from '@/shared/lib';
+import { IFiltersValue } from '@/shared/types';
+import { Loader, TitleLogo } from '@/shared/ui';
+
 export const CharacterList = () => {
   const navigate = useNavigate();
   const [isPending, startTransition] = useTransition();

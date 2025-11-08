@@ -6,7 +6,7 @@ import {
   type StatusesType,
   TextField,
 } from '@/Components';
-import type { IFiltersProps, IFiltersValue } from '@/Shared';
+import type { IFiltersProps, IFiltersValue } from '@/shared';
 
 export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
   const [localFilters, setLocalFilters] = useState<IFiltersValue>(filters);

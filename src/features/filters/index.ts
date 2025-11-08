@@ -1,2 +1,2 @@
-export * from './type/filters';
-export * from './ui/FilterPanel';
+export * from './type';
+export * from './ui';
