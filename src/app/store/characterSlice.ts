@@ -1,37 +1,24 @@
-import type { PayloadAction } from '@reduxjs/toolkit';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import type { ICharacter } from '@/entities';
-import type { IFiltersValue } from '@/features';
-import { getCharacters } from '@/shared';
+import { IFiltersValue } from '@/features';
+
+import type { ICharacter } from '../../entities/character/types/character';
 
 export interface CharacterState {
   characters: ICharacter[];
   filters: IFiltersValue;
-  loading: boolean;
-  hasMore: boolean;
   currentPage: number;
-  error: string | null;
+  hasMore: boolean;
 }
 
 const initialState: CharacterState = {
   characters: [],
   filters: { name: '', species: null, gender: null, status: null },
-  loading: false,
-  hasMore: true,
   currentPage: 1,
-  error: null,
+  hasMore: true,
 };
 
-export const loadCharacters = createAsyncThunk(
-  'characters/loadCharacters',
-  async ({ filters, page }: { filters: IFiltersValue; page: number }) => {
-    const characters = await getCharacters({ ...filters, page });
-    return { characters, page };
-  }
-);
-
-export const charactersSlice = createSlice({
+const charactersSlice = createSlice({
   name: 'characters',
   initialState,
   reducers: {
@@ -39,23 +26,25 @@ export const charactersSlice = createSlice({
       state.characters = action.payload;
     },
     addCharacters: (state, action: PayloadAction<ICharacter[]>) => {
-      state.characters.push(...action.payload);
+      const ids = new Set(state.characters.map((c) => c.id));
+      const merged = action.payload.filter((c) => !ids.has(c.id));
+      state.characters.push(...merged);
+    },
+    clearCharacters: (state) => {
+      state.characters = [];
+      state.currentPage = 1;
     },
     setFilters: (state, action: PayloadAction<IFiltersValue>) => {
       state.filters = action.payload;
       state.currentPage = 1;
     },
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.loading = action.payload;
+    setPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload;
     },
     setHasMore: (state, action: PayloadAction<boolean>) => {
       state.hasMore = action.payload;
     },
-    setPage: (state, action: PayloadAction<number>) => {
-      state.currentPage = action.payload;
-    },
-
-    updateCharacter: (
+        updateCharacter: (
       state,
       action: PayloadAction<{
         id: number;
@@ -73,16 +62,18 @@ export const charactersSlice = createSlice({
         character.status = status;
       }
     },
+
   },
 });
 
 export const {
   setCharacters,
   addCharacters,
-  setHasMore,
-  setLoading,
+  clearCharacters,
   setFilters,
   setPage,
-  updateCharacter,
+  setHasMore,
+  updateCharacter
 } = charactersSlice.actions;
+
 export default charactersSlice.reducer;

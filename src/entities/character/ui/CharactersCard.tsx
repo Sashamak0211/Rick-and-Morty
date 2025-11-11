@@ -5,6 +5,8 @@ import type { StatusesType } from '@/shared/ui/selector-dot/Selector_dot';
 
 import type { ICharacterCardProps } from '../types';
 
+import './character-card.css';
+
 const statusOptions = [
   { value: 'Alive', label: 'Alive' },
   { value: 'Dead', label: 'Dead' },
@@ -69,8 +71,8 @@ export const CharacterCard = memo(
         data-id={character.id}
       >
         <img
-          src={character.image}
-          alt={character.image}
+          src={character.imageSrc}
+          alt={character.imageAlt}
           className="character-card__image"
         />
 

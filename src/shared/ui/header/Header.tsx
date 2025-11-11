@@ -7,13 +7,15 @@ import './Header.css';
 export const Header = () => {
   return (
     <header className="header">
-      <Link to="/">
-        <img
-          src={headerLogo}
-          alt="Rick and Morty"
-          className="header__logo-image"
-        />
-      </Link>
+      <div className="header__inner">
+        <Link to="/">
+          <img
+            src={headerLogo}
+            alt="Rick and Morty"
+            className="header__logo-image"
+          />
+        </Link>
+      </div>
     </header>
   );
 };

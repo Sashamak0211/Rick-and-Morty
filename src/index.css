@@ -4,6 +4,7 @@ body {
   min-height: 100vh;
   font-family: 'Roboto', sans-serif;
   background-color: #f9fafb;
+   overflow-x: hidden;
 }
 
 #root {

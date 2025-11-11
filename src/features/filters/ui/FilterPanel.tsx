@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-import { Selector, SelectorDot, TextField } from '@/shared';
+import { debounce, Selector, SelectorDot, TextField } from '@/shared';
 import type { StatusesType } from '@/shared/ui/selector-dot/Selector_dot';
 
 import type { IFiltersProps, IFiltersValue } from '../type';
-
 export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
   const [localFilters, setLocalFilters] = useState<IFiltersValue>(filters);
+
+  const debaunceOnChange = useMemo(() => debounce(onChange, 500), [onChange]);
 
   useEffect(() => {
     if (
@@ -15,9 +16,9 @@ export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
       localFilters.gender !== filters.gender ||
       localFilters.status !== filters.status
     ) {
-      onChange(localFilters);
+      debaunceOnChange(localFilters);
     }
-  }, [localFilters, filters, onChange]);
+  }, [localFilters, filters, debaunceOnChange]);
 
   useEffect(() => {
     setLocalFilters(filters);

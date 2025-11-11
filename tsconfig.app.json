@@ -27,11 +27,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@Components/*": ["./src/Components/*"],
-      "@Pages/*": ["./src/Pages/*"],
-      "@Widget/*": ["src/Widgets/*"],
-      "@shared/*": ["./src/Shared/*"],
-      "@assets/*": ["./src/Assets/*"]
+      "@/app/*": ["./src/app/*"],
+      "@/shared/*": ["./src/shared/*"],
+      "@/entities/*": ["./src/entities/*"],
+      "@/features/*": ["./src/features/*"],
+      "@/widgets/*": ["./src/widgets/*"],
+      "@/pages/*": ["./src/pages/*"]
     }
   },
   "include": ["src"]

@@ -45,8 +45,8 @@ export const mapperCallback = (characters: IApiCharacter[]): ICharacter[] => {
     species: character.species,
     location: character.location.name,
     status: character.status as CharacterStatus,
-    image: character.image,
-    alt: character.name,
+    imageSrc: character.image,
+    imageAlt: character.name,
     origin: { name: character.origin.name },
     type: character.type,
   }));

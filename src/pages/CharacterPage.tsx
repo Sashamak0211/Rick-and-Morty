@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import { useGetCharacterByIdQuery } from '@/app';
+import { useGetCharacterByIdQuery } from '@/app/store/useCharactersStore';
 import { ArrowLeft, Loader } from '@/shared';
 
-import '@/shared/ui/content/Content.css';
+import './character-page.css';
 
 export const CharacterPage = () => {
   const { id } = useParams<{ id: string }>();

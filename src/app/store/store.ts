@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { charactersSlice } from './characterSlice';
+import characterReducer from './characterSlice';
 import { rickApi } from './useCharactersStore';
 
 export const store = configureStore({
   reducer: {
-    characters: charactersSlice.reducer,
+    characters: characterReducer,
     [rickApi.reducerPath]: rickApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
