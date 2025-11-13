@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import characterReducer from './characterSlice';
+import filterReducer from './filterSlice';
 import { rickApi } from './useCharactersStore';
 
 export const store = configureStore({
   reducer: {
+    filter: filterReducer,
     characters: characterReducer,
     [rickApi.reducerPath]: rickApi.reducer,
   },

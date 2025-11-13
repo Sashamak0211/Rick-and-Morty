@@ -13,15 +13,16 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "noEmit": true,
+    "types": ["vite/client"],
 
     "baseUrl": "src",
     "paths": {
       "@/*": ["*"],
-      "@/app/*": ["app/*"],
-      "@/entities/*": ["entities/*"],
-      "@/features/*": ["features/*"],
-      "@/pages/*": ["pages/*"],
-      "@/shared/*": ["shared/*"]
+      "@app/*": ["app/*"],
+      "@entities/*": ["entities/*"],
+      "@features/*": ["features/*"],
+      "@pages/*": ["pages/*"],
+      "@shared/*": ["shared/*"]
     },
 
     "moduleResolution": "Node",

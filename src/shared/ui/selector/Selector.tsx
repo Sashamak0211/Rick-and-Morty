@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { classNames } from '@/shared';
+import { classNames } from '@shared';
 
 import './Selector.css';
 

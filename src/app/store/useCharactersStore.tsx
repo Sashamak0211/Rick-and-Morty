@@ -1,11 +1,10 @@
+import type { IGetAllCharactersParams } from '@entities/character/types/character';
 import { createApi } from '@reduxjs/toolkit/query/react';
-
-import type { IGetAllCharactersParams } from '../../entities/character/types/character';
 import type {
   IApiCharacter,
   IApiCharacterResponse,
-} from '../../shared/api/characterApi';
-import { mapperCallback } from '../../shared/api/characterApi';
+} from '@shared/api/characterApi';
+import { mapperCallback } from '@shared/api/characterApi';
 
 import { axiosBaseQuery } from './axiosBaseQuery';
 
@@ -37,4 +36,4 @@ export const rickApi = createApi({
   }),
 });
 
-export const { useGetAllCharactersQuery , useGetCharacterByIdQuery} = rickApi;
+export const { useGetAllCharactersQuery, useGetCharacterByIdQuery } = rickApi;

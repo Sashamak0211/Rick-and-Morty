@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import { useGetCharacterByIdQuery } from '@/app/store/useCharactersStore';
+import { useGetCharacterByIdQuery } from '@app/store/useCharactersStore';
+
 import { ArrowLeft, Loader } from '@/shared';
 
 import './character-page.css';

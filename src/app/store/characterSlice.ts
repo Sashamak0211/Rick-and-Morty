@@ -1,8 +1,7 @@
+import type { ICharacter } from '@entities/character/types/character';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 import { IFiltersValue } from '@/features';
-
-import type { ICharacter } from '../../entities/character/types/character';
 
 export interface CharacterState {
   characters: ICharacter[];
@@ -34,17 +33,14 @@ const charactersSlice = createSlice({
       state.characters = [];
       state.currentPage = 1;
     },
-    setFilters: (state, action: PayloadAction<IFiltersValue>) => {
-      state.filters = action.payload;
-      state.currentPage = 1;
-    },
+
     setPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
     },
     setHasMore: (state, action: PayloadAction<boolean>) => {
       state.hasMore = action.payload;
     },
-        updateCharacter: (
+    updateCharacter: (
       state,
       action: PayloadAction<{
         id: number;
@@ -62,7 +58,6 @@ const charactersSlice = createSlice({
         character.status = status;
       }
     },
-
   },
 });
 
@@ -70,10 +65,9 @@ export const {
   setCharacters,
   addCharacters,
   clearCharacters,
-  setFilters,
   setPage,
   setHasMore,
-  updateCharacter
+  updateCharacter,
 } = charactersSlice.actions;
 
 export default charactersSlice.reducer;

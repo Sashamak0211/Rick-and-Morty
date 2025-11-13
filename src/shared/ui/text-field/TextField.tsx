@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
-import { classNames, Magnifier } from '@/shared';
+import { Magnifier } from '@/shared/assets';
+import { classNames } from '@/shared/lib';
 
 import './TextField.css';
 

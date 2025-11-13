@@ -2,20 +2,21 @@ import { useCallback, useEffect, useTransition } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { useSelector } from 'react-redux';
-
-import { useAppDispatch } from '@/app/hooks';
+import { useAppDispatch } from '@app/hooks';
 import {
   addCharacters,
   clearCharacters,
   setCharacters,
-  setFilters,
   setHasMore,
   setPage,
-} from '@/app/store/characterSlice';
-import { RootState } from '@/app/store/store';
-import { useGetAllCharactersQuery } from '@/app/store/useCharactersStore';
+  updateCharacter,
+} from '@app/store/characterSlice';
+import { setFilters } from '@app/store/filterSlice';
+import { RootState } from '@app/store/store';
+import { useGetAllCharactersQuery } from '@app/store/useCharactersStore';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useSelector } from 'react-redux';
+
 import { CharacterCard } from '@/entities';
 import { FilterPanel, IFiltersValue } from '@/features';
 import { Loader, TitleLogo } from '@/shared';
@@ -25,10 +26,10 @@ export const CharacterList = () => {
   const [isPending, startTransition] = useTransition();
   const dispatch = useAppDispatch();
 
-  const { filters, currentPage, characters, hasMore } = useSelector(
+  const { currentPage, characters, hasMore } = useSelector(
     (state: RootState) => state.characters
   );
-
+const filters = useSelector((state: RootState) => state.filter)
   const { data, isFetching, isLoading } = useGetAllCharactersQuery({
     page: currentPage,
     name: filters.name,
@@ -57,10 +58,18 @@ export const CharacterList = () => {
     [dispatch]
   );
 
-
   const loadMore = () => {
     if (isFetching || !hasMore) return;
     dispatch(setPage(currentPage + 1));
+  };
+
+  const handleUpdateCharacter = (
+    id: number,
+    name: string,
+    location: string,
+    status: string
+  ) => {
+    dispatch(updateCharacter({ id, name, location, status }));
   };
 
   return (
@@ -86,7 +95,7 @@ export const CharacterList = () => {
                   key={char.id}
                   character={char}
                   onClick={() => navigate(`/character/${char.id}`)}
-                   onSave={() => {}}
+                  onSave={handleUpdateCharacter}
                 />
               ))}
             </div>

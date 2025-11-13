@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import notFoundImage from '@/shared/assets/image/404.jpg';
+import notFoundImage  from '@shared/assets/image/404.jpg';
 
-import '@/shared/ui/content/Content.css';
+import '@shared/ui/content/Content.css';
 
 export const NotFoundPage = () => {
   return (

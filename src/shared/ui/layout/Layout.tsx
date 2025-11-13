@@ -1,9 +1,11 @@
 import { Outlet } from 'react-router-dom';
 
-import { Content, Footer, Header } from '@/shared';
+import { Content } from '../content';
+import { Footer } from '../footer';
+import { Header } from '../header';
 
+import '@shared/ui/content/Content.css';
 import './Layout.css';
-import '@/shared/ui/content/Content.css';
 
 export const Layout = () => {
   return (

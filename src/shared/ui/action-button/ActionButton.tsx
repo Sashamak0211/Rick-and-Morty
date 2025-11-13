@@ -1,4 +1,6 @@
-import { CheckIcon, CloseIcon, EditIcon, IconButton } from '@/shared';
+import { CheckIcon, CloseIcon, EditIcon } from '@/shared/assets';
+
+import { IconButton } from '../icon-button';
 
 interface IActionButton {
   isEditing: boolean;
@@ -26,9 +28,6 @@ export const ActionButton = ({
         </>
       ) : (
         <>
-          <IconButton className="icon-button__close" onClick={onCancel}>
-            <CloseIcon />
-          </IconButton>
           <IconButton className="icon-button__edit" onClick={onEdit}>
             <EditIcon />
           </IconButton>

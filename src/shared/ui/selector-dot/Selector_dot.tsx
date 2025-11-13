@@ -1,4 +1,4 @@
-import { classNames } from '@/shared';
+import { classNames } from '@/shared/lib';
 
 import './Selector_dot.css';
 

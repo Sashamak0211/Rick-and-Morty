@@ -1,5 +1,6 @@
-import { classNames } from '@/shared';
-import portalLoading from '@/shared/assets/image/PortalLoading.png';
+import portalLoading from '@shared/assets/image/PortalLoading.png';
+
+import { classNames } from '@/shared/lib';
 
 import './Loader.css';
 
