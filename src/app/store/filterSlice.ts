@@ -19,7 +19,6 @@ const filterSlice = createSlice({
       state.gender = action.payload.gender;
       state.status = action.payload.status;
     },
-    clearFilters: () => initialState,
   },
 });
 

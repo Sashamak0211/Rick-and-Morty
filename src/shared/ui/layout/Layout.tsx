@@ -4,7 +4,6 @@ import { Content } from '../content';
 import { Footer } from '../footer';
 import { Header } from '../header';
 
-import '@shared/ui/content/Content.css';
 import './Layout.css';
 
 export const Layout = () => {

@@ -1,9 +1,9 @@
-import rickMortyLogo from '@shared/assets/image/Rick and Morty Title.png';
+import { TitleLogoPng } from '@/shared';
 
 export const TitleLogo = () => (
   <div className="title-logo">
     <img
-      src={rickMortyLogo}
+      src={TitleLogoPng}
       alt="Rick and Morty title"
       className="title-logo-img"
     />

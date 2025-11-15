@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 
-import notFoundImage  from '@shared/assets/image/404.jpg';
+import { NotFoundLogo } from '@/shared';
 
-import '@shared/ui/content/Content.css';
+import '@pages/notFound.css';
 
 export const NotFoundPage = () => {
   return (
     <div className="not-found">
       <img
-        src={notFoundImage}
+        src={NotFoundLogo}
         alt="страница не найдена"
         className="not-found-image"
       />

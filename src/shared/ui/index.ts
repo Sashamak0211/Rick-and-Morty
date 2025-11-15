@@ -6,5 +6,6 @@ export * from './icon-button';
 export * from './layout';
 export * from './loader';
 export * from './selector';
+export * from './selector-dot';
 export * from './text-field';
 export * from './title-logo';

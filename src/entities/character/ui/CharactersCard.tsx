@@ -1,9 +1,12 @@
 import { memo, useState } from 'react';
 
-import type { StatusesType } from '@shared/ui/selector-dot/Selector_dot';
-import { SelectorDot } from '@shared/ui/selector-dot/Selector_dot';
-
-import { ActionButton, Selector, TextField } from '@/shared';
+import {
+  ActionButton,
+  Selector,
+  SelectorDot,
+  type StatusesType,
+  TextField,
+} from '@/shared';
 
 import type { ICharacterCardProps } from '../types';
 

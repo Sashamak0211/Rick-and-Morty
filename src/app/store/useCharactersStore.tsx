@@ -1,10 +1,7 @@
-import type { IGetAllCharactersParams } from '@entities/character/types/character';
 import { createApi } from '@reduxjs/toolkit/query/react';
-import type {
-  IApiCharacter,
-  IApiCharacterResponse,
-} from '@shared/api/characterApi';
-import { mapperCallback } from '@shared/api/characterApi';
+
+import { IGetAllCharactersParams } from '@/entities';
+import { IApiCharacter, IApiCharacterResponse, mapperCallback } from '@/shared';
 
 import { axiosBaseQuery } from './axiosBaseQuery';
 

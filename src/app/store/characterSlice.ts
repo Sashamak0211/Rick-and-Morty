@@ -1,6 +1,6 @@
-import type { ICharacter } from '@entities/character/types/character';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
+import { ICharacter } from '@/entities';
 import { IFiltersValue } from '@/features';
 
 export interface CharacterState {

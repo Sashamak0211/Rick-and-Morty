@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 
 import {
+  debounce,
+  Selector,
   SelectorDot,
   type StatusesType,
-} from '@shared/ui/selector-dot/Selector_dot';
-
-import { debounce, Selector, TextField } from '@/shared';
+  TextField,
+} from '@/shared';
 
 import type { IFiltersProps, IFiltersValue } from '../type';
 export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {

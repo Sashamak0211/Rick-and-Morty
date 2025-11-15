@@ -2,21 +2,21 @@ import { useCallback, useEffect, useTransition } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch } from '@app/hooks';
-import {
-  addCharacters,
-  clearCharacters,
-  setCharacters,
-  setHasMore,
-  setPage,
-  updateCharacter,
-} from '@app/store/characterSlice';
-import { setFilters } from '@app/store/filterSlice';
-import { RootState } from '@app/store/store';
-import { useGetAllCharactersQuery } from '@app/store/useCharactersStore';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector } from 'react-redux';
 
+import {
+  addCharacters,
+  clearCharacters,
+  RootState,
+  setCharacters,
+  setFilters,
+  setHasMore,
+  setPage,
+  updateCharacter,
+  useAppDispatch,
+  useGetAllCharactersQuery,
+} from '@/app';
 import { CharacterCard } from '@/entities';
 import { FilterPanel, IFiltersValue } from '@/features';
 import { Loader, TitleLogo } from '@/shared';
@@ -29,7 +29,7 @@ export const CharacterList = () => {
   const { currentPage, characters, hasMore } = useSelector(
     (state: RootState) => state.characters
   );
-const filters = useSelector((state: RootState) => state.filter)
+  const filters = useSelector((state: RootState) => state.filter);
   const { data, isFetching, isLoading } = useGetAllCharactersQuery({
     page: currentPage,
     name: filters.name,
