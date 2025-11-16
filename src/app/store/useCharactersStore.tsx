@@ -1,10 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
-import type {
-  IApiCharacter,
-  IApiCharacterResponse,
-} from '@/shared/api/characterApi';
-import type { IGetAllCharactersParams } from '@/shared/types/character';
+import { IGetAllCharactersParams } from '@/entities';
+import { IApiCharacter, IApiCharacterResponse, mapperCallback } from '@/shared';
 
 import { axiosBaseQuery } from './axiosBaseQuery';
 
@@ -14,24 +11,24 @@ export const rickApi = createApi({
   tagTypes: ['Character'],
   endpoints: (builder) => ({
     getAllCharacters: builder.query<
-      IApiCharacterResponse,
+      {
+        results: ReturnType<typeof mapperCallback>;
+        info: IApiCharacterResponse['info'];
+      },
       IGetAllCharactersParams
     >({
       query: (params) => ({
         url: `/character`,
-        params: {
-          page: params.page,
-          name: params.name,
-          status: params.status,
-          gender: params.gender,
-          species: params.species,
-        },
+        params,
       }),
-      providesTags: ['Character'],
+      transformResponse: (response: IApiCharacterResponse) => ({
+        results: mapperCallback(response.results),
+        info: response.info,
+      }),
     }),
+
     getCharacterById: builder.query<IApiCharacter, string | undefined>({
       query: (id) => ({ url: `/character/${id}` }),
-      providesTags: ['Character'],
     }),
   }),
 });

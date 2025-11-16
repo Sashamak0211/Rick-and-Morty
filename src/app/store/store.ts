@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { charactersSlice } from './characterSlice';
+import characterReducer from './characterSlice';
+import filterReducer from './filterSlice';
 import { rickApi } from './useCharactersStore';
 
 export const store = configureStore({
   reducer: {
-    characters: charactersSlice.reducer,
+    filter: filterReducer,
+    characters: characterReducer,
     [rickApi.reducerPath]: rickApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

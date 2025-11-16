@@ -3,10 +3,11 @@
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import { defineConfig } from 'vite';
+import svgr from 'vite-plugin-svgr';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), svgr({})],
   base: '/Rick-and-Morty/',
   test: {
     environment: 'jsdom',
@@ -16,10 +17,10 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@Components': path.resolve(__dirname, './src/Components'),
-      '@Pages': path.resolve(__dirname, './src/Pages'),
-      '@assets': path.resolve(__dirname, './src/assets'),
-      '@Widget': path.resolve(__dirname, './src/Widget'),
+      '@app': path.resolve(__dirname, './src/app'),
+      '@entities': path.resolve(__dirname, './src/entities'),
+      '@features': path.resolve(__dirname, './src/features'),
+      '@pages': path.resolve(__dirname, './src/pages'),
       '@shared': path.resolve(__dirname, './src/shared'),
     },
   },

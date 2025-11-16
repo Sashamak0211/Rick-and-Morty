@@ -1,4 +1,4 @@
-import type { ICharacter } from '../types/character';
+import { ICharacter } from '@/entities';
 
 import apiClient from './apiClient';
 
