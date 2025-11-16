@@ -53,20 +53,63 @@ npm run dev
 ## 🏗 Структура проекта
 
 ```
+## 🏗 Структура проекта
+
+```bash
 src/
-├── assets/ # Статические ресурсы (иконки, изображения)
-├── Components/ # React-компоненты
-│ ├── Content/ # Компонент контентной области
-│ ├── Footer/ # Подвал сайта
-│ ├── Header/ # Шапка сайта с логотипом
-│ ├── Layout/ # Основной layout приложения
-│ └── Loader/ # Компонент загрузки
-├── Pages/ # Страницы приложения
-│ ├── CharacterPage/ # Страница персонажа
-│ └── NotFound/ # Страница 404
-├── shared/ # Общие модули
-│ └── api/ # API-клиенты и типы
-└── Widget/ # Вспомогательные виджеты
+├── app/                      # Инициализация приложения и store
+│   ├── App.tsx               # Корневой компонент приложения
+│   ├── index.ts             
+│   ├── hooks/                # Общие хуки приложения
+│   │   ├── dispatch.ts       
+│   │   └── index.ts
+│   └── store/                # Конфигурация Redux + RTK Query
+│       ├── axiosBaseQuery.ts # Базовый запрос для RTK Query через Axios
+│       ├── characterSlice.ts # Slice персонажей 
+│       ├── filterSlice.ts    # Slice фильтров списка
+│       ├── store.ts          # Конфигурация Redux Store
+│       └── useCharactersStore.tsx # RTK Query endpoints (rickApi)
+
+├── entities/                 # Сущности домена 
+│   └── character/
+│       ├── types/            # Типы и модели персонажей
+│       ├── ui/               # CharacterCard и др.
+│       └── index.ts        
+
+├── features/                 # Фичи 
+│   └── filters/
+│       ├── type/             # Типы/интерфейсы для фильтров
+│       ├── ui/               # FilterPanel 
+│       └── index.ts         
+
+├── pages/                    # Страницы приложения
+│   ├── CharacterList.tsx     # Страница списка персонажей + infinite scroll
+│   ├── CharacterPage.tsx     # Детальная страница персонажа
+│   ├── NotFound.tsx          # Страница 404
+│   ├── character-page.css    # Стили страницы персонажа
+│   ├── notFound.css          # Стили страницы 404
+│   └── index.ts              
+
+├── shared/                   # Общие переиспользуемые модули
+│   ├── api/                  # Axios-клиент, типы API и мапперы
+│   ├── assets/               # Статические ресурсы (картинки, иконки)
+│   ├── lib/                  # Утилиты и хелперы (debounce и пр.)
+│   └── ui/                   # Базовые UI-компоненты
+│       ├── action-button/    # Кнопка редактирования/сохранения
+│       ├── content/          # Обёртка контента (layout основной области)
+│       ├── footer/           # Footer приложения
+│       ├── header/           # Header / шапка
+│       ├── icon-button/      # Иконочные кнопки
+│       ├── layout/           # Общий Layout (Header + Content + Footer)
+│       ├── loader/           # Компонент Loader
+│       ├── selector/         # Универсальный выпадающий список
+│       ├── selector-dot/     # Индикатор статуса (цветная точка)
+│       ├── text-field/       # Поле ввода (поиск, инпуты в карточке)
+│       ├── title-logo/       # Титульный логотип Rick and Morty
+│       └── index.ts          
+
+└──
+
 ```
 
 ## 🎯 Ключевые компоненты
