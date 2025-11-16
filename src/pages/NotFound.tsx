@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { NotFoundLogo } from '@/shared';
 
-import '@pages/notFound.css';
+import './notFound.css';
 
 export const NotFoundPage = () => {
   return (
@@ -12,7 +12,7 @@ export const NotFoundPage = () => {
         alt="страница не найдена"
         className="not-found-image"
       />
-      <Link to="/" className="not-fount__back">
+      <Link to="/" className="not-found__back">
         На главную
       </Link>
     </div>
