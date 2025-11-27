@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/app';
 import {
   CheckIcon,
+  CheckWhite,
   CloseIcon,
   CloseWhite,
   EditIcon,
@@ -33,7 +34,7 @@ export const ActionButton = ({
             {isDark ? <CloseWhite /> : <CloseIcon />}
           </IconButton>
           <IconButton className="icon-button__check" onClick={onSave}>
-            {isDark ? <CloseWhite /> : <CheckIcon />}
+            {isDark ? <CheckWhite /> : <CheckIcon />}
           </IconButton>
         </>
       ) : (
