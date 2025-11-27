@@ -4,7 +4,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: var(--bg-body);
   align-items: center;
 }
 

@@ -2,10 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import characterReducer from './characterSlice';
 import filterReducer from './filterSlice';
+import themeReduser from './themeSlice';
 import { rickApi } from './useCharactersStore';
 
 export const store = configureStore({
   reducer: {
+    theme: themeReduser,
     filter: filterReducer,
     characters: characterReducer,
     [rickApi.reducerPath]: rickApi.reducer,
