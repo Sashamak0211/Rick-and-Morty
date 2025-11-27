@@ -1,5 +1,6 @@
-import { RootState } from '@app';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { RootState } from '@/app';
 
 import { toggleTheme } from '../../../app/store/themeSlice';
 import { DarkTheme, LightTheme } from '../../assets';
