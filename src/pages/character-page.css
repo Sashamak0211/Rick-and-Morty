@@ -27,6 +27,7 @@
   font-weight: 700;
   line-height: 100%;
   white-space: nowrap;
+  color: var(--text-main);
 }
 
 .card-character__img {
@@ -45,6 +46,7 @@
   letter-spacing: 0px;
   text-align: center;
   vertical-align: middle;
+  color: var(--text-main);
 }
 
 .card-character__title {
@@ -72,6 +74,7 @@
   margin-left: 16px;
   line-height: 20px;
   letter-spacing: 0.25px;
+  color: var(--text-main);
 }
 
 .card-character-information__value {

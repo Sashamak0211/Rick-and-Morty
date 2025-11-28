@@ -1,4 +1,5 @@
 import ArrowLeft from '@shared/assets/icon/ArrowLeft.svg?react';
+import ArrowLeftWhite from '@shared/assets/icon/ArrowLeftWhite.svg?react';
 import CheckIcon from '@shared/assets/icon/Check.svg?react';
 import CheckWhite from '@shared/assets/icon/CheckWhite.svg?react';
 import CloseIcon from '@shared/assets/icon/Close.svg?react';
@@ -16,6 +17,7 @@ export { default as TitleLogoPng } from './image/Rick and Morty Title.png';
 
 export {
   ArrowLeft,
+  ArrowLeftWhite,
   CheckIcon,
   CheckWhite,
   CloseIcon,
