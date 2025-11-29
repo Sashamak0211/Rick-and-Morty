@@ -12,7 +12,7 @@ import Magnifier from '@shared/assets/icon/Magnifier.svg?react';
 export { default as NotFoundLogo } from './image/404.jpg';
 export { default as HeaderLogo } from './image/headerLogo.png';
 export { default as HeaderLogoDark } from './image/headerLogoDark.png';
-export { default as PortlaLoading } from './image/PortalLoading.png';
+export { default as PortalLoading } from './image/PortalLoading.png';
 export { default as TitleLogoPng } from './image/Rick and Morty Title.png';
 
 export {

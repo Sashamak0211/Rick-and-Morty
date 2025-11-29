@@ -1,4 +1,4 @@
-import { classNames, PortlaLoading } from '@/shared';
+import { classNames, PortalLoading } from '@/shared';
 
 import './Loader.css';
 
@@ -10,7 +10,7 @@ export const Loader = ({ size = 'large', label = '' }: ILoaderProps) => {
   return (
     <div className={classNames('loader', `loader--${size}`)}>
       <img
-        src={PortlaLoading}
+        src={PortalLoading}
         alt="Загрузка информации"
         className="loader__image"
       />
