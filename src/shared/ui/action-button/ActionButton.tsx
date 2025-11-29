@@ -1,4 +1,15 @@
-import { CheckIcon, CloseIcon, EditIcon, IconButton } from '@/shared';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '@/app';
+import {
+  CheckIcon,
+  CheckWhite,
+  CloseIcon,
+  CloseWhite,
+  EditIcon,
+  EditWhite,
+  IconButton,
+} from '@/shared';
 
 interface IActionButton {
   isEditing: boolean;
@@ -13,21 +24,23 @@ export const ActionButton = ({
   onSave,
   onCancel,
 }: IActionButton) => {
+  const isDark = useSelector((state: RootState) => state.theme.isDark);
+
   return (
     <div className="icon-button-container">
       {isEditing ? (
         <>
           <IconButton className="icon-button__close" onClick={onCancel}>
-            <CloseIcon />
+            {isDark ? <CloseWhite /> : <CloseIcon />}
           </IconButton>
           <IconButton className="icon-button__check" onClick={onSave}>
-            <CheckIcon />
+            {isDark ? <CheckWhite /> : <CheckIcon />}
           </IconButton>
         </>
       ) : (
         <>
           <IconButton className="icon-button__edit" onClick={onEdit}>
-            <EditIcon />
+            {isDark ? <EditWhite /> : <EditIcon />}
           </IconButton>
         </>
       )}

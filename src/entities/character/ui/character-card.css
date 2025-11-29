@@ -48,6 +48,7 @@
   height: 41px;
   padding: 0;
   margin: 0;
+  color: var(--text-main);
 }
 
 .character-card.editing .character-card__row--status .selector--small {
