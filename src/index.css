@@ -4,7 +4,6 @@
   --text-secondary: rgba(0, 0, 0, 0.6);
   --border-color: #d1d5db;
   --border-black: #000;
-
 }
 
 .dark {
@@ -14,9 +13,6 @@
   --border-color: #1a1814;
   --border-black: white;
 }
-
-
-
 
 body {
   margin: 0;

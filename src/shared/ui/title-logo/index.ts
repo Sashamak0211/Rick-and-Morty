@@ -1,1 +1,1 @@
-export { TitleLogo } from './TitleLogo'
+export { TitleLogo } from './TitleLogo';

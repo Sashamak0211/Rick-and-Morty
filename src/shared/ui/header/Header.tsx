@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import { RootState } from '@app/store/store';
 import { useSelector } from 'react-redux';
+
+import { RootState } from '@/app';
 
 import { HeaderLogo, HeaderLogoDark } from '../../assets';
 import { ToggleButton } from '../toggle-button';
