@@ -29,9 +29,8 @@ export const CharacterPage = () => {
       <Link to="/" className="card-box__back">
         {isDark ? (
           <>
-            {' '}
-            <ArrowLeftWhite />{' '}
-            <span className="card-box__back-text">GO BACK</span>{' '}
+            <ArrowLeftWhite />
+            <span className="card-box__back-text">GO BACK</span>
           </>
         ) : (
           <>
