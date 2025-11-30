@@ -2,10 +2,8 @@ import { useEffect } from 'react';
 
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
-
-import { RootState, useGetCharacterByIdQuery } from '@/app';
-import { ArrowLeft, ArrowLeftWhite, Loader } from '@/shared';
+import { useGetCharacterByIdQuery } from '@/app';
+import { ArrowLeft, Loader } from '@/shared';
 
 import './character-page.css';
 
@@ -13,7 +11,7 @@ export const CharacterPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { data: character, isLoading, error } = useGetCharacterByIdQuery(id);
-  const isDark = useSelector((state: RootState) => state.theme.isDark);
+
   useEffect(() => {
     if (error) {
       navigate('/404');
@@ -27,16 +25,7 @@ export const CharacterPage = () => {
   return (
     <div className="cardBox">
       <Link to="/" className="card-box__back">
-        {isDark ? (
-          <>
-            <ArrowLeftWhite />
-            <span className="card-box__back-text">GO BACK</span>
-          </>
-        ) : (
-          <>
-            <ArrowLeft /> <span className="card-box__back-text">GO BACK</span>
-          </>
-        )}
+        <ArrowLeft /> <span className="card-box__back-text">GO BACK</span>
       </Link>
 
       <img

@@ -126,6 +126,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--text-main);
 }
 .character-card__location-input {
   width: 100%;

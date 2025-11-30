@@ -24,4 +24,5 @@
   height: 49px;
   display: block;
   cursor: pointer;
+  color: var(--text-main);
 }

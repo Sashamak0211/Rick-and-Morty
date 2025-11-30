@@ -19,6 +19,7 @@
   margin-left: 190px;
   left: 20px;
   top: 20px;
+  color: var(--text-main);
 }
 
 .card-box__back-text {

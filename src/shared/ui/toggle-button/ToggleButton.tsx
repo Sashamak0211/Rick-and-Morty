@@ -1,21 +1,18 @@
-import { useDispatch, useSelector } from 'react-redux';
-
-import { RootState } from '@/app';
-import { toggleTheme } from '@/app/store/themeSlice';
-import { DarkTheme, LightTheme } from '@/shared/assets';
+import React, { ReactElement } from 'react';
 
 import './ToggleButton.css';
 
-export const ToggleButton = () => {
-  const dispatch = useDispatch();
-  const isDark = useSelector((state: RootState) => state.theme.isDark);
-  const handleToggleTheme = () => {
-    dispatch(toggleTheme());
-  };
-
+interface IToggleButtonProps {
+  onClick: () => void;
+  icon?: ReactElement;
+}
+export const ToggleButton: React.FC<IToggleButtonProps> = ({
+  onClick,
+  icon,
+}) => {
   return (
-    <button onClick={handleToggleTheme} className="toggle-button">
-      {isDark ? <DarkTheme /> : <LightTheme />}
+    <button onClick={onClick} className="toggle-button">
+      <span className="toggle-button__icon">{icon}</span>
     </button>
   );
 };

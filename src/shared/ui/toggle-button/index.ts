@@ -1,1 +1,2 @@
-export { ToggleButton } from './ToggleButton';
+export * from './ThemeToggleButton';
+export * from './ToggleButton';
