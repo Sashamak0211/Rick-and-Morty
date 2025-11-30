@@ -1,15 +1,31 @@
+:root {
+  --bg-body: white;
+  --text-main: #000;
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --border-color: #d1d5db;
+  --border-black: #000;
+}
+
+.dark {
+  --bg-body: #000;
+  --text-main: white;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --border-color: #1a1814;
+  --border-black: white;
+}
+
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
   font-family: 'Roboto', sans-serif;
-  background-color: #f9fafb;
+  background-color: var(--bg-body);
   overflow-x: hidden;
 }
 
 #root {
   margin: 0 auto;
-  background-color: white;
+  background-color: var(--bg-body);
   position: relative;
   min-height: 100vh;
 }

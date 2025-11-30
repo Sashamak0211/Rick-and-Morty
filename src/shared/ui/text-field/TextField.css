@@ -12,7 +12,7 @@
   outline: none;
   flex: 1;
   font-family: 'Roboto', sans-serif;
-  color: #000;
+  color: var(--text-main);
   height: 100%;
   line-height: 20px;
   background: transparent;
@@ -24,7 +24,7 @@
 }
 
 .text-field__input::placeholder {
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--text-secondary);
 }
 
 .text-field.text-field--compact .text-field__input {
@@ -49,7 +49,7 @@
   height: 31px;
   padding: 0;
   margin: 0;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--border-black);
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -66,9 +66,9 @@
   border-radius: 6px;
   display: flex;
   gap: 8px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--border-color);
   padding: 6px 10px;
-  background-color: #fff;
+  background-color: var(--bg-body);
   box-sizing: border-box;
 }
 
@@ -76,9 +76,9 @@
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  fill: rgba(0, 0, 0, 0.54);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 10px;
+  color: var(--text-main);
 }

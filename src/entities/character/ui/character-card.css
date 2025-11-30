@@ -3,7 +3,7 @@
   max-width: 508px;
   width: 100%;
   height: 248px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 7px;
   box-sizing: border-box;
@@ -48,6 +48,7 @@
   height: 41px;
   padding: 0;
   margin: 0;
+  color: var(--text-main);
 }
 
 .character-card.editing .character-card__row--status .selector--small {
@@ -57,7 +58,7 @@
 }
 
 .character-card__title {
-  color: #000;
+  color: var(--text-main);
   font-size: 16px;
   font-weight: 700;
   margin: 0;
@@ -71,7 +72,7 @@
   display: flex;
   align-items: center;
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--text-secondary);
   font-weight: 400;
   line-height: 1;
   width: 200px;
@@ -125,13 +126,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--text-main);
 }
 .character-card__location-input {
   width: 100%;
   padding: 0;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--border-black);
   display: flex;
   align-items: center;
   box-sizing: border-box;
 }
-
