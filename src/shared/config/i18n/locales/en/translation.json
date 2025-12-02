@@ -1,0 +1,8 @@
+{
+  "filter_by_name" : "Filter by name",
+  "species" : "Species",
+  "gender": "Gender",
+  "status" : "Status",
+  "location": "Location",
+  "Made_with_love_by": "Made with love by"
+}

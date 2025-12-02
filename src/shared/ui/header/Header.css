@@ -26,3 +26,6 @@
   cursor: pointer;
   color: var(--text-main);
 }
+.buttons {
+  display: flex;
+}

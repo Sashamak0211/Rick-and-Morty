@@ -1,0 +1,8 @@
+{
+  "filter_by_name" : "Фильтр по имени",
+  "species" : "Вид",
+  "gender": "Пол",
+  "status" : "Статус",
+  "location": "Локация",
+  "Made with love by": "С любовью"
+}
