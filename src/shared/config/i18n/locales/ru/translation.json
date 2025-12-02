@@ -1,8 +1,33 @@
 {
-  "filter_by_name" : "Фильтр по имени",
-  "species" : "Вид",
-  "gender": "Пол",
-  "status" : "Статус",
-  "location": "Локация",
-  "Made with love by": "С любовью"
+  "Alive": "Жив",
+  "Dead": "Мёртв",
+  "Unknown": "Неизвестно",
+
+  "Human": "Человек",
+  "Alien": "Инопланетянин",
+  "Humanoid": "Гуманоид",
+  "Animal": "Животное",
+  "Robot": "Робот",
+  "Cronenberg": "Кроненберг",
+  "Mythology": "Мифология",
+  "Disease": "Болезнь",
+
+  "Female": "Женский",
+  "Male": "Мужской",
+  "Genderless": "Бесполый",
+
+  "Filter by name": "Поиск по имени",
+  "Species": "Вид",
+  "Gender": "Пол",
+  "Status": "Статус",
+
+  "Information": "Информация",
+  "Location": "Местонахождение",
+  "Origin": "Происхождение",
+  "Type": "Тип",
+
+  "GO BACK": "НАЗАД",
+  "Page not found": "Страница не найдена",
+  "Loading character...": "Загрузка персонажа...",
+  "Made with love by": "Сделано с любовью"
 }

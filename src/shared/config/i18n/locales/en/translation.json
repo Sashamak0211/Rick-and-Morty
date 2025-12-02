@@ -1,8 +1,33 @@
 {
-  "filter_by_name" : "Filter by name",
-  "species" : "Species",
-  "gender": "Gender",
-  "status" : "Status",
-  "location": "Location",
-  "Made_with_love_by": "Made with love by"
+  "Alive": "Alive",
+  "Dead": "Dead",
+  "Unknown": "Unknown",
+
+  "Human": "Human",
+  "Alien": "Alien",
+  "Humanoid": "Humanoid",
+  "Animal": "Animal",
+  "Robot": "Robot",
+  "Cronenberg": "Cronenberg",
+  "Mythology": "Mythology",
+  "Disease": "Disease",
+
+  "Female": "Female",
+  "Male": "Male",
+  "Genderless": "Genderless",
+
+  "Filter by name": "Filter by name",
+  "Species": "Species",
+  "Gender": "Gender",
+  "Status": "Status",
+
+  "Information": "Information",
+  "Location": "Location",
+  "Origin": "Origin",
+  "Type": "Type",
+
+  "GO BACK": "GO BACK",
+  "Page not found": "Page not found",
+  "Loading character...": "Loading character...",
+  "Made with love by": "Made with love by"
 }

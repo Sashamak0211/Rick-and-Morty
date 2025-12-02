@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import {
   debounce,
   Selector,
@@ -11,8 +13,8 @@ import {
 import type { IFiltersProps, IFiltersValue } from '../type';
 export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
   const [localFilters, setLocalFilters] = useState<IFiltersValue>(filters);
-
-  const debaunceOnChange = useMemo(() => debounce(onChange, 500), [onChange]);
+  const { t } = useTranslation();
+  const debounceOnChange = useMemo(() => debounce(onChange, 500), [onChange]);
 
   useEffect(() => {
     if (
@@ -21,9 +23,9 @@ export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
       localFilters.gender !== filters.gender ||
       localFilters.status !== filters.status
     ) {
-      debaunceOnChange(localFilters);
+      debounceOnChange(localFilters);
     }
-  }, [localFilters, filters, debaunceOnChange]);
+  }, [localFilters, filters, debounceOnChange]);
 
   useEffect(() => {
     setLocalFilters(filters);
@@ -63,7 +65,7 @@ export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
       <TextField
         value={localFilters.name}
         onChange={(value) => changeLocalFilters({ name: value })}
-        placeholder="Filter by name"
+        placeholder={t("Filter by name")}
         variant="default"
       />
       <Selector

@@ -1,5 +1,7 @@
 import { memo, useState } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import {
   ActionButton,
   Selector,
@@ -40,6 +42,7 @@ export const CharacterCard = memo(
     const [currentName, setCurrentName] = useState(character.name);
     const [currentLocation, setCurrentLocation] = useState(character.location);
     const [currentStatus, setCurrentStatus] = useState(character.status);
+    const { t } = useTranslation();
 
     const handleNameClick = () => {
       if (!isEditing) {
@@ -101,22 +104,22 @@ export const CharacterCard = memo(
             </div>
 
             <div className="character-card__row">
-              <dt>Gender</dt>
-              <dd className="character-card__value">{character.gender}</dd>
+              <dt>{t('Gender')}</dt>
+              <dd className="character-card__value">{t(character.gender)}</dd>
             </div>
 
             <div className="character-card__row">
               <dt>Species</dt>
-              <dd className="character-card__value">{character.species}</dd>
+              <dd className="character-card__value">{t(character.species)}</dd>
             </div>
 
             <div className="character-card__row">
-              <dt>Location</dt>
+              <dt>{t('Location')}</dt>
               <dd className="character-card__value">
                 {isEditing ? (
                   <TextField
                     variant="compact-editable"
-                    value={currentLocation}
+                    value={t(currentLocation)}
                     onChange={handleChangeLocation}
                     id={`character-location-${character.id}`}
                     className="character-card__location-input"
@@ -128,14 +131,14 @@ export const CharacterCard = memo(
             </div>
 
             <div className="character-card__row character-card__row--status">
-              <dt>Status</dt>
+              <dt>{t('Status')}</dt>
               <dd className="character-card__value">
                 {isEditing ? (
                   <Selector
                     options={statusOptions}
-                    value={currentStatus}
+                    value={t(currentStatus)}
                     onChange={handleChangeStatus}
-                    placeholder={currentStatus}
+                    placeholder={t(currentStatus)}
                     size="small"
                     OptionContentComponent={(props) => (
                       <>
@@ -146,7 +149,7 @@ export const CharacterCard = memo(
                   />
                 ) : (
                   <>
-                    {getStatusLabel(currentStatus).label}
+                    {getStatusLabel(t(currentStatus)).label}
                     <SelectorDot status={currentStatus as StatusesType} />
                   </>
                 )}

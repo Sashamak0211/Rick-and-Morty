@@ -80,6 +80,7 @@ export const Selector = ({
   const optionsList = useMemo(() => {
     return options?.map((option) => {
       if (option.value === value) return null;
+      
 
       return (
         <div
@@ -88,11 +89,11 @@ export const Selector = ({
           className="selector__option"
           onClick={handleClick}
         >
-          <OptionContentComponent value={option.label} />
+          <OptionContentComponent value={t(option.label)} />
         </div>
       );
     });
-  }, [options, value, OptionContentComponent, handleClick]);
+  }, [options, value, handleClick, OptionContentComponent, t]);
 
   return (
     <div

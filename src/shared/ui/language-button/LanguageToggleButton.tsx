@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { DarkTheme, LightTheme } from '@/shared/assets';
+import { EnLang, RuLang } from '@/shared/assets';
 
 import { ToggleButton } from '../toggle-button';
 
@@ -15,7 +15,7 @@ export const LanguageToggleButton = () => {
   return (
     <ToggleButton
       onClick={toggleLanguage}
-      icon={lngRu ? <DarkTheme /> : <LightTheme />}
+      icon={lngRu ? <RuLang /> : <EnLang />}
     />
   );
 };
