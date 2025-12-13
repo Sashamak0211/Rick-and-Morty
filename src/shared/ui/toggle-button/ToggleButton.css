@@ -13,7 +13,7 @@
 }
 
 .toggle-button__icon {
-  width: 100%;
-  height: 100%;
+  width: 38px;
+  height: 38px;
   color: var(--text-main);
 }

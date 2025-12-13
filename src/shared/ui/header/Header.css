@@ -12,7 +12,9 @@
 }
 
 .header__inner {
-  width: 1050px;
+  max-width: 1050px;
+  width: 100%;
+  padding: 0 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,4 +30,7 @@
 }
 .buttons {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
 }
