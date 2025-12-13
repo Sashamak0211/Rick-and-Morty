@@ -1,33 +1,36 @@
 {
-  "Alive": "Жив",
-  "Dead": "Мёртв",
-  "Unknown": "Неизвестно",
+  "status.alive": "Жив",
+  "status.dead": "Мёртв",
+  "status.unknown": "Неизвестно",
 
-  "Human": "Человек",
-  "Alien": "Инопланетянин",
-  "Humanoid": "Гуманоид",
-  "Animal": "Животное",
-  "Robot": "Робот",
-  "Cronenberg": "Кроненберг",
-  "Mythology": "Мифология",
-  "Disease": "Болезнь",
+  "species.human": "Человек",
+  "species.alien": "Инопланетянин",
+  "species.humanoid": "Гуманоид",
+  "species.animal": "Животное",
+  "species.robot": "Робот",
+  "species.cronenberg": "Кроненберг",
+  "species.mythology": "Мифология",
+  "species.disease": "Болезнь",
 
-  "Female": "Женский",
-  "Male": "Мужской",
-  "Genderless": "Бесполый",
+  "gender.female": "Женский",
+  "gender.male": "Мужской",
+  "gender.genderless": "Бесполый",
 
-  "Filter by name": "Поиск по имени",
-  "Species": "Вид",
-  "Gender": "Пол",
-  "Status": "Статус",
+  "filters.name": "Поиск по имени",
+  "filters.species": "Вид",
+  "filters.gender": "Пол",
+  "filters.status": "Статус",
 
-  "Information": "Информация",
-  "Location": "Местонахождение",
-  "Origin": "Происхождение",
-  "Type": "Тип",
+  "character.info": "Информация",
+  "character.location": "Местонахождение",
+  "character.origin": "Происхождение",
+  "character.type": "Тип",
 
-  "GO BACK": "НАЗАД",
-  "Page not found": "Страница не найдена",
-  "Loading character...": "Загрузка персонажа...",
-  "Made with love by": "Сделано с любовью"
+  "buttons.back": "Назад",
+
+  "errors.notFound": "Страница не найдена",
+
+  "loading.character": "Загрузка персонажа...",
+
+  "footer.madeWithLove": "Сделано с любовью"
 }

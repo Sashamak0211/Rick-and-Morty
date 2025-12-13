@@ -9,26 +9,15 @@ import {
   type StatusesType,
   TextField,
 } from '@/shared';
+import {
+  genderMap,
+  speciesMap,
+  statusMap,
+} from '@/shared/config/i18n/valueMap';
 
 import type { ICharacterCardProps } from '../types';
 
 import './character-card.css';
-
-const statusOptions = [
-  { value: 'Alive', label: 'Alive' },
-  { value: 'Dead', label: 'Dead' },
-  { value: 'Unknown', label: 'Unknown' },
-];
-
-const getStatusLabel = (value: string) => {
-  return (
-    statusOptions.find(
-      (status) => status.value.toLowerCase() === value.toLowerCase()
-    ) || {
-      label: value,
-    }
-  );
-};
 
 export const CharacterCard = memo(
   ({
@@ -43,6 +32,21 @@ export const CharacterCard = memo(
     const [currentLocation, setCurrentLocation] = useState(character.location);
     const [currentStatus, setCurrentStatus] = useState(character.status);
     const { t } = useTranslation();
+    const statusOptions = [
+      { value: 'Alive', label: t('status.alive') },
+      { value: 'Dead', label: t('status.dead') },
+      { value: 'Unknown', label: t('status.unknown') },
+    ];
+
+    const getStatusLabel = (value: string) => {
+      return (
+        statusOptions.find(
+          (status) => status.value.toLowerCase() === value.toLowerCase()
+        ) || {
+          label: value,
+        }
+      );
+    };
 
     const handleNameClick = () => {
       if (!isEditing) {
@@ -104,17 +108,21 @@ export const CharacterCard = memo(
             </div>
 
             <div className="character-card__row">
-              <dt>{t('Gender')}</dt>
-              <dd className="character-card__value">{t(character.gender)}</dd>
+              <dt>{t('filters.gender')}</dt>
+              <dd className="character-card__value">
+                {t(genderMap[character.gender])}
+              </dd>
             </div>
 
             <div className="character-card__row">
-              <dt>Species</dt>
-              <dd className="character-card__value">{t(character.species)}</dd>
+              <dt>{t('filters.species')}</dt>
+              <dd className="character-card__value">
+                {t(speciesMap[character.species])}
+              </dd>
             </div>
 
             <div className="character-card__row">
-              <dt>{t('Location')}</dt>
+              <dt>{t('character.location')}</dt>
               <dd className="character-card__value">
                 {isEditing ? (
                   <TextField
@@ -131,14 +139,14 @@ export const CharacterCard = memo(
             </div>
 
             <div className="character-card__row character-card__row--status">
-              <dt>{t('Status')}</dt>
+              <dt>{t('filters.status')}</dt>
               <dd className="character-card__value">
                 {isEditing ? (
                   <Selector
                     options={statusOptions}
-                    value={t(currentStatus)}
+                    value={t(statusMap[currentStatus])}
                     onChange={handleChangeStatus}
-                    placeholder={t(currentStatus)}
+                    placeholder={t(statusMap[currentStatus])}
                     size="small"
                     OptionContentComponent={(props) => (
                       <>
@@ -149,7 +157,7 @@ export const CharacterCard = memo(
                   />
                 ) : (
                   <>
-                    {getStatusLabel(t(currentStatus)).label}
+                    {getStatusLabel(t(statusMap[currentStatus])).label}
                     <SelectorDot status={currentStatus as StatusesType} />
                   </>
                 )}

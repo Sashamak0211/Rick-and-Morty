@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { useTranslation } from 'react-i18next';
-
 import { classNames } from '@/shared/lib';
 
 import './Selector.css';
@@ -42,7 +40,6 @@ export const Selector = ({
 }: SelectorProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { t } = useTranslation();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -80,7 +77,6 @@ export const Selector = ({
   const optionsList = useMemo(() => {
     return options?.map((option) => {
       if (option.value === value) return null;
-      
 
       return (
         <div
@@ -89,11 +85,11 @@ export const Selector = ({
           className="selector__option"
           onClick={handleClick}
         >
-          <OptionContentComponent value={t(option.label)} />
+          <OptionContentComponent value={option.label} />
         </div>
       );
     });
-  }, [options, value, handleClick, OptionContentComponent, t]);
+  }, [options, value, handleClick, OptionContentComponent]);
 
   return (
     <div
@@ -114,7 +110,7 @@ export const Selector = ({
           {selectedOption ? (
             <OptionContentComponent value={selectedOption.label} />
           ) : (
-            <span className="selector__placeholder">{t(placeholder)}</span>
+            <span className="selector__placeholder">{placeholder}</span>
           )}
         </span>
         <span className="selector__arrow" />

@@ -1,33 +1,36 @@
 {
-  "Alive": "Alive",
-  "Dead": "Dead",
-  "Unknown": "Unknown",
+  "status.alive": "Alive",
+  "status.dead": "Dead",
+  "status.unknown": "Unknown",
 
-  "Human": "Human",
-  "Alien": "Alien",
-  "Humanoid": "Humanoid",
-  "Animal": "Animal",
-  "Robot": "Robot",
-  "Cronenberg": "Cronenberg",
-  "Mythology": "Mythology",
-  "Disease": "Disease",
+  "species.human": "Human",
+  "species.alien": "Alien",
+  "species.humanoid": "Humanoid",
+  "species.animal": "Animal",
+  "species.robot": "Robot",
+  "species.cronenberg": "Cronenberg",
+  "species.mythology": "Mythology",
+  "species.disease": "Disease",
 
-  "Female": "Female",
-  "Male": "Male",
-  "Genderless": "Genderless",
+  "gender.female": "Female",
+  "gender.male": "Male",
+  "gender.genderless": "Genderless",
 
-  "Filter by name": "Filter by name",
-  "Species": "Species",
-  "Gender": "Gender",
-  "Status": "Status",
+  "filters.name": "Filter by name",
+  "filters.species": "Species",
+  "filters.gender": "Gender",
+  "filters.status": "Status",
 
-  "Information": "Information",
-  "Location": "Location",
-  "Origin": "Origin",
-  "Type": "Type",
+  "character.info": "Information",
+  "character.location": "Location",
+  "character.origin": "Origin",
+  "character.type": "Type",
 
-  "GO BACK": "GO BACK",
-  "Page not found": "Page not found",
-  "Loading character...": "Loading character...",
-  "Made with love by": "Made with love by"
+  "buttons.back": "Go back",
+
+  "errors.notFound": "Page not found",
+
+  "loading.character": "Loading character...",
+
+  "footer.madeWithLove": "Made with love"
 }

@@ -35,58 +35,61 @@ export const FilterPanel = ({ filters, onChange }: IFiltersProps) => {
     setLocalFilters((prev) => ({ ...prev, ...update }));
   };
 
-  const statusOptions = [
-    { value: 'alive', label: 'Alive', color: '#12B800' },
-    { value: 'dead', label: 'Dead', color: '#DF0000' },
-    { value: 'unknown', label: 'Unknown', color: '#FF9900' },
-  ];
+const statusOptions = [
+  { value: 'alive', label: t('status.alive'), color: '#12B800' },
+  { value: 'dead', label: t('status.dead'), color: '#DF0000' },
+  { value: 'unknown', label: t('status.unknown'), color: '#FF9900' },
+];
 
-  const speciesOptions = [
-    { value: 'Human', label: 'Human' },
-    { value: 'Alien', label: 'Alien' },
-    { value: 'Humanoid', label: 'Humanoid' },
-    { value: 'Animal', label: 'Animal' },
-    { value: 'Robot', label: 'Robot' },
-    { value: 'Cronenberg', label: 'Cronenberg' },
-    { value: 'Mythology', label: 'Mythology' },
-    { value: 'Disease', label: 'Disease' },
-    { value: 'Unknown', label: 'Unknown' },
-  ];
 
-  const genderOptions = [
-    { value: 'female', label: 'Female' },
-    { value: 'male', label: 'Male' },
-    { value: 'genderless', label: 'Genderless' },
-    { value: 'unknown', label: 'Unknown' },
-  ];
+const speciesOptions = [
+  { value: 'Human', label: t('species.human') },
+  { value: 'Alien', label: t('species.alien') },
+  { value: 'Humanoid', label: t('species.humanoid') },
+  { value: 'Animal', label: t('species.animal') },
+  { value: 'Robot', label: t('species.robot') },
+  { value: 'Cronenberg', label: t('species.cronenberg') },
+  { value: 'Mythology', label: t('species.mythology') },
+  { value: 'Disease', label: t('species.disease') },
+  { value: 'Unknown', label: t('status.unknown') },
+];
+
+
+ const genderOptions = [
+  { value: 'female', label: t('gender.female') },
+  { value: 'male', label: t('gender.male') },
+  { value: 'genderless', label: t('gender.genderless') },
+  { value: 'unknown', label: t('status.unknown') },
+];
+
 
   return (
     <div className="filter-panel">
       <TextField
         value={localFilters.name}
         onChange={(value) => changeLocalFilters({ name: value })}
-        placeholder={t("Filter by name")}
+        placeholder={t('filters.name')}
         variant="default"
       />
       <Selector
         options={speciesOptions}
         value={localFilters.species}
         onChange={(value) => changeLocalFilters({ species: value })}
-        placeholder="Species"
+        placeholder={t("filters.species")}
         size="large"
       />
       <Selector
         options={genderOptions}
         value={localFilters.gender}
         onChange={(value) => changeLocalFilters({ gender: value })}
-        placeholder="Gender"
+        placeholder={t("filters.gender")}
         size="large"
       />
       <Selector
         options={statusOptions}
         value={localFilters.status}
         onChange={(value) => changeLocalFilters({ status: value })}
-        placeholder="Status"
+        placeholder={t("filters.status")}
         size="large"
         OptionContentComponent={({ value }) => (
           <>

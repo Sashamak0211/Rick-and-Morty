@@ -6,7 +6,7 @@ export const Footer = () => {
   const { t } = useTranslation();
   return (
     <footer className="footer">
-      <p>{t('Made with love by')} Sashamak0211</p>
+      <p>{t('footer.madeWithLove')} Sashamak0211</p>
     </footer>
   );
 };
