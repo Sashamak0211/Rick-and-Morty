@@ -9,6 +9,9 @@ const STATUSES_DICT = {
   alive: 'green',
   dead: 'red',
   unknown: 'orange',
+  Мёртв: 'red',
+  Жив: 'green',
+  Неизвестно: 'orange',
 };
 
 export type StatusesType = keyof typeof STATUSES_DICT;

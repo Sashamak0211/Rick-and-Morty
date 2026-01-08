@@ -89,7 +89,7 @@ export const Selector = ({
         </div>
       );
     });
-  }, [options, value, OptionContentComponent, handleClick]);
+  }, [options, value, handleClick, OptionContentComponent]);
 
   return (
     <div

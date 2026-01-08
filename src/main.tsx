@@ -7,6 +7,8 @@ import { App, store } from './app';
 
 import './index.css';
 
+import '@shared/config/i18n/index';
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>

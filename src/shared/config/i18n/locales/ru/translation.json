@@ -1,0 +1,36 @@
+{
+  "status.alive": "Жив",
+  "status.dead": "Мёртв",
+  "status.unknown": "Неизвестно",
+
+  "species.human": "Человек",
+  "species.alien": "Инопланетянин",
+  "species.humanoid": "Гуманоид",
+  "species.animal": "Животное",
+  "species.robot": "Робот",
+  "species.cronenberg": "Кроненберг",
+  "species.mythology": "Мифология",
+  "species.disease": "Болезнь",
+
+  "gender.female": "Женский",
+  "gender.male": "Мужской",
+  "gender.genderless": "Бесполый",
+
+  "filters.name": "Поиск по имени",
+  "filters.species": "Вид",
+  "filters.gender": "Пол",
+  "filters.status": "Статус",
+
+  "character.info": "Информация",
+  "character.location": "Местонахождение",
+  "character.origin": "Происхождение",
+  "character.type": "Тип",
+
+  "buttons.back": "Назад",
+
+  "errors.notFound": "Страница не найдена",
+
+  "loading.character": "Загрузка персонажа...",
+
+  "footer.madeWithLove": "Сделано с любовью"
+}
