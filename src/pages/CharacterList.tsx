@@ -56,9 +56,13 @@ export const CharacterList = () => {
   });
 
   useEffect(() => {
-    if (!data?.results) return;
-    if (currentPage == 1) setCharacters(data.results);
-    else addCharacters(data.results);
+    if (!data?.results) {
+      return;
+    }
+
+    if (currentPage == 1) {
+      setCharacters(data.results);
+    } else addCharacters(data.results);
     setHasMore(Boolean(data.info?.next));
   }, [data, currentPage, setCharacters, addCharacters, setHasMore]);
 
