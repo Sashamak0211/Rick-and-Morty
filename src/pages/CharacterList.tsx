@@ -3,20 +3,11 @@ import { useCallback, useEffect, useTransition } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useSelector } from 'react-redux';
+import { useShallow } from 'zustand/react/shallow';
 
-import {
-  addCharacters,
-  clearCharacters,
-  RootState,
-  setCharacters,
-  setFilters,
-  setHasMore,
-  setPage,
-  updateCharacter,
-  useAppDispatch,
-  useGetAllCharactersQuery,
-} from '@/app';
+import { useGetAllCharactersQuery } from '@/app';
+import { useCharacterZustand } from '@/app/storeZustand/useCharacterZustand';
+import { useFilterStore } from '@/app/storeZustand/useFilterStore';
 import { CharacterCard } from '@/entities';
 import { FilterPanel, IFiltersValue } from '@/features';
 import { Loader, TitleLogo } from '@/shared';
@@ -24,12 +15,38 @@ import { Loader, TitleLogo } from '@/shared';
 export const CharacterList = () => {
   const navigate = useNavigate();
   const [isPending, startTransition] = useTransition();
-  const dispatch = useAppDispatch();
-
-  const { currentPage, characters, hasMore } = useSelector(
-    (state: RootState) => state.characters
+  const filters = useFilterStore(
+    useShallow((state) => ({
+      name: state.name,
+      gender: state.gender,
+      status: state.status,
+      species: state.species,
+    }))
   );
-  const filters = useSelector((state: RootState) => state.filter);
+  const setFilters = useFilterStore((state) => state.setFilters);
+  const {
+    currentPage,
+    characters,
+    hasMore,
+    setCharacters,
+    addCharacters,
+    clearCharacter,
+    setHasMore,
+    setPage,
+    updateCharacter,
+  } = useCharacterZustand(
+    useShallow((state) => ({
+      currentPage: state.currentPage,
+      characters: state.characters,
+      hasMore: state.hasMore,
+      setCharacters: state.setCharacters,
+      addCharacters: state.addCharacters,
+      clearCharacter: state.clearCharacter,
+      setHasMore: state.setHasMore,
+      setPage: state.setPage,
+      updateCharacter: state.updateCharacter,
+    }))
+  );
   const { data, isFetching, isLoading } = useGetAllCharactersQuery({
     page: currentPage,
     name: filters.name,
@@ -37,30 +54,34 @@ export const CharacterList = () => {
     species: filters.species,
     gender: filters.gender,
   });
+
   useEffect(() => {
-    if (data?.results) {
-      if (currentPage === 1) {
-        dispatch(setCharacters(data.results));
-      } else {
-        dispatch(addCharacters(data.results));
-      }
-      dispatch(setHasMore(Boolean(data.info.next)));
+    if (!data?.results) {
+      return;
     }
-  }, [data, currentPage, dispatch]);
+
+    if (currentPage == 1) {
+      setCharacters(data.results);
+    } else addCharacters(data.results);
+    setHasMore(Boolean(data.info?.next));
+  }, [data, currentPage, setCharacters, addCharacters, setHasMore]);
 
   const handleFilterChange = useCallback(
     (newFilter: IFiltersValue) => {
       startTransition(() => {
-        dispatch(setFilters(newFilter));
-        dispatch(clearCharacters());
+        setFilters(newFilter);
+        clearCharacter();
+        setPage(1);
+        setHasMore(true);
       });
     },
-    [dispatch]
+
+    [setFilters, clearCharacter, setHasMore, setPage]
   );
 
   const loadMore = () => {
     if (isFetching || !hasMore) return;
-    dispatch(setPage(currentPage + 1));
+    setPage(currentPage + 1);
   };
 
   const handleUpdateCharacter = (
@@ -69,7 +90,7 @@ export const CharacterList = () => {
     location: string,
     status: string
   ) => {
-    dispatch(updateCharacter({ id, name, location, status }));
+    updateCharacter({ id, name, location, status });
   };
 
   return (
