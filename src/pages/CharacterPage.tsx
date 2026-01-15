@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { useGetCharacterByIdQuery } from '@/app';
+import { useCharacterByIdQuery } from '@/app/query/useCharactersQuery';
 import { ArrowLeft, Loader } from '@/shared';
 import {
   genderMap,
@@ -16,8 +16,13 @@ import './character-page.css';
 
 export const CharacterPage = () => {
   const { id } = useParams<{ id: string }>();
+  const characterId = Number(id);
   const navigate = useNavigate();
-  const { data: character, isLoading, error } = useGetCharacterByIdQuery(id);
+  const {
+    data: character,
+    isLoading,
+    error,
+  } = useCharacterByIdQuery(characterId);
   const { t } = useTranslation();
 
   useEffect(() => {
