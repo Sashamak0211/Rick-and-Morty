@@ -1,14 +1,14 @@
-import { useCallback, useEffect, useTransition } from 'react';
+import { useCallback, useTransition } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useShallow } from 'zustand/react/shallow';
 
-import { useGetAllCharactersQuery } from '@/app';
+import { useCharacterInfinityQuery } from '@/app/query/useCharactersInfinityQuery';
 import { useCharacterZustand } from '@/app/storeZustand/useCharacterZustand';
 import { useFilterStore } from '@/app/storeZustand/useFilterStore';
-import { CharacterCard } from '@/entities';
+import { CharacterCard, ICharacter } from '@/entities';
 import { FilterPanel, IFiltersValue } from '@/features';
 import { Loader, TitleLogo } from '@/shared';
 
@@ -24,65 +24,36 @@ export const CharacterList = () => {
     }))
   );
   const setFilters = useFilterStore((state) => state.setFilters);
-  const {
-    currentPage,
-    characters,
-    hasMore,
-    setCharacters,
-    addCharacters,
-    clearCharacter,
-    setHasMore,
-    setPage,
-    updateCharacter,
-  } = useCharacterZustand(
+  const { updateCharacter } = useCharacterZustand(
     useShallow((state) => ({
-      currentPage: state.currentPage,
-      characters: state.characters,
-      hasMore: state.hasMore,
-      setCharacters: state.setCharacters,
-      addCharacters: state.addCharacters,
-      clearCharacter: state.clearCharacter,
-      setHasMore: state.setHasMore,
-      setPage: state.setPage,
       updateCharacter: state.updateCharacter,
     }))
   );
-  const { data, isFetching, isLoading } = useGetAllCharactersQuery({
-    page: currentPage,
-    name: filters.name,
-    status: filters.status,
-    species: filters.species,
-    gender: filters.gender,
-  });
 
-  useEffect(() => {
-    if (!data?.results) {
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useCharacterInfinityQuery(filters);
+  const characters =
+    data?.pages.reduce<ICharacter[]>((acc, page) => {
+      acc.push(...page);
+      return acc;
+    }, []) ?? [];
+  const hasMore = Boolean(hasNextPage);
+  const loadMore = () => {
+    if (!hasNextPage || isFetchingNextPage) {
       return;
     }
-
-    if (currentPage == 1) {
-      setCharacters(data.results);
-    } else addCharacters(data.results);
-    setHasMore(Boolean(data.info?.next));
-  }, [data, currentPage, setCharacters, addCharacters, setHasMore]);
+    fetchNextPage();
+  };
 
   const handleFilterChange = useCallback(
     (newFilter: IFiltersValue) => {
       startTransition(() => {
         setFilters(newFilter);
-        clearCharacter();
-        setPage(1);
-        setHasMore(true);
       });
     },
 
-    [setFilters, clearCharacter, setHasMore, setPage]
+    [setFilters]
   );
-
-  const loadMore = () => {
-    if (isFetching || !hasMore) return;
-    setPage(currentPage + 1);
-  };
 
   const handleUpdateCharacter = (
     id: number,
